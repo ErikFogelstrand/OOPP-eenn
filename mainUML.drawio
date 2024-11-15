@@ -16,12 +16,8 @@
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sIzIB-XZMuE6dHfO2kSs-30" target="sIzIB-XZMuE6dHfO2kSs-16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="WeTuNVZqNts5gVV0klB0-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sIzIB-XZMuE6dHfO2kSs-30" target="WeTuNVZqNts5gVV0klB0-1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="395" y="870" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="WeTuNVZqNts5gVV0klB0-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;" edge="1" parent="1" source="sIzIB-XZMuE6dHfO2kSs-30" target="WeTuNVZqNts5gVV0klB0-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-30" value="plantableDirt" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="300" y="680" width="190" height="110" as="geometry" />
@@ -57,35 +53,31 @@
           <mxGeometry y="60" width="190" height="50" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-47" value="&lt;div&gt;&amp;lt;interface&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;ItileObject&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="580" y="480" width="200" height="120" as="geometry" />
+          <mxGeometry x="580" y="330" width="200" height="120" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-48" value="+ interact(action: interactionType):&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ walkable(boolean)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ render(image: bufferedImage)&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-47" vertex="1">
           <mxGeometry y="26" width="200" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="sIzIB-XZMuE6dHfO2kSs-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sIzIB-XZMuE6dHfO2kSs-49" target="sIzIB-XZMuE6dHfO2kSs-47" edge="1">
+        <mxCell id="sIzIB-XZMuE6dHfO2kSs-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" parent="1" source="sIzIB-XZMuE6dHfO2kSs-49" target="sIzIB-XZMuE6dHfO2kSs-47" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="WeTuNVZqNts5gVV0klB0-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sIzIB-XZMuE6dHfO2kSs-49" target="WeTuNVZqNts5gVV0klB0-1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="940" y="870" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="WeTuNVZqNts5gVV0klB0-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sIzIB-XZMuE6dHfO2kSs-49" target="WeTuNVZqNts5gVV0klB0-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="sIzIB-XZMuE6dHfO2kSs-49" value="carrot" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="840" y="580" width="200" height="90" as="geometry" />
+        <mxCell id="sIzIB-XZMuE6dHfO2kSs-49" value="plantable" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="840" y="420" width="200" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="sIzIB-XZMuE6dHfO2kSs-50" value="&lt;div&gt;- image: bufferedImage&lt;/div&gt;" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-49" vertex="1">
-          <mxGeometry y="30" width="200" height="30" as="geometry" />
+        <mxCell id="sIzIB-XZMuE6dHfO2kSs-50" value="&lt;div&gt;- image: bufferedImage&lt;/div&gt;&lt;div&gt;- soil :waterableSoil&lt;/div&gt;" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-49" vertex="1">
+          <mxGeometry y="30" width="200" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="sIzIB-XZMuE6dHfO2kSs-51" value="&lt;div&gt;+harvest()&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-49" vertex="1">
-          <mxGeometry y="60" width="200" height="30" as="geometry" />
+        <mxCell id="sIzIB-XZMuE6dHfO2kSs-51" value="&lt;div&gt;+harvest() &amp;lt;abstract&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-49" vertex="1">
+          <mxGeometry y="70" width="200" height="30" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sIzIB-XZMuE6dHfO2kSs-53" target="sIzIB-XZMuE6dHfO2kSs-47" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-53" value="tree" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="580" y="650" width="200" height="90" as="geometry" />
+          <mxGeometry x="580" y="500" width="200" height="90" as="geometry" />
         </mxCell>
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-54" value="&lt;div&gt;- image: bufferedImage&lt;/div&gt;" style="text;strokeColor=default;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sIzIB-XZMuE6dHfO2kSs-53" vertex="1">
           <mxGeometry y="30" width="200" height="30" as="geometry" />
@@ -149,8 +141,17 @@
         <mxCell id="sIzIB-XZMuE6dHfO2kSs-86" value="statepattern" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="360" y="300" width="180" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="WeTuNVZqNts5gVV0klB0-1" value="Carroten måste kunna säga till dirten att den blivit vattnad och när den har sugit upp vatten. Dirten kan också varit vattnad innan moroten sätts ned vilket moroten måste fatta" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="700" y="840" width="120" height="140" as="geometry" />
+        <mxCell id="WeTuNVZqNts5gVV0klB0-1" value="Carroten måste kunna säga till dirten att den blivit vattnad och när den har sugit upp vatten. Dirten kan också varit vattnad innan moroten sätts ned vilket moroten måste fatta&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Kanske kan göra nån interface som moroten kan kalla på för att få reda på staten av dirten och ändra den&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="940" width="260" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="WeTuNVZqNts5gVV0klB0-5" value="waterableSoil" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="590" width="140" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="WeTuNVZqNts5gVV0klB0-6" value="getWatered() :boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WeTuNVZqNts5gVV0klB0-5">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="WeTuNVZqNts5gVV0klB0-7" value="setWatered(boolean)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WeTuNVZqNts5gVV0klB0-5">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
