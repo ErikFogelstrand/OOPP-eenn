@@ -92,7 +92,7 @@
         <mxCell id="Edmqxcgecc5LKQphc_h1-19" value="Shops" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="20" y="130" width="170" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="Edmqxcgecc5LKQphc_h1-44" value="The player can buy items instead of obtaining them themself" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Edmqxcgecc5LKQphc_h1-19">
+        <mxCell id="Edmqxcgecc5LKQphc_h1-44" value="A shop where the player can buy items instead of obtaining them themself" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Edmqxcgecc5LKQphc_h1-19">
           <mxGeometry y="26" width="170" height="64" as="geometry" />
         </mxCell>
         <mxCell id="Edmqxcgecc5LKQphc_h1-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Edmqxcgecc5LKQphc_h1-33" target="Edmqxcgecc5LKQphc_h1-8">
