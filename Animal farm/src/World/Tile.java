@@ -5,6 +5,11 @@ public class Tile {
     private ITileObject tileObject;
     private ITileType tileType;
 
+    public Tile(ITileObject tileObject, ITileType tileType) {
+        this.tileObject = tileObject;
+        this.tileType = tileType;
+    }
+
     public ITileObject getObject(){
         return tileObject;
     }
