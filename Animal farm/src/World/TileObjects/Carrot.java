@@ -1,6 +1,4 @@
 package World.TileObjects;
-import World.APlantable;
-import World.IAction;
 
 public class Carrot extends APlantable {
 

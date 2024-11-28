@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomTickGenerator {
+    private static final RandomTickGenerator instance = new RandomTickGenerator();
+
     private final Random rand = new Random();
-    private ArrayList<IRandomTickListener> randomTickListeners;
+    private final ArrayList<IRandomTickListener> randomTickListeners;
+
+    public static RandomTickGenerator getInstance() {return instance;}
 
     public RandomTickGenerator() {
         randomTickListeners = new ArrayList<>();

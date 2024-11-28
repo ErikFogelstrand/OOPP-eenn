@@ -1,4 +1,9 @@
-package World;
+package World.TileObjects;
+
+import World.IAction;
+import World.IRandomTickListener;
+import World.ITileObject;
+import World.IWaterableTile;
 
 public abstract class APlantable implements ITileObject, IRandomTickListener {
     private IWaterableTile waterableTile;
@@ -6,7 +11,7 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
     protected int growthState;
 
 
-    protected void setWaterableTile(IWaterableTile waterableTile) {
+    public void setWaterableTile(IWaterableTile waterableTile) {
         this.waterableTile = waterableTile;
     }
 

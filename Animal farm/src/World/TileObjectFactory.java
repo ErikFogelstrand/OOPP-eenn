@@ -3,7 +3,11 @@ package World;
 import World.TileObjects.Carrot;
 
 public class TileObjectFactory {
-    public static ITileObject createTileObject(String tileObject) {
+    private static final TileObjectFactory instance = new TileObjectFactory();
+
+    public static TileObjectFactory getInstance() {return instance;}
+
+    public ITileObject createTileObject(String tileObject) {
         switch (tileObject) {
             case "Carrot":
                 return new Carrot();
