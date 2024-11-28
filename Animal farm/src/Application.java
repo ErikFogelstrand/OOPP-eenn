@@ -1,8 +1,9 @@
 import javax.swing.*;
+import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
+
 
 
 public class Application implements Runnable {
-
 
     Thread gameThread;
 

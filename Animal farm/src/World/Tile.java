@@ -28,7 +28,14 @@ public class Tile {
     public void setEntity(IEntity entity){
         this.entity = entity;
     }
-
+    public void interact(IAction action){
+        if(tileObject != null){
+            tileObject.interact(action);
+        }
+        if(tileType != null){
+            tileType.interact(action);
+        }
+    }
 
 }
 

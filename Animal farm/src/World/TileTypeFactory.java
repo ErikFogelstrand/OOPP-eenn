@@ -1,16 +1,17 @@
 package World;
 
+import World.TileTypes.Dirt;
+import World.TileTypes.Grass;
+import World.TileTypes.PlantableDirt;
+
 public class TileTypeFactory {
     public static ITileType createTileType(String tileType){
-        switch (tileType){
-            case "Dirt":
-                return new Dirt();
-            case "Grass":
-                return new Grass();
-            case "PlantableDirt":
-                return new PlantableDirt();
-        }
-        return null;
+        return switch (tileType) {
+            case "Dirt" -> new Dirt();
+            case "Grass" -> new Grass();
+            case "PlantableDirt" -> new PlantableDirt();
+            default -> null;
+        };
     }
 
 }

@@ -1,14 +1,12 @@
 package World;
 
-import java.util.Objects;
+public abstract class APlantable implements ITileObject, IRandomTickListener {
+    private IWaterableTile waterableTile;
+    private boolean watered;
+    protected int growthState;
 
-public abstract class APlantable implements ITileObject {
-    private WaterableTile waterableTile;
 
-    public APlantable(WaterableTile waterableTile) {
-    }
-
-    public void setWaterableTile(WaterableTile waterableTile) {
+    protected void setWaterableTile(IWaterableTile waterableTile) {
         this.waterableTile = waterableTile;
     }
 
@@ -17,6 +15,21 @@ public abstract class APlantable implements ITileObject {
         if(action.getType().equals("Hand")){
             harvest();
         }
+        else if(action.getType().equals("Water")){
+            water();
+        }
     }
-    abstract void harvest();
+    protected void harvest(){
+        setWaterableTile(null);
+    }
+    private void water(){
+        watered = true;
+    }
+    public void tick(){
+        if(watered){
+            waterableTile.setWatered(false);
+            watered = false;
+            growthState--;
+        }
+    }
 }
