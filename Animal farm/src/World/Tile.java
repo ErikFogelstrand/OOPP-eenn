@@ -10,10 +10,10 @@ public class Tile {
         this.tileType = tileType;
     }
 
-    public ITileObject getObject(){
+    public ITileObject getTileObject(){
         return tileObject;
     }
-    public void setObject(ITileObject object){
+    public void setTileObject(ITileObject object){
         tileObject = object;
     }
     public ITileType getTileType(){
@@ -33,7 +33,11 @@ public class Tile {
             tileObject.interact(action);
         }
         if(tileType != null){
-            tileType.interact(action);
+            String newTileTypeName = tileType.interact(action);
+            ITileType newTileType = TileTypeFactory.getInstance().createTileType(newTileTypeName);
+            if(newTileType != null){
+                tileType = newTileType;
+            }
         }
     }
 

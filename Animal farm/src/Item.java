@@ -1,45 +1,30 @@
-public abstract class Item {
+import World.IAction;
 
-    private IItemType itemType;
+public class Item implements IAction {
     private int quantity;
-    private String name;
+    private final String itemName;
 
-    public Item(IItemType itemType, int quantity, String name) {
-        this.itemType = itemType;
+    public Item(int quantity, String itemName) {
         this.quantity = quantity;
-        this.name = name;
-    }
-
-    public IItemType getItemType(){
-        return itemType;
-    }
-    public void setItemType(IItemType itemType) {
-        this.itemType = itemType;
+        this.itemName = itemName;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void add(int quantity) {
+        this.quantity += quantity;
     }
 
     public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
+        return itemName;
     }
 
-    public void use() {
-        if (quantity > 0) {
-            itemType.use();
-            quantity--;
-        }
-
+    @Override
+    public String getType() {
+        return getName();
     }
-    public void pickUp(int amount){
-    quantity += amount;}
+
 }
 
