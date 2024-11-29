@@ -1,7 +1,8 @@
 import java.util.Timer;
 import java.util.TimerTask;
+import World.IEntity;
 
-public class Player implements IStates {
+public class Player implements IStates, IEntity {
 
     // player states
     private int hunger;
@@ -68,5 +69,6 @@ public class Player implements IStates {
     public void sleep(int sleepAmount){
         energy = Math.min(maxState, energy + sleepAmount);
     }
+
 
 }

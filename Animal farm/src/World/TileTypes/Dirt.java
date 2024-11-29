@@ -1,6 +1,9 @@
-package World;
+package World.TileTypes;
 
-public class Dirt implements ITileType{
+import World.IAction;
+import World.ITileType;
+
+public class Dirt implements ITileType {
 
     @Override
     public boolean walkable() {return true;}

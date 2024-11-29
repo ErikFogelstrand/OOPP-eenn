@@ -1,8 +1,11 @@
 import javax.swing.*;
+import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
+import World.TileFactory;
+import World.TileObjectFactory;
+import World.TileTypeFactory;
 
 
 public class Application implements Runnable {
-
 
     Thread gameThread;
 
@@ -42,7 +45,6 @@ public class Application implements Runnable {
         Controller Controller = new Controller();
 
 
-
         window.add(gamePanel);
 
         //window.setSize(1000, 400);
@@ -54,6 +56,8 @@ public class Application implements Runnable {
         app.startGameThread();
 
     }
+
+
 
 }
 

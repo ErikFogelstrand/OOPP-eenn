@@ -1,6 +1,10 @@
-package World;
+package World.TileTypes;
 
-public class PlantableDirt implements ITileType, WaterableTile{
+import World.IAction;
+import World.ITileType;
+import World.IWaterableTile;
+
+public class PlantableDirt implements ITileType, IWaterableTile {
     private boolean watered;
 
     public PlantableDirt() {

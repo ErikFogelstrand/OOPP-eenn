@@ -1,6 +1,9 @@
-package World;
+package World.TileTypes;
 
-public class Grass implements ITileType{
+import World.IAction;
+import World.ITileType;
+
+public class Grass implements ITileType {
 
     @Override
     public boolean walkable() {return true;}
