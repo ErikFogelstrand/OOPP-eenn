@@ -13,13 +13,21 @@ public class PlantableDirt implements ITileType, IWaterableTile {
 
     public boolean walkable() {return true;}
 
-    public void interact(IAction action) {
-        if(action.getType().equals("Seed")){
+    public String interact(IAction action) {
+        if(action.getType().startsWith("Seed")) {
             plant();
         }
+        else if (action.getType().equals("Shovel")){
+            return shovel();
+        }
+        return "";
     }
     private void plant(){
-        //hitta vad det är för seed och plantera
+
+    }
+
+    private String shovel(){
+        return "Dirt";
     }
 
     public boolean getWatered() {
