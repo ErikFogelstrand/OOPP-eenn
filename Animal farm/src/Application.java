@@ -20,7 +20,7 @@ public class Application implements Runnable {
     @Override
     public void run() {
         while(gameThread != null){
-            System.out.println("starting ...... lets play guys! the game i running");
+            //System.out.println("starting ...... lets play guys! the game i running");
 
             update();
             gamePanel.updatePaint();
@@ -28,8 +28,8 @@ public class Application implements Runnable {
     }
 
     public void update(){
-
     }
+
 
     public static void main(String []args){
 
@@ -44,9 +44,9 @@ public class Application implements Runnable {
 
 
         window.add(gamePanel);
-        window.pack(); //adjust the window to be sized to fit with the game size
 
-        //window.setSize(800, 600);
+        //window.setSize(1000, 400);
+        window.pack(); //adjust the window to be sized to fit with the game size
         window.setLocationRelativeTo(null);
         window.setVisible(true);// making the frame visible
 

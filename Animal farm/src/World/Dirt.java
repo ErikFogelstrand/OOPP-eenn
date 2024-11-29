@@ -11,6 +11,7 @@ public class Dirt implements ITileType{
             hoe();
         }
     }
+
     private void hoe(){
         //gör om till plantable dirt
     }
