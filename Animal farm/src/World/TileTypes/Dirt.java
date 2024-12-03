@@ -9,12 +9,13 @@ public class Dirt implements ITileType {
     public boolean walkable() {return true;}
 
     @Override
-    public void interact(IAction action) {
+    public String interact(IAction action) {
         if(action.getType().equals("Hoe")){
-            hoe();
+            return hoe();
         }
+        return "";
     }
-    private void hoe(){
-        //gör om till plantable dirt
+    private String hoe(){
+        return "PlantableDirt";
     }
 }

@@ -1,8 +1,5 @@
 import javax.swing.*;
-import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
-import World.TileFactory;
-import World.TileObjectFactory;
-import World.TileTypeFactory;
+
 
 
 public class Application implements Runnable {
