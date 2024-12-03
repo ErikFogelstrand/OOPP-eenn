@@ -1,8 +1,12 @@
 public class SeedItem implements IItemType {
 
-    private String cropType;
-    public SeedItem(String cropType) {
-        this.cropType = cropType;
+    private String seedType;
+    public SeedItem(String seedType) {
+        this.seedType = seedType;
+    }
+
+    public String getSeedType() {
+        return seedType;
     }
 
     @Override
