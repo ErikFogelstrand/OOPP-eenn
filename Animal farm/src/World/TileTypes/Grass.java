@@ -1,15 +1,18 @@
 package World.TileTypes;
 
+import World.ATileType;
 import World.IAction;
-import World.ITileType;
+import World.ITileObject;
 
-public class Grass implements ITileType {
+public class Grass extends ATileType {
+    public Grass() {
+    }
 
     @Override
     public boolean walkable() {return true;}
 
     @Override
-    public String interact(IAction action) {
+    public String tileTypeInteract(IAction action) {
         if(action.getType().equals("Hoe")){
             return hoe();
         }
@@ -18,10 +21,10 @@ public class Grass implements ITileType {
         }
         return "";
     }
-    public String hoe(){
+    private String hoe(){
         return "PlantableDirt";
     }
-    public String shovel(){
+    private String shovel(){
         return "Dirt";
     }
 }

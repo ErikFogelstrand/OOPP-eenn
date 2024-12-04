@@ -1,15 +1,18 @@
 package World.TileTypes;
 
 import World.IAction;
-import World.ITileType;
+import World.ATileType;
+import World.ITileObject;
 
-public class Dirt implements ITileType {
+public class Dirt extends ATileType {
+    public Dirt() {
+    }
 
     @Override
     public boolean walkable() {return true;}
 
     @Override
-    public String interact(IAction action) {
+    public String tileTypeInteract(IAction action) {
         if(action.getType().equals("Hoe")){
             return hoe();
         }

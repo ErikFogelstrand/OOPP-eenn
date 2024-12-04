@@ -1,10 +1,8 @@
 package World.TileTypes;
 
-import World.IAction;
-import World.ITileType;
-import World.IWaterableTile;
+import World.*;
 
-public class PlantableDirt implements ITileType, IWaterableTile {
+public class PlantableDirt extends ATileType implements IWaterableTile {
     private boolean watered;
 
     public PlantableDirt() {
@@ -13,7 +11,7 @@ public class PlantableDirt implements ITileType, IWaterableTile {
 
     public boolean walkable() {return true;}
 
-    public String interact(IAction action) {
+    public String tileTypeInteract(IAction action) {
         if(action.getType().startsWith("Seed")) {
             plant();
         }
