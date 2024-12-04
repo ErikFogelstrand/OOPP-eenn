@@ -1,5 +1,6 @@
 package World.TileObjects;
 
+import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
 import World.IAction;
 import World.IRandomTickListener;
 import World.ITileObject;
@@ -9,6 +10,9 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
     private IWaterableTile waterableTile;
     private boolean watered;
     protected int growthState;
+    public APlantable(){
+        RandomTickGenerator.getInstance().addListener(this);
+    }
 
 
     public void setWaterableTile(IWaterableTile waterableTile) {
