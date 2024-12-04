@@ -1,19 +1,18 @@
-public class SeedItem implements IItemType {
+public class SeedItem extends Item {
 
     private String seedType;
-    public SeedItem(String seedType) {
+    public SeedItem(String itemType, int quantity, String name, String seedType) {
+        super(itemType, quantity,name);
         this.seedType = seedType;
     }
-
-    public String getSeedType() {
+    public String getSeedType(){
         return seedType;
     }
 
-    @Override
     public void use() {
         // plantera
     }
-    @Override
+
     public void pickUp() {
     }
 }
