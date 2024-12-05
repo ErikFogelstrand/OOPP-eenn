@@ -16,11 +16,11 @@ public class TileTypeFactory {
         ATileType newTileType = null;
         switch (tileType){
             case "Dirt":
-                newTileType = new Dirt();
+                newTileType = new Dirt(); break;
             case "Grass":
-                newTileType = new Grass();
+                newTileType = new Grass(); break;
             case "PlantableDirt":
-                newTileType = new PlantableDirt();
+                newTileType = new PlantableDirt(); break;
         }
         if(newTileType != null){
             newTileType.setTileObject(tileObjectFactory.createTileObject(tileObject));

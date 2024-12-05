@@ -1,3 +1,5 @@
+package UsableObjects;
+
 public class WaterItem extends Item {
 
     private int wetness;

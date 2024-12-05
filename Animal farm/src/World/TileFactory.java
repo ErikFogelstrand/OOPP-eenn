@@ -1,7 +1,5 @@
 package World;
 
-import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
-
 public class TileFactory {
     private static final TileFactory instance = new TileFactory();
 
