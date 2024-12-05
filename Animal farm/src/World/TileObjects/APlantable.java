@@ -23,9 +23,11 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
     public void interact(IAction action) {
         if(action.getType().equals("Hand")){
             harvest();
+            action.use();
         }
         else if(action.getType().equals("WateringCan")){
             water();
+            action.use();
         }
     }
     protected void harvest(){

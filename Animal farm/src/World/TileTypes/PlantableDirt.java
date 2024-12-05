@@ -1,6 +1,8 @@
 package World.TileTypes;
 
+import UsableObjects.SeedItem;
 import World.*;
+import World.TileObjects.APlantable;
 
 public class PlantableDirt extends ATileType implements IWaterableTile {
     private boolean watered;
@@ -12,16 +14,26 @@ public class PlantableDirt extends ATileType implements IWaterableTile {
     public boolean walkable() {return true;}
 
     public String tileTypeInteract(IAction action) {
-        if(action.getType().startsWith("Seed")) {
-            plant();
+        if(action.getType().equals("Seed")) {
+            if (plant((SeedItem)action)) {
+                action.use();
+            }
         }
         else if (action.getType().equals("Shovel")){
+            action.use();
             return shovel();
         }
         return "";
     }
-    private void plant(){
+    private boolean plant(SeedItem seedItem){
+        if (tileObject != null){
+            return false;
+        }
 
+        tileObject = TileObjectFactory.getInstance().createTileObject(seedItem.getSeedType());
+        ((APlantable)tileObject).setWaterableTile(this);
+
+        return tileObject != null;
     }
 
     private String shovel(){

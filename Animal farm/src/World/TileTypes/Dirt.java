@@ -2,7 +2,6 @@ package World.TileTypes;
 
 import World.IAction;
 import World.ATileType;
-import World.ITileObject;
 
 public class Dirt extends ATileType {
     public Dirt() {
@@ -13,7 +12,8 @@ public class Dirt extends ATileType {
 
     @Override
     public String tileTypeInteract(IAction action) {
-        if(action.getType().equals("Hoe")){
+        if(action.getType().equals("UsableObjects.Hoe")){
+            action.use();
             return hoe();
         }
         return "";

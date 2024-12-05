@@ -13,10 +13,12 @@ public class Grass extends ATileType {
 
     @Override
     public String tileTypeInteract(IAction action) {
-        if(action.getType().equals("Hoe")){
+        if(action.getType().equals("UsableObjects.Hoe")){
+            action.use();
             return hoe();
         }
         if(action.getType().equals("Shovel")){
+            action.use();
             return shovel();
         }
         return "";

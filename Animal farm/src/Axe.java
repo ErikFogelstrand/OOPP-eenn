@@ -1,3 +1,5 @@
+import UsableObjects.Tool;
+
 public class Axe extends Tool {
     public Axe() {
         super("Axe");

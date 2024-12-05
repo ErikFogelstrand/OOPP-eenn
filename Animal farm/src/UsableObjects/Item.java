@@ -1,3 +1,5 @@
+package UsableObjects;
+
 public abstract class Item implements IItem {
     private String itemType;
     private int quantity;

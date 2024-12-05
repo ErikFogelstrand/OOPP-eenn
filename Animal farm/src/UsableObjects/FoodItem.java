@@ -1,3 +1,5 @@
+package UsableObjects;
+
 public class FoodItem extends Item {
     private int nutrition;
     public FoodItem(String itemType, int quantity, String name, int nutrition) {

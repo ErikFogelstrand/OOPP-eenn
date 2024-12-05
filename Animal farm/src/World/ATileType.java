@@ -1,7 +1,7 @@
 package World;
 
 public abstract class ATileType {
-    private ITileObject tileObject;
+    protected ITileObject tileObject;
 
     public ATileType() {
     }

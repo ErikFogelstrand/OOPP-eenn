@@ -1,3 +1,5 @@
+import UsableObjects.Item;
+
 import java.util.Optional;
 public class Inventory { public class Inventory {
     private static final int rows = 5;

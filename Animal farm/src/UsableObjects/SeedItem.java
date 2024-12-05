@@ -1,3 +1,5 @@
+package UsableObjects;
+
 public class SeedItem extends Item {
 
     private String seedType;
