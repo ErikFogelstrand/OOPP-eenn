@@ -1,21 +1,24 @@
 package World.TileTypes;
 
 import World.IAction;
-import World.ITileType;
+import World.ATileType;
 
-public class Dirt implements ITileType {
+public class Dirt extends ATileType {
+    public Dirt() {
+    }
 
     @Override
     public boolean walkable() {return true;}
 
     @Override
-    public void interact(IAction action) {
-        if(action.getType().equals("Hoe")){
-            hoe();
+    public String tileTypeInteract(IAction action) {
+        if(action.getType().equals("UsableObjects.Hoe")){
+            action.use();
+            return hoe();
         }
+        return "";
     }
-
-    private void hoe(){
-        //gör om till plantable dirt
+    private String hoe(){
+        return "PlantableDirt";
     }
 }

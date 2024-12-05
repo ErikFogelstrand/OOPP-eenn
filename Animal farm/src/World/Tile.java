@@ -1,39 +1,32 @@
 package World;
 
 public class Tile {
-    private IEntity entity;
     private ITileObject tileObject;
-    private ITileType tileType;
+    private ATileType tileType;
 
-    public Tile(ITileObject tileObject, ITileType tileType) {
-        this.tileObject = tileObject;
+    public Tile(ATileType tileType) {
         this.tileType = tileType;
     }
 
-    public ITileObject getObject(){
+    public ITileObject getTileObject(){
         return tileObject;
     }
-    public void setObject(ITileObject object){
+    public void setTileObject(ITileObject object){
         tileObject = object;
     }
-    public ITileType getTileType(){
+    public ATileType getTileType(){
         return tileType;
     }
-    public void setTileType(ITileType tileType){
+    public void setTileType(ATileType tileType){
         this.tileType = tileType;
     }
-    public IEntity getEntity(){
-        return entity;
-    }
-    public void setEntity(IEntity entity){
-        this.entity = entity;
-    }
     public void interact(IAction action){
-        if(tileObject != null){
-            tileObject.interact(action);
-        }
         if(tileType != null){
-            tileType.interact(action);
+            String newTileTypeName = tileType.interact(action);
+            ATileType newTileType = TileTypeFactory.getInstance().createTileType(newTileTypeName, "");
+            if(newTileType != null){
+                tileType = newTileType;
+            }
         }
     }
 

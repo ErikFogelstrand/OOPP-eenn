@@ -1,10 +1,10 @@
 package World.TileTypes;
 
-import World.IAction;
-import World.ITileType;
-import World.IWaterableTile;
+import UsableObjects.SeedItem;
+import World.*;
+import World.TileObjects.APlantable;
 
-public class PlantableDirt implements ITileType, IWaterableTile {
+public class PlantableDirt extends ATileType implements IWaterableTile {
     private boolean watered;
 
     public PlantableDirt() {
@@ -13,13 +13,31 @@ public class PlantableDirt implements ITileType, IWaterableTile {
 
     public boolean walkable() {return true;}
 
-    public void interact(IAction action) {
-        if(action.getType().equals("Seed")){
-            plant();
+    public String tileTypeInteract(IAction action) {
+        if(action.getType().equals("Seed")) {
+            if (plant((SeedItem)action)) {
+                action.use();
+            }
         }
+        else if (action.getType().equals("Shovel")){
+            action.use();
+            return shovel();
+        }
+        return "";
     }
-    private void plant(){
-        //hitta vad det är för seed och plantera
+    private boolean plant(SeedItem seedItem){
+        if (tileObject != null){
+            return false;
+        }
+
+        tileObject = TileObjectFactory.getInstance().createTileObject(seedItem.getSeedType());
+        ((APlantable)tileObject).setWaterableTile(this);
+
+        return tileObject != null;
+    }
+
+    private String shovel(){
+        return "Dirt";
     }
 
     public boolean getWatered() {
