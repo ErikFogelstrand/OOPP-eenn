@@ -73,6 +73,7 @@ public class GamePanel extends JPanel{
             waterBar33 = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_33.png"));
             waterBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_NONE.png"));
 
+
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -123,7 +124,7 @@ public class GamePanel extends JPanel{
 
         g2.setColor((Color.white));
 
-        //System.out.println(playerStates.getHunger());
+        System.out.println(playerStates.getHunger());
         tile.draw(g2);
         rabbit.draw(g2, screenWidth/2, screenHeight/2);
 
