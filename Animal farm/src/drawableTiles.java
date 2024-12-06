@@ -2,17 +2,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
-public class drawTiles {
+public class drawableTiles {
 
     GamePanel gp;
 
-    public drawTiles(GamePanel gp){
+    public drawableTiles(GamePanel gp){
         this.gp = gp;
-
         getTileImage();
-
     }
 
     BufferedImage grass;
@@ -20,12 +17,13 @@ public class drawTiles {
     BufferedImage soil;
     BufferedImage rabbit;
 
+
     public void getTileImage(){
         try {
             grass = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/grass.png"));
             dirt = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/dirt.png"));
             soil = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil.png"));
-            rabbit = ImageIO.read(getClass().getResourceAsStream("Graphics/player/rabbit.png"));
+
         }catch (IOException e) {
             e.printStackTrace();
         }

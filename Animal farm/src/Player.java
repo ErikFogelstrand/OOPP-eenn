@@ -25,6 +25,7 @@ public class Player implements IStates, IEntity {
         this.hunger = maxState;
         this.thirst = maxState;
         this.energy = maxState;
+
         startStateTimer();
     }
 
@@ -54,7 +55,7 @@ public class Player implements IStates, IEntity {
     }
 
 
-    public int getEnergy(){
+    public int getSleep(){
         return energy;
     }
 

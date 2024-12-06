@@ -10,14 +10,12 @@ public class FoodItem extends Item {
     public int getNutrition() {
         return nutrition;
     }
-    @Override
+    //@Override
     public void use() {
         // plantera
     }
-    @Override
+    //@Override
     public void pickUp() {
     }
 }
 
-
-}

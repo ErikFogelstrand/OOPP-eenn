@@ -1,7 +1,7 @@
 import UsableObjects.Item;
 
 import java.util.Optional;
-public class Inventory { public class Inventory {
+public class Inventory {
     private static final int rows = 5;
     private static final int columns = 4;
     public Item[][] inventory;
@@ -14,7 +14,7 @@ public class Inventory { public class Inventory {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
                 if (inventory[i][j] != null && inventory[i][j].getName().equals(newItem.getName())){
-                    inventory[i][j].add(newItem.getQuantity());
+                    //inventory[i][j].add(newItem.getQuantity());
                     return true;
                 } else if (inventory[i][j] == null){
                     inventory[i][j] = newItem;
@@ -34,4 +34,4 @@ public class Inventory { public class Inventory {
         return Optional.empty();
         }
     }
-}
+
