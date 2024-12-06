@@ -27,6 +27,11 @@ public class Inventory {
     private boolean isValidSlot(int row, int column) {
         return row >= 0 && row < rows && column >= 0 && column < columns;
     }
+
+    public int getRows(){return rows;}
+
+    public int getColumns(){return columns;}
+
     public Optional<Item> getItem(int row, int column){
         if (isValidSlot(row,column)){
             return Optional.ofNullable(inventory[row][column]);

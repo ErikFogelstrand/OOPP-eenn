@@ -25,6 +25,9 @@ public class drawableSprites {
             e.printStackTrace();
         }
     }
+
+
+
     public void draw(Graphics2D g2, int x, int y){
 
         g2.drawImage(rabbit, x, y, gp.tileSize, gp.tileSize, null);

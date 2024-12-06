@@ -83,7 +83,7 @@ public class GamePanel extends JPanel{
     }
 
 
-    public void drawOverlays(Graphics2D g2){
+    public void drawStatusBars(Graphics2D g2){
 
 
 
@@ -108,7 +108,7 @@ public class GamePanel extends JPanel{
         else if(playerStates.getThirst()>33){ g2.drawImage(waterBar33, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
         else { g2.drawImage(waterBarNone, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
 
-        g2.drawImage(mainSlots, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, mainSlotsWidth, mainSlotsHeight, null);
+        //g2.drawImage(mainSlots, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, mainSlotsWidth, mainSlotsHeight, null);
 
     }
 
@@ -128,10 +128,10 @@ public class GamePanel extends JPanel{
         rabbit.draw(g2, screenWidth/2, screenHeight/2);
 
 
-        g2.drawImage(tile.dirt,  tileSize*3, tileSize*6, tileSize, tileSize, null);
-        g2.drawImage(tile.soil,  tileSize*2, tileSize*6, tileSize, tileSize, null);
+        //g2.drawImage(tile.dirt,  tileSize*3, tileSize*6, tileSize, tileSize, null);
+        //g2.drawImage(tile.soil,  tileSize*2, tileSize*6, tileSize, tileSize, null);
 
-        drawOverlays(g2);
+        drawStatusBars(g2);
         items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight);
 
         g2.dispose();
