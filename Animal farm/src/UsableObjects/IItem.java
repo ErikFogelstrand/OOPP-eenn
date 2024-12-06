@@ -1,7 +1,7 @@
 package UsableObjects;
 
 // interface för alla items (allt stackable)
-public interface IItem implements IUsableObject {
+public interface IItem extends IUsableObject {
     int getQuantity();
-    void pickup();
+    void pickUp();
 }

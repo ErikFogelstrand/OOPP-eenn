@@ -21,7 +21,7 @@ public abstract class Item implements IItem {
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
-   @Override
+
     public int getQuantity(){
         return quantity;
     }
@@ -31,8 +31,10 @@ public abstract class Item implements IItem {
     public String getName(){
         return name;
     }
+@Override
+    public abstract void pickUp();{
 
-    public void pickup() {
-
-    }
+}
+@Override
+    public abstract void use();
 }
