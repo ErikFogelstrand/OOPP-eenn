@@ -9,6 +9,8 @@ public class Player implements IStates, IEntity {
     private int thirst;
     private int energy;
 
+    private Adapter adapter;
+
     // constrains for state updates
     private static final int maxState = 100;
     private static final int minState = 0;
@@ -25,6 +27,7 @@ public class Player implements IStates, IEntity {
         this.hunger = maxState;
         this.thirst = maxState;
         this.energy = maxState;
+        this.adapter = new Adapter(0,0);
 
         startStateTimer();
     }
@@ -54,7 +57,6 @@ public class Player implements IStates, IEntity {
         return thirst;
     }
 
-
     public int getSleep(){
         return energy;
     }
@@ -69,6 +71,10 @@ public class Player implements IStates, IEntity {
 
     public void sleep(int sleepAmount){
         energy = Math.min(maxState, energy + sleepAmount);
+    }
+
+    public void move(int x, int y ){
+        this.adapter.move(x,y);
     }
 
 

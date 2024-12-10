@@ -23,6 +23,6 @@ public class Adapter {
     }
 
     public void interact(int x, int y) {
-    // inte klar
+
     }
 }
