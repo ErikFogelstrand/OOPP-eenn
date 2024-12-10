@@ -53,7 +53,9 @@ public class Player implements IStates, IEntity {
         return hunger;
     }
 
-    public int getThirst(){return thirst;   }
+    public int getThirst(){
+        return thirst;
+    }
 
     public int getSleep(){
         return energy;
