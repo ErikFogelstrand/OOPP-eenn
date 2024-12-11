@@ -15,16 +15,20 @@ public class Player implements IStates, IEntity {
     private static final int hungerDecrease = 3;
     private static final int thirstDecrease = 4;
     private static final int energyDecrease = 2;
+    public Adapter adapter;
 
     // temporary solution
     private static final int stateUpdateInterval = 30000; // 30 seconds
     private Timer stateTimer;
+
 
     //constructor
     public Player(){
         this.hunger = maxState;
         this.thirst = maxState;
         this.energy = maxState;
+
+        adapter = new Adapter(400, 400);
 
         startStateTimer();
     }
@@ -70,6 +74,11 @@ public class Player implements IStates, IEntity {
     public void sleep(int sleepAmount){
         energy = Math.min(maxState, energy + sleepAmount);
     }
+
+    public void move(int x, int y ){
+        this.adapter.move(x,y);
+    }
+
 
 
 }

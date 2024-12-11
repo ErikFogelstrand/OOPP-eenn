@@ -1,7 +1,7 @@
 import World.GameScene;
 
 import javax.swing.*;
-
+import java.awt.event.KeyEvent;
 
 
 public class Application implements Runnable {
@@ -11,9 +11,13 @@ public class Application implements Runnable {
     int FPS = 60;
 
     GamePanel gamePanel; // Declare gamePanel as a class member to share it between methods
+    Controller controller = new Controller();
 
     public Application(GamePanel gamePanel) {
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
+        controller = new Controller();
+        gamePanel.addKeyListener(controller);
+        gamePanel.setFocusable(true);
     }
 
     public void startGameThread() {
@@ -65,9 +69,7 @@ public class Application implements Runnable {
         window.setTitle("Animal Farm :-D");
 
         Player player = new Player();
-        Controller Controller = new Controller();
         GamePanel gamePanel = new GamePanel(player);
-
 
 
         window.add(gamePanel);

@@ -9,6 +9,7 @@ import java.io.IOException;
 public class GamePanel extends JPanel{
 
     IStates playerStates;
+    //Controller controller;
 
     final int baseTileSize = 16; // 16 pixels
     final int scale = 4;
@@ -44,6 +45,8 @@ public class GamePanel extends JPanel{
         playerStates = istates;
         getOverlayImages();
         this.tile = new drawableTiles(this);
+
+
     }
 
 
@@ -113,7 +116,7 @@ public class GamePanel extends JPanel{
         g2.setColor((Color.white));
 
         tile.draw(g2);
-        rabbit.draw(g2, screenWidth/2, screenHeight/2);
+        rabbit.draw(g2);
 
         //g2.drawImage(tile.dirt,  tileSize*3, tileSize*6, tileSize, tileSize, null);
         //g2.drawImage(tile.soil,  tileSize*2, tileSize*6, tileSize, tileSize, null);

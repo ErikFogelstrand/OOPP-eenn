@@ -15,6 +15,8 @@ public class drawableSprites {
     BufferedImage rabbit;
     BufferedImage villager;
 
+    private Adapter adapter;
+
 
 
     public void getTileImage(){
@@ -28,8 +30,8 @@ public class drawableSprites {
 
 
 
-    public void draw(Graphics2D g2, int x, int y){
+    public void draw(Graphics2D g2){
 
-        g2.drawImage(rabbit, x, y, gp.tileSize, gp.tileSize, null);
+        //g2.drawImage(rabbit, gp.tileSize, gp.tileSize, null);
     }
 }
