@@ -1,3 +1,5 @@
+import World.GameScene;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,14 +11,19 @@ import java.io.InputStreamReader;
 public class drawableTiles {
 
     GamePanel gp;
-    int mapTileNum[][];
+    int mapMatrix[][];
+    GameScene gameScene;
 
 
     public drawableTiles(GamePanel gp){
         this.gp = gp;
-        mapTileNum = new int[gp.screenCol][gp.screenRow];
+        gameScene = new GameScene(gp.screenRow, gp.screenCol);
+        mapMatrix = gameScene.getMatrix();
+        System.out.println(mapMatrix[0][0]);
         getTileImage();
-        loadMap();
+        gameScene.loadMap();
+
+        //loadMap();
     }
 
     BufferedImage grass;
@@ -37,7 +44,7 @@ public class drawableTiles {
             tileCarrotSeed_1 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-1.png"));
             tileCarrotSeed_2 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-2.png"));
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -48,34 +55,29 @@ public class drawableTiles {
         };
         return tileArray[i];
     }
+/*
+    public void loadMap(int maxCol, int maxRow) { //this should be in Tiles not in the view!
 
-    public void loadMap() { //this should be in Tiles not in the view!
-        try{
-            InputStream txt = getClass().getResourceAsStream("Graphics/tiles/tileMap.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(txt));
+        int col = 0;
+        int row = 0;
 
-            int col = 0;
-            int row = 0;
+        while(col < gp.screenCol && row < gp.screenRow){
 
-            while(col < gp.screenCol && row < gp.screenRow){
-                String line = br.readLine();
+            while(col < gp.screenCol){
 
-                while(col < gp.screenCol){
-
-                    String numbers[] = line.split(" "); // gives number[x] = 1/2/3/4 = tiletype
-                    int num = Integer.parseInt(numbers[col]); // string -> int
-
-                    mapTileNum[col][row] = num;
-                    col++;
-                }
-                if (col == gp.screenCol){
-                    col = 0;
-                    row++;
-                }
+                mapMatrix[col][row] = num;
+                col++;
             }
-            br.close();
-        } catch (Exception e) {}
+            if (col == gp.screenCol){
+                col = 0;
+                row++;
+            }
+        }
     }
+
+
+
+ */
 
 
     public void draw(Graphics2D g2){
@@ -86,9 +88,7 @@ public class drawableTiles {
         int y = 0;
 
         while(col< gp.screenCol && row < gp.screenRow) {
-            int tileNum = mapTileNum[col][row]; //mapTileNum should not be in view!
-
-
+            int tileNum = mapMatrix[row][col]; //mapTileNum should not be in view!
 
             g2.drawImage(removeThisLaterTiles(tileNum), x, y, gp.tileSize, gp.tileSize, null);
             col++;
@@ -99,8 +99,8 @@ public class drawableTiles {
                 x = 0;
                 row++;
                 y += gp.tileSize;
+
             }
         }
-
     }
 }

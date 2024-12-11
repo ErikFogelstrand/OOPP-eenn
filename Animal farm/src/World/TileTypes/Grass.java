@@ -6,7 +6,10 @@ import World.ITileObject;
 
 public class Grass extends ATileType {
     public Grass() {
+        System.out.println("I am grass!");
     }
+
+
 
     @Override
     public boolean walkable() {return true;}

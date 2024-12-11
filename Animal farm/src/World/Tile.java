@@ -6,6 +6,8 @@ public class Tile {
 
     public Tile(ATileType tileType) {
         this.tileType = tileType;
+
+
     }
 
     public ITileObject getTileObject(){

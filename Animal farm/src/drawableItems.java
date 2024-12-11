@@ -22,7 +22,6 @@ public class drawableItems {
     public void initItems(){ //map to know be able to recognize a string to a buffered image
         itemImages.put("carrot", carrot);
         itemImages.put("hoe", hoe);
-
     }
 
 

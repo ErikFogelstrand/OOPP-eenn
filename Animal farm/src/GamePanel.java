@@ -1,3 +1,5 @@
+import World.GameScene;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,18 +23,17 @@ public class GamePanel extends JPanel{
     final int mainSlotsHeight = 20*scale;
 
 
-
     final int screenHeight = tileSize * screenRow; // =768 pixels
     final int screenWidth = tileSize * screenCol; // =576 pixels
-
-    drawableTiles tile = new drawableTiles(this);
-    drawableSprites rabbit = new drawableSprites(this);
-    drawableItems items = new drawableItems(this);
 
     BufferedImage foodBarFull, foodBar66, foodBar33, foodBarNone;
     BufferedImage sleepBarFull, sleepBar66, sleepBar33, sleepBarNone;
     BufferedImage waterBarFull, waterBar66, waterBar33, waterBarNone;
     BufferedImage mainSlots;
+
+    drawableTiles tile;
+    drawableSprites rabbit = new drawableSprites(this);
+    drawableItems items = new drawableItems(this);
 
 
     public GamePanel(IStates istates){
@@ -40,14 +41,12 @@ public class GamePanel extends JPanel{
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground((Color.black));
         this.setDoubleBuffered((true)); // apparently improves rendering performance
-
         playerStates = istates;
-
-
-        System.out.println(playerStates.getHunger());
-
         getOverlayImages();
+        this.tile = new drawableTiles(this);
     }
+
+
 
     public void getOverlayImages(){
         try {
@@ -74,7 +73,7 @@ public class GamePanel extends JPanel{
             waterBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_NONE.png"));
 
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -85,13 +84,6 @@ public class GamePanel extends JPanel{
 
 
     public void drawStatusBars(Graphics2D g2){
-
-
-
-        System.out.println(playerStates.getHunger());
-        System.out.println(playerStates.getSleep());
-        System.out.println(playerStates.getThirst());
-
 
 
         if(playerStates.getHunger()>90){g2.drawImage(foodBarFull, 0, 5, statusBarWidth, statusBarHeight, null);}
@@ -109,25 +101,19 @@ public class GamePanel extends JPanel{
         else if(playerStates.getThirst()>33){ g2.drawImage(waterBar33, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
         else { g2.drawImage(waterBarNone, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
 
-        //g2.drawImage(mainSlots, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, mainSlotsWidth, mainSlotsHeight, null);
 
     }
-
-
 
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-
         Graphics2D g2 = (Graphics2D)g;
 
         g2.setColor((Color.white));
 
-        System.out.println(playerStates.getHunger());
         tile.draw(g2);
         rabbit.draw(g2, screenWidth/2, screenHeight/2);
-
 
         //g2.drawImage(tile.dirt,  tileSize*3, tileSize*6, tileSize, tileSize, null);
         //g2.drawImage(tile.soil,  tileSize*2, tileSize*6, tileSize, tileSize, null);
@@ -137,11 +123,6 @@ public class GamePanel extends JPanel{
 
         g2.dispose();
 
-
     }
-
-
-
-
 }
 

@@ -9,6 +9,7 @@ public class PlantableDirt extends ATileType implements IWaterableTile {
 
     public PlantableDirt() {
         watered = false;
+        System.out.println("I am plantable af!!");
     }
 
     public boolean walkable() {return true;}
@@ -29,7 +30,6 @@ public class PlantableDirt extends ATileType implements IWaterableTile {
         if (tileObject != null){
             return false;
         }
-
         tileObject = TileObjectFactory.getInstance().createTileObject(seedItem.getSeedType());
         ((APlantable)tileObject).setWaterableTile(this);
 

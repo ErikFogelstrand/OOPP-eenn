@@ -1,3 +1,5 @@
+import World.GameScene;
+
 import javax.swing.*;
 
 
@@ -20,7 +22,6 @@ public class Application implements Runnable {
     }
 
 
-
     @Override
     public void run() {
 
@@ -29,7 +30,7 @@ public class Application implements Runnable {
 
         while(gameThread != null){
 
-            System.out.println("starting ...... lets play guys! the game i running");
+            //System.out.println("starting ...... lets play guys! the game i running");
 
             update();
 
@@ -64,8 +65,9 @@ public class Application implements Runnable {
         window.setTitle("Animal Farm :-D");
 
         Player player = new Player();
-        GamePanel gamePanel = new GamePanel(player);
         Controller Controller = new Controller();
+        GamePanel gamePanel = new GamePanel(player);
+
 
 
         window.add(gamePanel);
@@ -79,8 +81,5 @@ public class Application implements Runnable {
         app.startGameThread();
 
     }
-
-
-
 }
 
