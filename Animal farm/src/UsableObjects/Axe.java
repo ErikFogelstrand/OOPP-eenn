@@ -1,11 +1,10 @@
-import UsableObjects.Tool;
+package UsableObjects;
 
 public class Axe extends Tool {
-    public Axe() {
-        super("Axe");
+    public Axe(String name) {
+        super(name);
     }
     @Override
     public void use(){
         //?
     }
-}

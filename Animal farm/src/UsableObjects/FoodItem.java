@@ -12,11 +12,7 @@ public class FoodItem extends Item {
     }
     @Override
     public void use() {
-        // player.eat(nutrition); måste flytta player till package
-    }
-    @Override
-    public void pickUp() {
-        //
+        player.eat(nutrition); //player måste flyttas till paket
     }
 }
 

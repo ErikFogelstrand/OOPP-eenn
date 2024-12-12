@@ -14,8 +14,5 @@ public class SeedItem extends Item {
     public void use() {
         // plantera
     }
-
-    public void pickUp() {
-    }
 }
 

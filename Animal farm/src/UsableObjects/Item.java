@@ -1,6 +1,6 @@
 package UsableObjects;
 
-public abstract class Item implements IItem {
+public abstract class Item implements IUsableObject {
     private String itemType;
     private int quantity;
     private String name;
@@ -31,10 +31,12 @@ public abstract class Item implements IItem {
     public String getName(){
         return name;
     }
-@Override
-    public abstract void pickUp();{
 
-}
-@Override
+    @Override
+    public void pickUp(Inventory inventory) {
+        boolean added = inventory.addItem(this);//kommer ej åt inventory
+    }
+
+    @Override
     public abstract void use();
 }
