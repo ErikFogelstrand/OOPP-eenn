@@ -1,4 +1,5 @@
 package UsableObjects;
+import Player.Player;
 
 public class WaterItem extends Item {
 
@@ -12,7 +13,7 @@ public class WaterItem extends Item {
         return amount;
     }
     @Override
-    public void use() {
+    public void use(Player player) {
         player.drink(amount); //måste flytta på player
     }
 }

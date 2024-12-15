@@ -1,4 +1,7 @@
 package UsableObjects;
+import Inventory.Inventory;
+import Player.Player;
+import World.IAction;
 
 public abstract class Tool implements IUsableObject {
     private String name;
@@ -18,5 +21,5 @@ public abstract class Tool implements IUsableObject {
     }
 
     @Override
-    public abstract void use();
+    public abstract void use(IAction action);
 }

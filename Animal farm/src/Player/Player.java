@@ -1,3 +1,5 @@
+package Player;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import World.IEntity;

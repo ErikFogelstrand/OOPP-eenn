@@ -1,4 +1,6 @@
 
+import Player.Player;
+
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -10,7 +12,7 @@ public class Controller implements KeyListener {
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
     public void controller(){
-        //this.player = new Player();
+        //this.player = new Player.Player();
     }
 
     @Override

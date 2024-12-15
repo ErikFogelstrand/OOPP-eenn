@@ -1,7 +1,6 @@
-import World.GameScene;
+import Player.Player;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 
 
 public class Application implements Runnable {

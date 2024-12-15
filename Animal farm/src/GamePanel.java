@@ -1,4 +1,4 @@
-import World.GameScene;
+import Player.IStates;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

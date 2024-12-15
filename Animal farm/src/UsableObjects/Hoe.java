@@ -1,4 +1,6 @@
 package UsableObjects;
+import Inventory.Inventory;
+import Player.Player;
 
 import World.ATileType;
 import World.IAction;
@@ -11,7 +13,7 @@ public class Hoe extends Tool {
     public Hoe(String name){
         super(name);
     }
-    @Override
+
     public void use(IAction action) {
         Tile tile = (Tile) action;
         ATileType tileType = tile.getTileType();
