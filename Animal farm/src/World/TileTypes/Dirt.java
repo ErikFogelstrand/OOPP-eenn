@@ -5,6 +5,7 @@ import World.ATileType;
 
 public class Dirt extends ATileType {
     public Dirt() {
+        System.out.println("I am dirt!");
     }
 
     @Override

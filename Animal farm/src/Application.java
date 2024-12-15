@@ -1,15 +1,23 @@
-import javax.swing.*;
+import World.GameScene;
 
+import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 
 public class Application implements Runnable {
 
     Thread gameThread;
 
+    int FPS = 60;
+
     GamePanel gamePanel; // Declare gamePanel as a class member to share it between methods
+    Controller controller = new Controller();
 
     public Application(GamePanel gamePanel) {
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
+        controller = new Controller();
+        gamePanel.addKeyListener(controller);
+        gamePanel.setFocusable(true);
     }
 
     public void startGameThread() {
@@ -17,18 +25,39 @@ public class Application implements Runnable {
         gameThread.start();
     }
 
+
     @Override
     public void run() {
+
+        double drawInterval = 1_000_000_000 / FPS; // 1 second in nano/60 = 0.016666
+        double nextDrawTime = System.nanoTime() + drawInterval;
+
         while(gameThread != null){
-            System.out.println("starting ...... lets play guys! the game i running");
+
+            //System.out.println("starting ...... lets play guys! the game i running");
 
             update();
+
             gamePanel.updatePaint();
+
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+
+                if (remainingTime < 0) {
+                    remainingTime = 0;
+                }
+
+                Thread.sleep((long) remainingTime);
+
+                nextDrawTime += drawInterval;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void update(){
-
     }
 
 
@@ -39,14 +68,14 @@ public class Application implements Runnable {
         window.setResizable(false);
         window.setTitle("Animal Farm :-D");
 
-        GamePanel gamePanel = new GamePanel();
-        Controller Controller = new Controller();
+        Player player = new Player();
+        GamePanel gamePanel = new GamePanel(player);
 
 
         window.add(gamePanel);
-        window.pack(); //adjust the window to be sized to fit with the game size
 
-        //window.setSize(800, 600);
+        //window.setSize(1000, 400);
+        window.pack(); //adjust the window to be sized to fit with the game size
         window.setLocationRelativeTo(null);
         window.setVisible(true);// making the frame visible
 
@@ -54,8 +83,5 @@ public class Application implements Runnable {
         app.startGameThread();
 
     }
-
-
-
 }
 

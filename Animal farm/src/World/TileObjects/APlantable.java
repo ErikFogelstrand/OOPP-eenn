@@ -14,7 +14,6 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
         RandomTickGenerator.getInstance().addListener(this);
     }
 
-
     public void setWaterableTile(IWaterableTile waterableTile) {
         this.waterableTile = waterableTile;
     }
