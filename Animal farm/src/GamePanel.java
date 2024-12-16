@@ -1,3 +1,4 @@
+import Inventory.IInventoryHolder;
 import Player.IStates;
 
 import javax.imageio.ImageIO;
@@ -9,6 +10,7 @@ import java.io.IOException;
 public class GamePanel extends JPanel{
 
     IStates playerStates;
+    IInventoryHolder inventoryHolder;
 
     final int baseTileSize = 16; // 16 pixels
     final int scale = 4;
@@ -33,7 +35,7 @@ public class GamePanel extends JPanel{
 
     drawableTiles tile;
     drawableSprites rabbit;
-    drawableItems items = new drawableItems(this);
+    drawableItems items = new drawableItems(this, this.inventoryHolder);
 
 
     public GamePanel(IStates istates){
@@ -123,6 +125,7 @@ public class GamePanel extends JPanel{
         items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight);
 
         g2.dispose();
+
 
     }
 }

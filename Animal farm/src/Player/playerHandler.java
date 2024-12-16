@@ -1,3 +1,6 @@
+package Player;
+
+import Player.IPlayerPos;
 import World.GameScene;
 import World.ICurrentGameScene;
 

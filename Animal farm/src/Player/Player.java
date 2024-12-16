@@ -1,10 +1,13 @@
+package Player;
+
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import Inventory.Inventory;
 import World.IEntity;
+import Inventory.IInventoryHolder;
 
-public class Player implements IStates, IPlayerPos, IEntity {
+public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
 
     // player states
     private int hunger;
@@ -22,6 +25,7 @@ public class Player implements IStates, IPlayerPos, IEntity {
     private static final int energyDecrease = 2;
     public playerHandler playerHandler;
     //private GameScene gameScene;
+    private Inventory inventory;
 
     // temporary solution
     private static final int stateUpdateInterval = 30000; // 30 seconds
@@ -36,6 +40,7 @@ public class Player implements IStates, IPlayerPos, IEntity {
         this.energy = maxState;
 
         this.playerHandler = new playerHandler();
+        this.inventory = new Inventory();
 
         startStateTimer();
     }
@@ -45,6 +50,11 @@ public class Player implements IStates, IPlayerPos, IEntity {
             player = new Player();
         }
         return player;
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return inventory;
     }
 
     // temporary solution with timer for updating states
@@ -98,7 +108,4 @@ public class Player implements IStates, IPlayerPos, IEntity {
         //System.out.println("playerPos.getPos().x");
         return (playerHandler.getPos());
     }
-
-
-
 }

@@ -41,5 +41,9 @@ public class Inventory {
         }
         return Optional.empty();
         }
+
+    public Item[][] getAllItems() {
+        return inventory;
     }
+}
 

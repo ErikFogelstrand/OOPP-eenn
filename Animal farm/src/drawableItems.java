@@ -1,48 +1,33 @@
-import Inventory.Inventory;
+import UsableObjects.Item;
 import UsableObjects.SeedItem;
-
+import Inventory.Inventory;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
+import Inventory.IInventoryHolder;
 
 public class drawableItems {
 
-    GamePanel gp;
-    int x, y;
-
-    Inventory inventory = new Inventory(); //ska inte skapas här!!!!!!
-    SeedItem carrotSeedItem = new SeedItem("carrot", 1, "carrot", "carrot"); //ska inte skapas här!!!
-    SeedItem hoeItem = new SeedItem("hoe", 1, "hoe", "hoe"); //ska inte skapas här!!!
-
+    public GamePanel gp;
+    private IInventoryHolder inventoryHolder;
     private Map<String, BufferedImage> itemImages = new HashMap<>();
+    private int itemSize = 56; //14 pixels * scale 4
+    private int slotSize = 80;
+    private int itemMargin = 12; // 4 pixels * scale 4
 
-    public void initItems(){ //map to know be able to recognize a string to a buffered image
-        itemImages.put("carrot", carrot);
-        itemImages.put("hoe", hoe);
-    }
+    private BufferedImage itemSlot;
 
 
-    public drawableItems(GamePanel gp){
+    public drawableItems(GamePanel gp, IInventoryHolder inventoryHolder){
         this.gp = gp;
+        this.inventoryHolder = inventoryHolder;
 
         getItemImage();
-        initItems();
     }
-
-    int itemSize = 56; //14 pixels * scale 4
-    int slotSize = 80;
-    int itemMargin = 12; // 4 pixels * scale 4
-    int rows;
-    int columns;
-
-    BufferedImage carrot;
-    BufferedImage hoe;
-    BufferedImage itemSlot;
-
-
 
     public void getItemImage(){
         try {
@@ -51,8 +36,8 @@ public class drawableItems {
             itemSlot = ImageIO.read(getClass().getResourceAsStream("Graphics/other/mainSlot.png"));
 
             //items
-            hoe = ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png"));
-            carrot = ImageIO.read(getClass().getResourceAsStream("Graphics/items/carrot.png"));
+            itemImages.put("hoe", ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png")));
+            itemImages.put("carrot", ImageIO.read(getClass().getResourceAsStream("Graphics/items/carrot.png")));
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -60,18 +45,20 @@ public class drawableItems {
     }
 
     public void draw(Graphics2D g2, int x, int y) {
+        Inventory inventory = inventoryHolder.getInventory();
 
-        //fix this to get inventory items
+        int rows = inventory.getRows(); // = 5
+        int columns = inventory.getColumns();
 
-        inventory.addItem(carrotSeedItem); //lägger till ett item
-        inventory.addItem(hoeItem); //lägger till ett item
-        //inventory.addItem(carrotSeedItem);
-        int rows = inventory.getRows(); // =5
-        int xchord = x;
-        for(int i=0; i<=rows; i++){
-            drawSlot(g2, xchord, y);
-            drawItem(g2, xchord, y , i);
-            xchord += itemMargin + itemSize;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                int xPos = x + (slotSize + itemMargin) * j;
+
+                int yPos = y + (slotSize + itemMargin) * i;
+
+                drawSlot(g2, xPos, yPos);
+                inventory.getItem(i, j).ifPresent(item -> drawItem(g2, xPos, yPos, item));
+            }
 
         }
     }
@@ -80,20 +67,11 @@ public class drawableItems {
         g2.drawImage(itemSlot, x, y, slotSize, slotSize, null); //to fit in the item slots
     }
 
-    public void drawItem(Graphics2D g2, int x, int y, int row){
-
-
-        //if (inventory.getItem(row, 0).isPresent()) {
-        if (row == 0) {
-            g2.drawImage(hoe, x + itemMargin, y + itemMargin, itemSize, itemSize, null); //to fit in the item slots
+    public void drawItem(Graphics2D g2, int x, int y, Item item){
+        BufferedImage itemImage = itemImages.get(item.getName()); // Retrieve image by item name
+        if (itemImage != null) {
+            g2.drawImage(itemImage, x + itemMargin, y + itemMargin, itemSize, itemSize, null);
         }
-        if (row == 2) {
-            g2.drawImage(carrot, x + itemMargin, y + itemMargin, itemSize, itemSize, null); //to fit in the item slots
-        }
-
-
-        //g2.drawImage(carrot, x + itemMargin, y + itemMargin, itemSize, itemSize, null); //to fit in the item slots
-
-        //g2.drawImage(carrot, x+itemSize+itemMargin + 6 + itemMargin, y+itemMargin, itemSize, itemSize, null);
     }
 }
+
