@@ -1,19 +1,20 @@
 package UsableObjects;
+import Player.Player;
 
 public class WaterItem extends Item {
 
-    private int wetness;
-    public WaterItem(String itemType, int quantity, String name, int wetness) {
+    private final int amount;
+    public WaterItem(String itemType, int quantity, String name, int amount) {
         super(itemType, quantity, name);
-        this.wetness = wetness;
+        this.amount = amount;
     }
 
-
-    public void use() {
-        // dricka
+    public int getWetness(){
+        return amount;
     }
-    public void pickUp() {
+    @Override
+    public void use(Player player) {
+        player.drink(amount); //måste flytta på player
     }
 }
-
 

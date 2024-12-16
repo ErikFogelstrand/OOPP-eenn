@@ -1,3 +1,5 @@
+package Inventory;
+
 import UsableObjects.Item;
 
 import java.util.Optional;

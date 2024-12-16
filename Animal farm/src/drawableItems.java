@@ -1,4 +1,4 @@
-import UsableObjects.Item;
+import Inventory.Inventory;
 import UsableObjects.SeedItem;
 
 import javax.imageio.ImageIO;

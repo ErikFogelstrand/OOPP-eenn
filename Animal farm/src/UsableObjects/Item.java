@@ -1,9 +1,13 @@
 package UsableObjects;
+import Inventory.Inventory;
+import Player.Player;
 
-public abstract class Item implements IItem {
+
+public abstract class Item implements IEdibleObject {
     private String itemType;
     private int quantity;
     private String name;
+
 
     public Item (String itemType, int quantity, String name){
         this.itemType = itemType;
@@ -14,14 +18,17 @@ public abstract class Item implements IItem {
         this.itemType = itemType;
     }
 
+
     public String getItemType() {
         return itemType;
     }
 
+
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
-   @Override
+
+
     public int getQuantity(){
         return quantity;
     }
@@ -32,7 +39,14 @@ public abstract class Item implements IItem {
         return name;
     }
 
-    public void pickup() {
 
+    @Override
+    public void pickUp(Inventory inventory) {
+        boolean added = inventory.addItem(this);//kommer ej åt inventory
     }
+
+
+    @Override
+    public abstract void use(Player player);
 }
+
