@@ -8,10 +8,12 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 
-public class GameScene {
+public class GameScene implements ICurrentGameScene {
     private Tile[][] tileMatrix;
     private int[][] numMatrix;
     TileFactory tileFactory = new TileFactory();
+    public static GameScene gameScene;
+
 
     int maxRow;
     int maxCol;
@@ -24,7 +26,7 @@ public class GameScene {
         tileHashMap.put(2, "PlantableDirt");
     }
 
-    public GameScene(int maxRow, int maxCol) {
+    private GameScene(int maxRow, int maxCol) {
         this.maxRow = maxRow;
         this.maxCol = maxCol;
         tileMatrix = new Tile[maxRow][maxCol];
@@ -32,6 +34,13 @@ public class GameScene {
         setTileHashMap();
     }
 
+    // method to access the singleton instance
+    public static GameScene getInstance(int maxRow, int maxCol) {
+        if (gameScene == null) {
+            gameScene = new GameScene(maxRow, maxCol);
+        }
+        return gameScene;
+    }
 
     public void insertTile(Tile tile, int row, int col) {
         tileMatrix[row][col] = tile;
@@ -39,7 +48,8 @@ public class GameScene {
     }
 
     public Tile getTile(int row, int col) {
-        return tileMatrix[row][col];
+
+        return tileMatrix[row/96][col/96]; //temp solution
     }
 
     public int[][] getMatrix(){
@@ -72,18 +82,14 @@ public class GameScene {
 
                     numMatrix[row][col] = numTile;
                     tileMatrix[row][col] = tileFactory.createTile(tileHashMap.get(numTile), "null"); //null is the object but should be fixed
-                    //System.out.println(tileMatrix[row][col]);
 
                     insertTile(tileMatrix[row][col], row, col);
-                    //System.out.println(col);
 
                     col++;
-                    //System.out.println(numTile);
 
                     }
                 if (col == maxCol) {
                     col = 0;
-                    //System.out.println(row);
                     row++;
                 }
             }

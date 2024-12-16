@@ -12,12 +12,12 @@ public class drawableTiles {
 
     GamePanel gp;
     int mapMatrix[][];
-    GameScene gameScene;
+
+
 
 
     public drawableTiles(GamePanel gp){
         this.gp = gp;
-        gameScene = new GameScene(gp.screenRow, gp.screenCol);
         mapMatrix = gameScene.getMatrix();
         System.out.println(mapMatrix[0][0]);
         getTileImage();
@@ -25,6 +25,8 @@ public class drawableTiles {
 
         //loadMap();
     }
+
+    GameScene gameScene = GameScene.getInstance(12, 16);
 
     BufferedImage grass;
     BufferedImage dirt;

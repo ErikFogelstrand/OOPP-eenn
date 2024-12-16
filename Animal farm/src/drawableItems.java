@@ -14,8 +14,8 @@ public class drawableItems {
     int x, y;
 
     Inventory inventory = new Inventory(); //ska inte skapas här!!!!!!
-    SeedItem carrotSeedItem = new SeedItem("carrot", 1, "carrot", "carrot"); //ska inte skapas här!!!!!!
-    SeedItem hoeItem = new SeedItem("hoe", 1, "hoe", "hoe"); //ska inte skapas här!!!!!!
+    SeedItem carrotSeedItem = new SeedItem("carrot", 1, "carrot", "carrot"); //ska inte skapas här!!!
+    SeedItem hoeItem = new SeedItem("hoe", 1, "hoe", "hoe"); //ska inte skapas här!!!
 
     private Map<String, BufferedImage> itemImages = new HashMap<>();
 

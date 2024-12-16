@@ -22,6 +22,7 @@ public class Inventory {
                 }
             }
         }
+
         return false; // om inventory fullt
         }
     private boolean isValidSlot(int row, int column) {

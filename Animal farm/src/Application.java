@@ -1,20 +1,20 @@
-import World.GameScene;
-
 import javax.swing.*;
-import java.awt.event.KeyEvent;
 
 
 public class Application implements Runnable {
 
     Thread gameThread;
 
-    int FPS = 60;
+    private static final int FPS = 60;
 
     GamePanel gamePanel; // Declare gamePanel as a class member to share it between methods
-    Controller controller = new Controller();
+    Player player;
+    Controller controller;
+    playerHandler playerHandler;
 
     public Application(GamePanel gamePanel) {
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
+
         controller = new Controller();
         gamePanel.addKeyListener(controller);
         gamePanel.setFocusable(true);
@@ -68,7 +68,7 @@ public class Application implements Runnable {
         window.setResizable(false);
         window.setTitle("Animal Farm :-D");
 
-        Player player = new Player();
+        Player player = Player.getInstance();
         GamePanel gamePanel = new GamePanel(player);
 
 

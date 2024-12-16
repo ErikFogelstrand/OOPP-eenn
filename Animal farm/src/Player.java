@@ -1,13 +1,18 @@
+import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import World.IEntity;
 
-public class Player implements IStates, IEntity {
+public class Player implements IStates, IPlayerPos, IEntity {
 
     // player states
     private int hunger;
     private int thirst;
     private int energy;
+
+    // player movement speed
+    private static final int playerSpeed = 6;
 
     // constrains for state updates
     private static final int maxState = 100;
@@ -15,22 +20,31 @@ public class Player implements IStates, IEntity {
     private static final int hungerDecrease = 3;
     private static final int thirstDecrease = 4;
     private static final int energyDecrease = 2;
-    public Adapter adapter;
+    public playerHandler playerHandler;
+    //private GameScene gameScene;
 
     // temporary solution
     private static final int stateUpdateInterval = 30000; // 30 seconds
     private Timer stateTimer;
+    public static Player player;
 
 
     //constructor
-    public Player(){
+    private Player(){
         this.hunger = maxState;
         this.thirst = maxState;
         this.energy = maxState;
 
-        adapter = new Adapter(400, 400);
+        this.playerHandler = new playerHandler();
 
         startStateTimer();
+    }
+
+    public static Player getInstance() {
+        if (player == null) {
+            player = new Player();
+        }
+        return player;
     }
 
     // temporary solution with timer for updating states
@@ -58,7 +72,6 @@ public class Player implements IStates, IEntity {
         return thirst;
     }
 
-
     public int getSleep(){
         return energy;
     }
@@ -76,7 +89,14 @@ public class Player implements IStates, IEntity {
     }
 
     public void move(int x, int y ){
-        this.adapter.move(x,y);
+        x = x*playerSpeed;
+        y = y*playerSpeed;
+        this.playerHandler.move(x,y);
+    }
+
+    public Point getPos(){
+        //System.out.println("playerPos.getPos().x");
+        return (playerHandler.getPos());
     }
 
 
