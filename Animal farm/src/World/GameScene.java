@@ -47,9 +47,8 @@ public class GameScene implements ICurrentGameScene {
 
     }
 
-    public Tile getTile(int row, int col) {
-
-        return tileMatrix[row/96][col/96]; //temp solution
+    public Tile getTile(int col, int row) {
+        return tileMatrix[row][col]; //temp solution
     }
 
     public int[][] getMatrix(){

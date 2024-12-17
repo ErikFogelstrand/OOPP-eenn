@@ -1,4 +1,7 @@
 
+import Player.IPlayerPos;
+import Player.Player;
+
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
