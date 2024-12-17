@@ -14,7 +14,16 @@ public class PlantableDirt extends ATileType implements IWaterableTile {
 
     public boolean walkable() {return true;}
 
-    public String tileTypeInteract(IAction action) {
+    @Override
+    public String interact(IAction action) { //temporary fix
+        String newTileTypeName = super.interact(action);
+        if (tileObject instanceof APlantable && action.getType().equals("Hand")){
+            tileObject = null;
+        }
+        return newTileTypeName;
+    }
+
+    protected String tileTypeInteract(IAction action) {
         if(action.getType().equals("Seed")) {
             if (plant((SeedItem)action)) {
                 action.use();

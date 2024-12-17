@@ -6,12 +6,4 @@ public class Carrot extends APlantable {
         super(5);
     }
 
-    protected void harvest(){
-
-    }
-
-    @Override
-    public void tick() {
-
-    }
 }

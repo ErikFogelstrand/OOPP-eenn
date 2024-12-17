@@ -1,4 +1,5 @@
 import World.GameScene;
+import World.GameSceneHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,22 +12,17 @@ import java.io.InputStreamReader;
 public class drawableTiles {
 
     GamePanel gp;
-    int mapMatrix[][];
 
 
 
 
     public drawableTiles(GamePanel gp){
         this.gp = gp;
-        mapMatrix = gameScene.getMatrix();
-        System.out.println(mapMatrix[0][0]);
         getTileImage();
-        gameScene.loadMap();
 
         //loadMap();
     }
 
-    GameScene gameScene = GameScene.getInstance(12, 16);
 
     BufferedImage grass;
     BufferedImage dirt;
@@ -83,7 +79,7 @@ public class drawableTiles {
 
 
     public void draw(Graphics2D g2){
-
+        int[][] mapMatrix = GameSceneHandler.getInstance().getActiveGameScene().getMatrix();
         int col = 0;
         int row = 0;
         int x = 0;
