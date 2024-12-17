@@ -4,12 +4,11 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 import Inventory.Inventory;
-import World.IEntity;
 import Inventory.IInventoryHolder;
 import World.IRandomTickListener;
 import World.RandomTickGenerator;
 
-public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder, IRandomTickListener {
+public class Player implements IStates, IPlayerPos, IRandomTickListener, IInventoryHolder {
 
     // player states
     private int hunger;
@@ -34,8 +33,11 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder, I
         this.thirst = maxState;
         this.energy = maxState;
 
-        this.playerHandler = new playerHandler();
         this.inventory = new Inventory();
+
+        this.playerHandler = new playerHandler();
+
+        getInventory();
 
         RandomTickGenerator.getInstance().addListener(this);
     }
@@ -49,7 +51,7 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder, I
 
     @Override
     public Inventory getInventory() {
-        return inventory;
+                return this.inventory;
     }
 
     private void updateStates(){

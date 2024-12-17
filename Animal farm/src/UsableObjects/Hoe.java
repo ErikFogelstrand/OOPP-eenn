@@ -9,7 +9,7 @@ import World.TileTypes.Dirt;
 import World.TileTypes.Grass;
 import World.TileTypes.PlantableDirt;
 
-public class Hoe extends Tool {
+public abstract class Hoe extends Tool {
     public Hoe(String name){
         super(name);
     }

@@ -53,29 +53,6 @@ public class drawableTiles {
         };
         return tileArray[i];
     }
-/*
-    public void loadMap(int maxCol, int maxRow) { //this should be in Tiles not in the view!
-
-        int col = 0;
-        int row = 0;
-
-        while(col < gp.screenCol && row < gp.screenRow){
-
-            while(col < gp.screenCol){
-
-                mapMatrix[col][row] = num;
-                col++;
-            }
-            if (col == gp.screenCol){
-                col = 0;
-                row++;
-            }
-        }
-    }
-
-
-
- */
 
 
     public void draw(Graphics2D g2){
@@ -86,6 +63,7 @@ public class drawableTiles {
         int y = 0;
 
         while(col< gp.screenCol && row < gp.screenRow) {
+
             int tileNum = mapMatrix[row][col]; //mapTileNum should not be in view!
 
             g2.drawImage(removeThisLaterTiles(tileNum), x, y, gp.tileSize, gp.tileSize, null);
@@ -98,6 +76,8 @@ public class drawableTiles {
                 row++;
                 y += gp.tileSize;
 
+            //System.out.print(row);
+            //System.out.print("------");
             }
         }
     }

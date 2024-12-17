@@ -2,6 +2,10 @@ import World.GameSceneCreator;
 import World.GameSceneHandler;
 
 import javax.swing.*;
+import Player.Player;
+import Player.playerHandler;
+
+
 
 
 public class Application implements Runnable {
@@ -16,9 +20,9 @@ public class Application implements Runnable {
     playerHandler playerHandler;
 
     public Application(GamePanel gamePanel) {
+        player = Player.getInstance();
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
-
-        controller = new Controller();
+        controller = new Controller(gamePanel);
         gamePanel.addKeyListener(controller);
         gamePanel.setFocusable(true);
     }
@@ -73,8 +77,8 @@ public class Application implements Runnable {
 
         GameSceneHandler.getInstance().addGameScene("Main", GameSceneCreator.createGameScene(16, 12));
         GameSceneHandler.getInstance().switchActiveGameScene("Main");
-        Player player = Player.getInstance();
-        GamePanel gamePanel = new GamePanel(player);
+
+        GamePanel gamePanel = new GamePanel(Player.getInstance());
 
 
         window.add(gamePanel);

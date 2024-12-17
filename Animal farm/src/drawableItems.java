@@ -1,3 +1,5 @@
+import Player.Player;
+import UsableObjects.Hoe;
 import UsableObjects.Item;
 import UsableObjects.SeedItem;
 import Inventory.Inventory;
@@ -9,6 +11,7 @@ import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
 import Inventory.IInventoryHolder;
+import UsableObjects.Tool;
 
 public class drawableItems {
 
@@ -22,9 +25,9 @@ public class drawableItems {
     private BufferedImage itemSlot;
 
 
-    public drawableItems(GamePanel gp, IInventoryHolder inventoryHolder){
+    public drawableItems(GamePanel gp){
         this.gp = gp;
-        this.inventoryHolder = inventoryHolder;
+        inventoryHolder = Player.getInstance();
 
         getItemImage();
     }
@@ -44,20 +47,32 @@ public class drawableItems {
         }
     }
 
-    public void draw(Graphics2D g2, int x, int y) {
-        Inventory inventory = inventoryHolder.getInventory();
 
-        int rows = inventory.getRows(); // = 5
-        int columns = inventory.getColumns();
+    public void draw(Graphics2D g2, int x, int y, boolean expandInventory) {
+
+        Inventory inventory = inventoryHolder.getInventory();
+        int rows = 1;
+        int offset;
+        int columns = inventory.getColumns(); // = 5
+        if (expandInventory){
+            rows = inventory.getRows();
+            offset = -500;
+        } else {
+            offset = 0;
+        }
+
+
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                int xPos = x + (slotSize + itemMargin) * j;
+                int xPos = x + (slotSize) * j;
 
-                int yPos = y + (slotSize + itemMargin) * i;
+                int yPos = y + (slotSize) * i;
 
-                drawSlot(g2, xPos, yPos);
-                inventory.getItem(i, j).ifPresent(item -> drawItem(g2, xPos, yPos, item));
+                inventory.getItem(i, j);
+
+                drawSlot(g2, xPos, yPos+offset);
+                inventory.getItem(i, j).ifPresent(item -> drawItem(g2, xPos+itemMargin, yPos+itemMargin, item));
             }
 
         }

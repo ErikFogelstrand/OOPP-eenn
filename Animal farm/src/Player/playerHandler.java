@@ -3,7 +3,7 @@ package Player;
 import Player.IPlayerPos;
 import World.GameScene;
 import World.GameSceneHandler;
-import World.ICurrentGameScene;
+
 
 import java.awt.*;
 
@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class playerHandler implements IPlayerPos {
 
-    private int x = 200;
-    private int y = 200;
+    private int x = 8;
+    private int y = 6;
 
 
 

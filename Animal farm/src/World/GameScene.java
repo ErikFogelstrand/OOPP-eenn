@@ -25,11 +25,12 @@ public class GameScene implements ICurrentGameScene {
         tileHashMap.put(2, "PlantableDirt");
     }
 
-    public GameScene(int maxRow, int maxCol) {
+    public GameScene(int maxCol, int maxRow) {
         this.maxRow = maxRow;
         this.maxCol = maxCol;
         tileMatrix = new Tile[maxRow][maxCol];
         numMatrix = new int[maxRow][maxCol];
+
         setTileHashMap();
     }
 
@@ -39,6 +40,7 @@ public class GameScene implements ICurrentGameScene {
     }
 
     public Tile getTile(int col, int row) {
+
         return tileMatrix[row][col]; //temp solution
     }
 
@@ -69,7 +71,6 @@ public class GameScene implements ICurrentGameScene {
                     int numTile = Character.getNumericValue((numbers[col]).charAt(0)); // string -> int
                     //int numObj = Character.getNumericValue((numbers[col]).charAt(1)); // string -> int
 
-
                     numMatrix[row][col] = numTile;
                     tileMatrix[row][col] = tileFactory.createTile(tileHashMap.get(numTile), "null"); //null is the object but should be fixed
 
@@ -81,6 +82,7 @@ public class GameScene implements ICurrentGameScene {
                 if (col == maxCol) {
                     col = 0;
                     row++;
+
                 }
             }
             br.close();

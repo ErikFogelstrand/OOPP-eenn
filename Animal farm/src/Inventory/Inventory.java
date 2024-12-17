@@ -3,9 +3,9 @@ package Inventory;
 import UsableObjects.Item;
 
 import java.util.Optional;
-public class Inventory {
-    private static final int rows = 5;
-    private static final int columns = 4;
+public class Inventory{
+    private static final int rows = 6;
+    private static final int columns = 5;
     public Item[][] inventory;
 
     public Inventory() {

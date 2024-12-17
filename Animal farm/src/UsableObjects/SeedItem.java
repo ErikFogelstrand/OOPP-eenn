@@ -3,7 +3,7 @@ import Player.Player;
 import World.IAction;
 
 
-public class SeedItem extends Item {
+public abstract class SeedItem extends Item {
 
 
     public String seedType;

@@ -1,4 +1,5 @@
 package UsableObjects;
+
 import Inventory.Inventory;
 import Player.Player;
 

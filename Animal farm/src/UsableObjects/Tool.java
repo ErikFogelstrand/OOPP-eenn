@@ -15,6 +15,7 @@ public abstract class Tool implements IUsableObject {
     public void setName(String name) {
         this.name = name;
     }
+    /**
     @Override
     public void pickUp(Inventory inventory) {
         boolean added = inventory.addItem(this);//kommer ej åt inventory
@@ -22,4 +23,5 @@ public abstract class Tool implements IUsableObject {
 
     @Override
     public abstract void use(IAction action);
+    **/
 }

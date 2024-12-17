@@ -1,4 +1,4 @@
-import Inventory.IInventoryHolder;
+
 import Player.IStates;
 
 import javax.imageio.ImageIO;
@@ -10,10 +10,11 @@ import java.io.IOException;
 public class GamePanel extends JPanel{
 
     IStates playerStates;
-    IInventoryHolder inventoryHolder;
+
 
     final int baseTileSize = 16; // 16 pixels
     final int scale = 4;
+    static boolean toggleState = false;
 
     final int tileSize = baseTileSize * scale; // 16 x 3 = 48
     final int screenRow = 12; //12 tiles high
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel{
 
     drawableTiles tile;
     drawableSprites rabbit;
-    drawableItems items = new drawableItems(this, this.inventoryHolder);
+    drawableItems items;
 
 
     public GamePanel(IStates istates){
@@ -45,6 +46,7 @@ public class GamePanel extends JPanel{
         this.setDoubleBuffered((true)); // apparently improves rendering performance
         playerStates = istates;
         getOverlayImages();
+        this.items = new drawableItems(this);
         this.tile = new drawableTiles(this);
         this.rabbit = new drawableSprites(this);
 
@@ -107,7 +109,10 @@ public class GamePanel extends JPanel{
 
 
     }
-
+    public static boolean toggleInventory(){
+        toggleState = !toggleState;
+        return toggleState;
+    }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -122,7 +127,7 @@ public class GamePanel extends JPanel{
 
 
         drawStatusBars(g2);
-        items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight);
+        items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
 
         g2.dispose();
 

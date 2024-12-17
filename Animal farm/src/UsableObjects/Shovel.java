@@ -6,7 +6,7 @@ import World.Tile;
 import World.TileTypes.Dirt;
 import World.TileTypes.Grass;
 import World.TileTypes.PlantableDirt;
-    public class Shovel extends Tool {
+    public abstract class Shovel extends Tool {
         public Shovel(String name){
             super(name);
         }

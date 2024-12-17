@@ -2,6 +2,7 @@
 import Player.IPlayerPos;
 import Player.Player;
 
+
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -10,8 +11,11 @@ import static java.awt.event.KeyEvent.*;
 public class Controller implements KeyListener {
 
     IPlayerPos playerPos = Player.getInstance();
+    GamePanel gamePanel;
 
-    public Controller(){
+
+    public Controller(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
     }
 
     @Override
@@ -38,7 +42,10 @@ public class Controller implements KeyListener {
 
             playerPos.move(1, 0);
         }
-        if (keyCode == VK_ENTER) {
+        if (keyCode == VK_E) {
+            gamePanel.toggleInventory();
+
+
             //interact
         }
 
