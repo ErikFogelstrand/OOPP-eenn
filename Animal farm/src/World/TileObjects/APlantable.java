@@ -1,6 +1,6 @@
 package World.TileObjects;
 
-import Jagbehöverettpaketförattnåklasserna.RandomTickGenerator;
+import World.RandomTickGenerator;
 import World.IAction;
 import World.IRandomTickListener;
 import World.ITileObject;
@@ -10,8 +10,10 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
     private IWaterableTile waterableTile;
     private boolean watered;
     protected int growthState;
-    public APlantable(){
+    protected int maxGrowth;
+    protected APlantable(int maxGrowth){
         RandomTickGenerator.getInstance().addListener(this);
+        this.maxGrowth = maxGrowth;
     }
 
     public void setWaterableTile(IWaterableTile waterableTile) {
@@ -29,17 +31,25 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
             action.use();
         }
     }
-    protected void harvest(){
+    private void harvest(){
         setWaterableTile(null);
+        RandomTickGenerator.getInstance().removeListener(this);
+        
     }
+
+
     private void water(){
+        if(growthState >= maxGrowth){
+            return;
+        }
         watered = true;
     }
     public void tick(){
-        if(watered){
-            waterableTile.setWatered(false);
-            watered = false;
-            growthState--;
+        if(!watered || growthState >= maxGrowth){
+            return;
         }
+        waterableTile.setWatered(false);
+        watered = false;
+        growthState++;
     }
 }

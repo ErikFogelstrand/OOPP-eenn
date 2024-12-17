@@ -6,16 +6,15 @@ import java.util.TimerTask;
 import Inventory.Inventory;
 import World.IEntity;
 import Inventory.IInventoryHolder;
+import World.IRandomTickListener;
+import World.RandomTickGenerator;
 
-public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
+public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder, IRandomTickListener {
 
     // player states
     private int hunger;
     private int thirst;
     private int energy;
-
-    // player movement speed
-    private static final int playerSpeed = 6;
 
     // constrains for state updates
     private static final int maxState = 100;
@@ -24,12 +23,8 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
     private static final int thirstDecrease = 4;
     private static final int energyDecrease = 2;
     public playerHandler playerHandler;
-    //private GameScene gameScene;
     private Inventory inventory;
 
-    // temporary solution
-    private static final int stateUpdateInterval = 30000; // 30 seconds
-    private Timer stateTimer;
     public static Player player;
 
 
@@ -42,7 +37,7 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
         this.playerHandler = new playerHandler();
         this.inventory = new Inventory();
 
-        startStateTimer();
+        RandomTickGenerator.getInstance().addListener(this);
     }
 
     public static Player getInstance() {
@@ -55,17 +50,6 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
     @Override
     public Inventory getInventory() {
         return inventory;
-    }
-
-    // temporary solution with timer for updating states
-    private void startStateTimer(){
-        stateTimer = new Timer(true);
-        stateTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                updateStates();
-            }
-        }, 0, stateUpdateInterval);
     }
 
     private void updateStates(){
@@ -99,13 +83,15 @@ public class Player implements IStates, IPlayerPos, IEntity, IInventoryHolder {
     }
 
     public void move(int x, int y ){
-        x = x*playerSpeed;
-        y = y*playerSpeed;
         this.playerHandler.move(x,y);
     }
 
     public Point getPos(){
         //System.out.println("playerPos.getPos().x");
         return (playerHandler.getPos());
+    }
+
+    public void tick(){
+        updateStates();
     }
 }

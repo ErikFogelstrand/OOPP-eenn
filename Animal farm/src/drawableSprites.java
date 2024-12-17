@@ -1,4 +1,5 @@
-import World.GameScene;
+import Player.IPlayerPos;
+import Player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -35,6 +36,6 @@ public class drawableSprites {
     public void draw(Graphics2D g2){
 
         //System.out.println(playerPos.getPos().x);
-        g2.drawImage(rabbit, playerPos.getPos().x, playerPos.getPos().y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(rabbit, playerPos.getPos().x*gp.tileSize, playerPos.getPos().y*gp.tileSize, gp.tileSize, gp.tileSize, null);
     }
 }
