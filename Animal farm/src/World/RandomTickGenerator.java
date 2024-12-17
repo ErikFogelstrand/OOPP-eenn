@@ -10,13 +10,12 @@ public class RandomTickGenerator {
 
     private final Random rand = new Random();
     private final Timer tickTimer = new Timer();
-    private final ArrayList<IRandomTickListener> randomTickListeners;
+    private final ArrayList<IRandomTickListener> randomTickListeners = new ArrayList<>();
     private final long maxTime = 10_000; // on average all listeners are sent a tick during this period in ms
 
     public static RandomTickGenerator getInstance() {return instance;}
 
     private RandomTickGenerator() {
-        randomTickListeners = new ArrayList<>();
         startTickTimer();
     }
 

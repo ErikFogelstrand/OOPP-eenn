@@ -2,6 +2,7 @@ package Player;
 
 import Player.IPlayerPos;
 import World.GameScene;
+import World.GameSceneHandler;
 import World.ICurrentGameScene;
 
 import java.awt.*;
@@ -16,8 +17,6 @@ public class playerHandler implements IPlayerPos {
 
     private int x = 200;
     private int y = 200;
-
-    ICurrentGameScene gameScene = GameScene.getInstance(12, 16);
 
 
 
@@ -36,7 +35,8 @@ public class playerHandler implements IPlayerPos {
     }
 
     public void move(int x, int y) {
-        if ((gameScene.getTile(this.x + x, this.y + y)).getTileType().walkable()) {
+        GameScene currentGameScene = GameSceneHandler.getInstance().getActiveGameScene();
+        if ((currentGameScene.getTile(this.x + x, this.y + y)).getTileType().walkable()) {
             updatePos(x, y);
         }
     }

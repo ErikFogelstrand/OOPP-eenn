@@ -12,7 +12,6 @@ public class GameScene implements ICurrentGameScene {
     private Tile[][] tileMatrix;
     private int[][] numMatrix;
     TileFactory tileFactory = new TileFactory();
-    public static GameScene gameScene;
 
 
     int maxRow;
@@ -26,20 +25,12 @@ public class GameScene implements ICurrentGameScene {
         tileHashMap.put(2, "PlantableDirt");
     }
 
-    private GameScene(int maxRow, int maxCol) {
+    public GameScene(int maxRow, int maxCol) {
         this.maxRow = maxRow;
         this.maxCol = maxCol;
         tileMatrix = new Tile[maxRow][maxCol];
         numMatrix = new int[maxRow][maxCol];
         setTileHashMap();
-    }
-
-    // method to access the singleton instance
-    public static GameScene getInstance(int maxRow, int maxCol) {
-        if (gameScene == null) {
-            gameScene = new GameScene(maxRow, maxCol);
-        }
-        return gameScene;
     }
 
     public void insertTile(Tile tile, int row, int col) {
