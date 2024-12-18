@@ -15,7 +15,6 @@ import UsableObjects.Tool;
 
 public class drawableItems {
 
-    public GamePanel gp;
     private IInventoryHolder inventoryHolder;
     private Map<String, BufferedImage> itemImages = new HashMap<>();
     private int itemSize = 56; //14 pixels * scale 4
@@ -25,10 +24,8 @@ public class drawableItems {
     private BufferedImage itemSlot;
 
 
-    public drawableItems(GamePanel gp){
-        this.gp = gp;
-        inventoryHolder = Player.getInstance();
-
+    public drawableItems(IInventoryHolder inventoryHolder){
+        this.inventoryHolder = inventoryHolder;
         getItemImage();
     }
 

@@ -1,6 +1,8 @@
 
-import Player.IStates;
 import Inventory.IInventoryHolder;
+import Player.IPlayerPos;
+import Player.IStates;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -40,10 +42,11 @@ public class GamePanel extends JPanel{
     drawableItems items;
 
 
-    public GamePanel(IStates istates, IInventoryHolder inventoryHolder){ ////////////
+    public GamePanel(IStates istates,IPlayerPos playerPos, IInventoryHolder inventoryHolder){ ////////////
 
         this.playerStates = istates; ////////////////
         this.inventoryHolder = inventoryHolder;
+
 
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -51,9 +54,9 @@ public class GamePanel extends JPanel{
         this.setDoubleBuffered((true)); // apparently improves rendering performance
 
         getOverlayImages();
-        this.items = new drawableItems(this);
-        this.tile = new drawableTiles(this);
-        this.rabbit = new drawableSprites(this);
+        this.items = new drawableItems(inventoryHolder);
+        this.tile = new drawableTiles();
+        this.rabbit = new drawableSprites(playerPos);
 
     }
 
@@ -133,14 +136,16 @@ public class GamePanel extends JPanel{
 
         g2.setColor((Color.white));
 
-        tile.draw(g2);
-        rabbit.draw(g2);
+        tile.draw(g2, tileSize);
+        rabbit.draw(g2, tileSize);
 
 
         drawStatusBars(g2);
         items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
 
         g2.dispose();
+
+
     }
 }
 
