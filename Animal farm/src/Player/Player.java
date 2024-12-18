@@ -96,4 +96,11 @@ public class Player implements IStates, IPlayerPos, IRandomTickListener, IInvent
     public void tick(){
         updateStates();
     }
+
+    public void selectItem(int xCoord) {
+        inventory.selectItem(xCoord).ifPresent(item -> {
+            System.out.println("Selected item: " + item.getName());
+            // Perform item-related actions here
+        });
+    }
 }

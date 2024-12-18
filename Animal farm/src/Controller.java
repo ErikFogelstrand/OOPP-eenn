@@ -3,6 +3,8 @@ import Player.IPlayerPos;
 import Player.Player;
 
 
+import Player.IPlayerPos;
+
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -49,7 +51,7 @@ public class Controller implements KeyListener {
             //interact
         }
 
-        if (keyCode == VK_1) {
+        /*if (keyCode == VK_1) {
             //item 1
         }
         if (keyCode == VK_2) {
@@ -63,9 +65,13 @@ public class Controller implements KeyListener {
         }
         if (keyCode == VK_5) {
             //item 5
+        }*/
 
-
+        if (keyCode >= VK_1 && keyCode <= VK_5){
+            int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
+            gamePanel.selectItemInInventory(column);
         }
+
     }
 
 
