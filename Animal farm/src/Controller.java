@@ -1,9 +1,8 @@
 
-import Player.IPlayerPos;
-import Player.Player;
+import Model.Player.IPlayerPos;
+import Model.Player.Player;
+import View.GamePanel;
 
-
-import Player.IPlayerPos;
 
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,8 +11,8 @@ import static java.awt.event.KeyEvent.*;
 
 public class Controller implements KeyListener {
 
-    IPlayerPos playerPos = Player.getInstance();
-    GamePanel gamePanel;
+    private final IPlayerPos playerPos = Player.getInstance();
+    private final GamePanel gamePanel;
 
 
     public Controller(GamePanel gamePanel){
