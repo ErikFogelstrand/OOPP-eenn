@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel{
 
-    IStates playerStates;
+    private final IStates playerStates;
+    private final IInventoryHolder inventoryHolder;
 
 
     final int baseTileSize = 16; // 16 pixels
@@ -41,12 +42,17 @@ public class GamePanel extends JPanel{
     drawableItems items;
 
 
-    public GamePanel(IStates istates, IPlayerPos playerPos, IInventoryHolder inventoryHolder){
+    public GamePanel(IStates istates,IPlayerPos playerPos, IInventoryHolder inventoryHolder){ ////////////
+
+        this.playerStates = istates; ////////////////
+        this.inventoryHolder = inventoryHolder;
+
+
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground((Color.black));
         this.setDoubleBuffered((true)); // apparently improves rendering performance
-        playerStates = istates;
+
         getOverlayImages();
         this.items = new drawableItems(inventoryHolder);
         this.tile = new drawableTiles();
@@ -84,6 +90,12 @@ public class GamePanel extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void selectItemInInventory(int column) {
+        inventoryHolder.getInventory().selectItem(column).ifPresent(item -> {
+            System.out.println("Selected item: " + item.getName());
+        });
     }
 
     public void updatePaint(){
