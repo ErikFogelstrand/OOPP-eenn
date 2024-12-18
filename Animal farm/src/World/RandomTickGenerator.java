@@ -35,7 +35,6 @@ public class RandomTickGenerator {
         if (!randomTickListeners.isEmpty()) {
             delay = maxTime/randomTickListeners.size();
         }
-
         tickTimer.schedule(new TimerTask() {
             @Override
             public void run() {
