@@ -20,18 +20,21 @@ public class GamePanel extends JPanel{
     final int screenRow = 12; //12 tiles high
     final int screenCol = 16; //16 tiles wide
 
-    final int statusBarHeight = screenRow/4 * 41;
-    final int statusBarWidth = screenCol/2 * 41;
+    final int screenHeight = tileSize * screenRow; // =768 pixels
+    final int screenWidth = tileSize * screenCol; // =576 pixels
+
+    final int statusBarHeight = screenHeight/6;
+    final int statusBarWidth = screenWidth/3; //three bars make up a third of screen
+    final int statusDotSize = 5*scale;
+
     final int mainSlotsWidth = 92*scale;
     final int mainSlotsHeight = 20*scale;
 
 
-    final int screenHeight = tileSize * screenRow; // =768 pixels
-    final int screenWidth = tileSize * screenCol; // =576 pixels
 
-    BufferedImage foodBarFull, foodBar66, foodBar33, foodBarNone;
-    BufferedImage sleepBarFull, sleepBar66, sleepBar33, sleepBarNone;
-    BufferedImage waterBarFull, waterBar66, waterBar33, waterBarNone;
+    BufferedImage foodBarDot, foodBarNone;
+    BufferedImage sleepBarDot, sleepBarNone;
+    BufferedImage waterBarDot, waterBarNone;
     BufferedImage mainSlots;
 
     drawableTiles tile;
@@ -49,7 +52,6 @@ public class GamePanel extends JPanel{
         this.items = new drawableItems(this);
         this.tile = new drawableTiles(this);
         this.rabbit = new drawableSprites(this);
-
     }
 
 
@@ -60,22 +62,16 @@ public class GamePanel extends JPanel{
             //mainSlots
             mainSlots = ImageIO.read(getClass().getResourceAsStream("Graphics/other/mainSlots.png"));
 
-            //foodBar
-            foodBarFull = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_FULL.png"));
-            foodBar66 = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_66.png"));
-            foodBar33 = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_33.png"));
+            //foodBar+
+            foodBarDot = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_DOT.png"));
             foodBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_NONE.png"));
 
             //sleepBar
-            sleepBarFull= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_FULL.png"));
-            sleepBar66= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_66.png"));
-            sleepBar33= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_33.png"));
+            sleepBarDot= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_DOT.png"));
             sleepBarNone= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_NONE.png"));
 
             //waterBar
-            waterBarFull = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_FULL.png"));
-            waterBar66 = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_66.png"));
-            waterBar33 = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_33.png"));
+            waterBarDot = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_DOT.png"));
             waterBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_NONE.png"));
 
 
@@ -88,24 +84,28 @@ public class GamePanel extends JPanel{
         repaint();
     }
 
+    public void currentBarStatus(Graphics g2, int currentStatus,BufferedImage statusBarDot, int x){
+        int dotOffsetX = 106; //to fit the starting dot on the statusBar
+        int dotSpace = 9; //the space between every dot that blits so they fit the whole statusBar
+        int dotOffsetY = statusBarHeight/2 - 10; //
+
+        for(int i = 0; i<20; i++){
+            if (currentStatus/5>i) {
+
+                g2.drawImage(statusBarDot, x + dotOffsetX + (i * dotSpace), dotOffsetY, statusDotSize, statusDotSize, null);
+            }
+        }
+    }
 
     public void drawStatusBars(Graphics2D g2){
 
+        g2.drawImage(foodBarNone, 0, 0, statusBarWidth, statusBarHeight, null);
+        g2.drawImage(waterBarNone, statusBarWidth, 0, statusBarWidth, statusBarHeight, null);
+        g2.drawImage(sleepBarNone, statusBarWidth*2, 0, statusBarWidth, statusBarHeight, null);
 
-        if(playerStates.getHunger()>90){g2.drawImage(foodBarFull, 0, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getHunger()>66){g2.drawImage(foodBar66, 0, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getHunger()>33){g2.drawImage(foodBar33, 0, 5, statusBarWidth, statusBarHeight, null);}
-        else {g2.drawImage(foodBarNone, 0, 5, statusBarWidth, statusBarHeight, null);}
-
-        if(playerStates.getSleep()>90){g2.drawImage(sleepBarFull, statusBarWidth*2, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getSleep()>66){g2.drawImage(sleepBar66, statusBarWidth*2, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getSleep()>33){g2.drawImage(sleepBar33, statusBarWidth*2, 5, statusBarWidth, statusBarHeight, null);}
-        else {g2.drawImage(sleepBarNone, statusBarWidth*2, 5, statusBarWidth, statusBarHeight, null);}
-
-        if(playerStates.getThirst()>90){ g2.drawImage(waterBarFull, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getThirst()>66){ g2.drawImage(waterBar66, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
-        else if(playerStates.getThirst()>33){ g2.drawImage(waterBar33, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
-        else { g2.drawImage(waterBarNone, statusBarWidth, 5, statusBarWidth, statusBarHeight, null);}
+        currentBarStatus(g2, playerStates.getHunger() ,foodBarDot, 0);
+        currentBarStatus(g2, playerStates.getThirst() ,waterBarDot, statusBarWidth);
+        currentBarStatus(g2, playerStates.getSleep() ,sleepBarDot, statusBarWidth*2);
 
 
     }

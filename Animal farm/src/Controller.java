@@ -12,6 +12,7 @@ public class Controller implements KeyListener {
 
     IPlayerPos playerPos = Player.getInstance();
     GamePanel gamePanel;
+    String direction = "front";
 
 
     public Controller(GamePanel gamePanel){
@@ -28,21 +29,58 @@ public class Controller implements KeyListener {
 
         int keyCode = e.getKeyCode();
 
+        /**
+         *  player movement and direction bellow
+         */
+
         if (keyCode == VK_W) {
+            direction = "back";
+            drawableSprites.direction = direction;
             playerPos.move(0, -1);
         }
         if (keyCode == VK_A) {
+            direction = "left";
+            drawableSprites.direction = direction;
             playerPos.move(-1, 0);
         }
         if (keyCode == VK_S) {
+            direction = "front";
+            drawableSprites.direction = direction;
             playerPos.move(0, 1);
 
         }
         if (keyCode == VK_D) {
-
+            direction = "right";
+            drawableSprites.direction = direction;
             playerPos.move(1, 0);
         }
-        if (keyCode == VK_E) {
+
+        /**
+         *  change of player direction with arrow keys bellow
+         */
+
+        if (keyCode == VK_UP) {
+            direction = "back";
+            drawableSprites.direction = direction;
+        }
+        if (keyCode == VK_DOWN) {
+            direction = "left";
+            drawableSprites.direction = direction;
+        }
+        if (keyCode == VK_LEFT) {
+            direction = "front";
+            drawableSprites.direction = direction;
+         }
+        if (keyCode == VK_RIGHT) {
+            direction = "right";
+            drawableSprites.direction = direction;
+        }
+        /**
+         *
+         *  toggle inventory bellow
+         */
+
+        if (keyCode == VK_Q) {
             gamePanel.toggleInventory();
 
 
