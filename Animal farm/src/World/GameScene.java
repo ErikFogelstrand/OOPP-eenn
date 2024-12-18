@@ -47,47 +47,4 @@ public class GameScene implements ICurrentGameScene {
     public int[][] getMatrix(){
         return numMatrix;
     }
-
-
-    public void loadMap() {
-
-
-        try {
-            InputStream txt = getClass().getClassLoader().getResourceAsStream("World/tileMap.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(txt));
-
-            int col = 0;
-            int row = 0;
-
-            while (col < maxCol && row < maxRow) {
-
-                String line = br.readLine();
-
-                while (col < maxCol) {
-
-                    String[] numbers = line.split(" "); // gives number[x] = 1/2/3/4 = tiletype
-                    //String[] seperateNumbers = line.split(","); // if we want to save the objects
-
-                    int numTile = Character.getNumericValue((numbers[col]).charAt(0)); // string -> int
-                    //int numObj = Character.getNumericValue((numbers[col]).charAt(1)); // string -> int
-
-                    numMatrix[row][col] = numTile;
-                    tileMatrix[row][col] = tileFactory.createTile(tileHashMap.get(numTile), "null"); //null is the object but should be fixed
-
-                    insertTile(tileMatrix[row][col], row, col);
-
-                    col++;
-
-                    }
-                if (col == maxCol) {
-                    col = 0;
-                    row++;
-
-                }
-            }
-            br.close();
-        } catch (Exception e) {
-            System.out.println("erroor");
-        }
-    }
 }
