@@ -15,7 +15,7 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
         RandomTickGenerator.getInstance().addListener(this);
         this.maxGrowth = maxGrowth;
     }
-
+    public int getGrowthState(){return growthState;}
     public void setWaterableTile(IWaterableTile waterableTile) {
         this.waterableTile = waterableTile;
     }

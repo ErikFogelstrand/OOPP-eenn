@@ -1,38 +1,29 @@
+import World.ATileType;
 import World.GameScene;
 import World.GameSceneHandler;
+import World.ITileObject;
+import World.TileObjects.Carrot;
+import World.TileTypes.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class drawableTiles {
-
-    GamePanel gp;
-
-
-
-
-    public drawableTiles(GamePanel gp){
-        this.gp = gp;
-        getTileImage();
-
-        //loadMap();
-    }
-
-
     BufferedImage grass;
     BufferedImage dirt;
     BufferedImage soil;
     BufferedImage tileCarrotSeed_0;
     BufferedImage tileCarrotSeed_1;
     BufferedImage tileCarrotSeed_2;
+    BufferedImage defaultImage;
 
+    public drawableTiles() {
+        getTileImage();
+    }
 
-    public void getTileImage(){
+    public void getTileImage() {
         try {
             grass = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/grass.png"));
             dirt = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/dirt.png"));
@@ -42,42 +33,41 @@ public class drawableTiles {
             tileCarrotSeed_1 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-1.png"));
             tileCarrotSeed_2 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-2.png"));
 
+            defaultImage = ImageIO.read(getClass().getResourceAsStream("Graphics/items/carrot.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public BufferedImage removeThisLaterTiles(int i){
-        BufferedImage[] tileArray = new BufferedImage[] {
-                grass, dirt, soil, tileCarrotSeed_0, tileCarrotSeed_1, tileCarrotSeed_2
-        };
-        return tileArray[i];
+    private BufferedImage getTileTypeImage(ATileType tileType) {
+        if (tileType instanceof Dirt) {
+            return dirt;
+        } else if (tileType instanceof Grass) {
+            return grass;
+        } else if (tileType instanceof PlantableDirt) {
+            return soil;
+        }
+        return null;
+    }
+
+    private BufferedImage getTileObjectImage(ITileObject tileObject) {
+        if (tileObject instanceof Carrot) {
+            BufferedImage[] carrotImages = new BufferedImage[]{
+                    tileCarrotSeed_0, tileCarrotSeed_1, tileCarrotSeed_2
+            };
+            return carrotImages[((Carrot) tileObject).getGrowthState()];
+        }
+        return null;
     }
 
 
-    public void draw(Graphics2D g2){
-        int[][] mapMatrix = GameSceneHandler.getInstance().getActiveGameScene().getMatrix();
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
-
-        while(col< gp.screenCol && row < gp.screenRow) {
-
-            int tileNum = mapMatrix[row][col]; //mapTileNum should not be in view!
-
-            g2.drawImage(removeThisLaterTiles(tileNum), x, y, gp.tileSize, gp.tileSize, null);
-            col++;
-            x += gp.tileSize;
-
-            if (col == gp.screenCol){
-                col = 0;
-                x = 0;
-                row++;
-                y += gp.tileSize;
-
-            //System.out.print(row);
-            //System.out.print("------");
+    public void draw(Graphics2D g2, int tileSize) {
+        GameScene gameScene = GameSceneHandler.getInstance().getActiveGameScene();
+        for (int y = 0; y < gameScene.getSize().y; y++) {
+            for (int x = 0; x < gameScene.getSize().x; x++) {
+                g2.drawImage(getTileTypeImage(gameScene.getTile(x, y).getTileType()), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                g2.drawImage(getTileObjectImage(gameScene.getTile(x, y).getTileType().getTileObject()), x * tileSize, y * tileSize, tileSize, tileSize, null);
             }
         }
     }

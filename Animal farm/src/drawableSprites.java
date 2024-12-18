@@ -7,20 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class drawableSprites {
+    IPlayerPos playerPos;
 
-    GamePanel gp;
-    IPlayerPos playerPos = Player.getInstance();
-
-
-    public drawableSprites(GamePanel gp){
-        this.gp = gp;
-
+    public drawableSprites(IPlayerPos playerPos){
+        this.playerPos = playerPos;
         getTileImage();
     }
     BufferedImage rabbit;
     BufferedImage villager;
-
-
 
     public void getTileImage(){
         try {
@@ -33,9 +27,7 @@ public class drawableSprites {
 
 
 
-    public void draw(Graphics2D g2){
-
-        //System.out.println(playerPos.getPos().x);
-        g2.drawImage(rabbit, playerPos.getPos().x*gp.tileSize, playerPos.getPos().y*gp.tileSize, gp.tileSize, gp.tileSize, null);
+    public void draw(Graphics2D g2, int tileSize){
+        g2.drawImage(rabbit, playerPos.getPos().x*tileSize, playerPos.getPos().y*tileSize, tileSize, tileSize, null);
     }
 }
