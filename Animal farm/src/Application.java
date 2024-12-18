@@ -78,8 +78,7 @@ public class Application implements Runnable {
         GameSceneHandler.getInstance().addGameScene("Main", GameSceneCreator.createGameScene(16, 12));
         GameSceneHandler.getInstance().switchActiveGameScene("Main");
 
-        GamePanel gamePanel = new GamePanel(Player.getInstance());
-
+        GamePanel gamePanel = new GamePanel(Player.getInstance(), Player.getInstance(), Player.getInstance());
 
         window.add(gamePanel);
 
