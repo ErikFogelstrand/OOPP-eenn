@@ -4,6 +4,7 @@ import View.DrawableSprites;
 import View.GamePanel;
 
 
+import java.awt.*;
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -36,24 +37,20 @@ public class Controller implements KeyListener {
          */
 
         if (keyCode == VK_W) {
-            direction = "back";
-            gamePanel.setDirection(direction);
+            setDirection("back");
             movementHandler.move(0, -1);
         }
         if (keyCode == VK_A) {
-            direction = "left";
-            gamePanel.setDirection(direction);
+            setDirection("left");
             movementHandler.move(-1, 0);
         }
         if (keyCode == VK_S) {
-            direction = "front";
-            gamePanel.setDirection(direction);
+            setDirection("front");
             movementHandler.move(0, 1);
 
         }
         if (keyCode == VK_D) {
-            direction = "right";
-            gamePanel.setDirection(direction);
+            setDirection("right");
             movementHandler.move(1, 0);
         }
 
@@ -62,20 +59,16 @@ public class Controller implements KeyListener {
          */
 
         if (keyCode == VK_UP) {
-            direction = "back";
-            gamePanel.setDirection(direction);
+            setDirection("back");
         }
         if (keyCode == VK_DOWN) {
-            direction = "left";
-            gamePanel.setDirection(direction);
+            setDirection("front");
         }
         if (keyCode == VK_LEFT) {
-            direction = "front";
-            gamePanel.setDirection(direction);
+            setDirection("left");
          }
         if (keyCode == VK_RIGHT) {
-            direction = "right";
-            gamePanel.setDirection(direction);
+            setDirection("right");
         }
         /**
          *
@@ -84,7 +77,6 @@ public class Controller implements KeyListener {
 
         if (keyCode == VK_Q) {
             gamePanel.toggleInventory();
-
         }
 
         if (keyCode == VK_E){
@@ -94,6 +86,17 @@ public class Controller implements KeyListener {
         if (keyCode >= VK_1 && keyCode <= VK_5){
             int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
             gamePanel.selectItemInInventory(column);
+        }
+
+    }
+
+    private void setDirection(String direction){
+        gamePanel.setDirection(direction);
+        switch (direction){
+            case ("back"): {movementHandler.setDirection(0, -1); break;}
+            case ("front"): {movementHandler.setDirection(0, 1); break;}
+            case ("left"): {movementHandler.setDirection(-1, 0); break;}
+            case ("right"): {movementHandler.setDirection(1, 0); break;}
         }
 
     }

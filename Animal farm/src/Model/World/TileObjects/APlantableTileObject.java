@@ -11,8 +11,10 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
     protected APlantableTileObject(int maxGrowth){
         RandomTickGenerator.getInstance().addListener(this);
         this.maxGrowth = maxGrowth;
+        growthState = 0;
     }
     public int getGrowthState(){return growthState;}
+    public boolean getWatered(){return watered;}
 
     @Override
     public boolean walkable(){return true;}

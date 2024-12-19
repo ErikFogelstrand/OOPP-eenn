@@ -3,6 +3,7 @@ package View;
 import Model.World.Terrain.ATerrain;
 import Model.World.GameScene;
 import Model.World.GameSceneManager;
+import Model.World.TileObjects.APlantableTileObject;
 import Model.World.TileObjects.ITileObject;
 import Model.World.TileObjects.Carrot;
 import Model.World.Terrain.*;
@@ -15,10 +16,11 @@ import java.io.IOException;
 public class DrawableTiles {
     private BufferedImage grass;
     private BufferedImage dirt;
-    private BufferedImage soil;
-    private BufferedImage tileCarrotSeed_0;
-    private BufferedImage tileCarrotSeed_1;
-    private BufferedImage tileCarrotSeed_2;
+    private BufferedImage soilDry;
+    private BufferedImage soilWet;
+    private BufferedImage CarrotSeed_0;
+    private BufferedImage CarrotSeed_1;
+    private BufferedImage CarrotSeed_2;
 
     public DrawableTiles() {
         loadTileImages();
@@ -28,24 +30,28 @@ public class DrawableTiles {
         try {
             grass = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/grass.png"));
             dirt = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/dirt.png"));
-            soil = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil.png"));
+            soilDry = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil_DRY.png"));
+            soilWet = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil_WET.png"));
 
-            tileCarrotSeed_0 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-0.png"));
-            tileCarrotSeed_1 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-1.png"));
-            tileCarrotSeed_2 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/plantedSoil/carrot-2.png"));
+            CarrotSeed_0 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_0.png"));
+            CarrotSeed_1 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_1.png"));
+            CarrotSeed_2 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_2.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private BufferedImage getTileTypeImage(ATerrain tileType) {
-        if (tileType instanceof Dirt) {
+    private BufferedImage getTileTypeImage(ATerrain terrain) {
+        if (terrain instanceof Dirt) {
             return dirt;
-        } else if (tileType instanceof Grass) {
+        } else if (terrain instanceof Grass) {
             return grass;
-        } else if (tileType instanceof PlantableDirt) {
-            return soil;
+        } else if (terrain instanceof PlantableDirt) {
+            if (terrain.getTileObject() instanceof APlantableTileObject && ((APlantableTileObject) terrain.getTileObject()).getWatered()){
+                return soilWet;
+            }
+            return soilDry;
         }
         return null;
     }
@@ -53,7 +59,7 @@ public class DrawableTiles {
     private BufferedImage getTileObjectImage(ITileObject tileObject) {
         if (tileObject instanceof Carrot) {
             BufferedImage[] carrotImages = new BufferedImage[]{
-                    tileCarrotSeed_0, tileCarrotSeed_1, tileCarrotSeed_2
+                    CarrotSeed_0, CarrotSeed_1, CarrotSeed_2
             };
             return carrotImages[((Carrot) tileObject).getGrowthState()];
         }
