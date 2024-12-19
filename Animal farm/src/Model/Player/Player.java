@@ -19,7 +19,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     private static final int minState = 0;
     private static final int hungerDecrease = 3;
     private static final int thirstDecrease = 4;
-    private static final int energyDecrease = 2;
+    private static final int energyDecrease = 1;
     private final MovementHandler playerHandler;
     private final InventoryHandler inventoryHandler;
 

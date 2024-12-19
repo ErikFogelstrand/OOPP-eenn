@@ -1,6 +1,6 @@
 
 import Model.Player.IMovementHandler;
-import Model.Player.Player;
+import View.DrawableSprites;
 import View.GamePanel;
 
 
@@ -11,12 +11,14 @@ import static java.awt.event.KeyEvent.*;
 
 public class Controller implements KeyListener {
 
-    private final IMovementHandler playerPos = Player.getInstance();
+    private final IMovementHandler movementHandler;
     private final GamePanel gamePanel;
+    String direction = "front";
 
 
-    public Controller(GamePanel gamePanel){
+    public Controller(GamePanel gamePanel,IMovementHandler movementHandler){
         this.gamePanel = gamePanel;
+        this.movementHandler = movementHandler;
     }
 
     @Override
@@ -29,21 +31,58 @@ public class Controller implements KeyListener {
 
         int keyCode = e.getKeyCode();
 
+        /**
+         *  player movement and direction bellow
+         */
+
         if (keyCode == VK_W) {
-            playerPos.move(0, -1);
+            direction = "back";
+            gamePanel.setDirection(direction);
+            movementHandler.move(0, -1);
         }
         if (keyCode == VK_A) {
-            playerPos.move(-1, 0);
+            direction = "left";
+            gamePanel.setDirection(direction);
+            movementHandler.move(-1, 0);
         }
         if (keyCode == VK_S) {
-            playerPos.move(0, 1);
+            direction = "front";
+            gamePanel.setDirection(direction);
+            movementHandler.move(0, 1);
 
         }
         if (keyCode == VK_D) {
-
-            playerPos.move(1, 0);
+            direction = "right";
+            gamePanel.setDirection(direction);
+            movementHandler.move(1, 0);
         }
-        if (keyCode == VK_E) {
+
+        /**
+         *  change of player direction with arrow keys bellow
+         */
+
+        if (keyCode == VK_UP) {
+            direction = "back";
+            gamePanel.setDirection(direction);
+        }
+        if (keyCode == VK_DOWN) {
+            direction = "left";
+            gamePanel.setDirection(direction);
+        }
+        if (keyCode == VK_LEFT) {
+            direction = "front";
+            gamePanel.setDirection(direction);
+         }
+        if (keyCode == VK_RIGHT) {
+            direction = "right";
+            gamePanel.setDirection(direction);
+        }
+        /**
+         *
+         *  toggle inventory bellow
+         */
+
+        if (keyCode == VK_Q) {
             gamePanel.toggleInventory();
 
 

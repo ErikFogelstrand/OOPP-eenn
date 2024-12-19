@@ -17,7 +17,7 @@ public class Application implements Runnable {
 
     public Application(GamePanel gamePanel) {
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
-        controller = new Controller(gamePanel);
+        controller = new Controller(gamePanel, Player.getInstance());
         gamePanel.addKeyListener(controller);
         gamePanel.setFocusable(true);
     }

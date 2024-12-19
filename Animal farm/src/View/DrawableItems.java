@@ -69,7 +69,6 @@ public class DrawableItems {
                 drawSlot(g2, xPos, yPos+offset);
                 inventoryHandler.getItem(i, j).ifPresent(item -> drawItem(g2, xPos+itemMargin, yPos+itemMargin, item));
             }
-
         }
     }
 
