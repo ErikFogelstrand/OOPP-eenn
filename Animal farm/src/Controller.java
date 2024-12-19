@@ -129,7 +129,8 @@ public class Controller implements KeyListener {
 
         }
         if (keyCode == VK_ENTER){
-            //interact
+            System.out.println("interact!");
+            movementHandler.interact(movementHandler.getPos().x, movementHandler.getPos().y);
         }
     }
 }

@@ -91,7 +91,7 @@ public class GamePanel extends JPanel{
 
     public void selectItemInInventory(int column) {
         inventoryHolder.getInventory().selectItem(column).ifPresent(item -> {
-            System.out.println("Selected item: " + item.getName());
+            System.out.println("Selected item: " + item.getType());
         });
     }
 

@@ -1,6 +1,7 @@
 package View;
 
 import Model.Inventory.InventoryHandler;
+import Model.UsableObjects.Item;
 import Model.UsableObjects.StackableItem;
 
 import javax.imageio.ImageIO;
@@ -34,7 +35,7 @@ public class DrawableItems {
             itemSlot = ImageIO.read(getClass().getResourceAsStream("Graphics/other/mainSlot.png"));
 
             //items
-            itemImages.put("hoe", ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png")));
+            itemImages.put("Shovel", ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png")));
             itemImages.put("carrot", ImageIO.read(getClass().getResourceAsStream("Graphics/items/carrot.png")));
 
         }catch (IOException e) {
@@ -76,8 +77,8 @@ public class DrawableItems {
         g2.drawImage(itemSlot, x, y, slotSize, slotSize, null); //to fit in the item slots
     }
 
-    private void drawItem(Graphics2D g2, int x, int y, StackableItem stackableItem){
-        BufferedImage itemImage = itemImages.get(stackableItem.getName()); // Retrieve image by item name
+    private void drawItem(Graphics2D g2, int x, int y, Item Item){
+        BufferedImage itemImage = itemImages.get(Item.getType()); // Retrieve image by item name
         if (itemImage != null) {
             g2.drawImage(itemImage, x + itemMargin, y + itemMargin, itemSize, itemSize, null);
         }

@@ -2,13 +2,11 @@ package Model.UsableObjects;
 import Model.World.ITileAction;
 
 public abstract class Tool extends StackableItem implements ITileAction {
-
-    public String type;
-    public Tool(String name, String type) {
-        super(name);
-        this.type = type;
+    public Tool(String type) {
+        super(type);
     }
 
+    @Override
     public String getType(){
         return type;
     }
@@ -16,6 +14,7 @@ public abstract class Tool extends StackableItem implements ITileAction {
     @Override
     public abstract void use();
 
+    @Override
     public boolean useable(){
         return true;
     }

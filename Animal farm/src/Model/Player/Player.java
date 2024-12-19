@@ -4,7 +4,10 @@ import java.awt.*;
 
 import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
+import Model.UsableObjects.Item;
+import Model.UsableObjects.Shovel;
 import Model.World.IRandomTickListener;
+import Model.World.ITileAction;
 import Model.World.RandomTickGenerator;
 
 public class Player implements IPlayerStates, IMovementHandler, IRandomTickListener, IInventoryHolder {
@@ -33,6 +36,9 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         this.energy = maxState;
 
         this.inventoryHandler = new InventoryHandler();
+
+        inventoryHandler.addItem(new Shovel());
+        inventoryHandler.selectItem(0);
 
         this.playerHandler = new MovementHandler( 8, 6);
 
@@ -96,8 +102,16 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
 
     public void selectItem(int xCoord) {
         inventoryHandler.selectItem(xCoord).ifPresent(item -> {
-            System.out.println("Selected item: " + item.getName());
+            System.out.println("Selected item: " + item.getType());
             // Perform item-related actions here
         });
+    }
+
+    public void interact(int x, int y){
+        Item currentItem = getInventory().getSelectedItem();
+        if (currentItem instanceof ITileAction){
+            System.out.println("good item :)");
+            playerHandler.interact(x, y, (ITileAction) currentItem);
+        }
     }
 }
