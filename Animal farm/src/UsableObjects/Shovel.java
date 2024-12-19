@@ -7,17 +7,17 @@ import World.TileTypes.Dirt;
 import World.TileTypes.Grass;
 import World.TileTypes.PlantableDirt;
     public class Shovel extends Tool {
-        public Shovel(String name){
-            super(name);
+        public Shovel(String name, String type){
+            super(name, type);
         }
-
         @Override
-        public void use(IAction action) {
-            Tile tile = (Tile) action;
-            ATileType tileType = tile.getTileType();
-            if (tileType instanceof Grass || tileType instanceof PlantableDirt) {
-                tile.setTileType(new Dirt());
-            }
+        public  void use() {
+            System.out.println("No more grass :)");
+            // kanske lägga till durability eller så?
         }
-    }
+        @Override
+        public String getType() {
+            return "Shovel";
+        }
 
+    }

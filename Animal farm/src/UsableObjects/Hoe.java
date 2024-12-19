@@ -1,6 +1,5 @@
 package UsableObjects;
 import Inventory.Inventory;
-import Player.Player;
 
 import World.ATileType;
 import World.IAction;
@@ -10,15 +9,15 @@ import World.TileTypes.Grass;
 import World.TileTypes.PlantableDirt;
 
 public class Hoe extends Tool {
-    public Hoe(String name){
-        super(name);
+    public Hoe(String name, String type){
+        super(name, type);
     }
-
-    public void use(IAction action) {
-        Tile tile = (Tile) action;
-        ATileType tileType = tile.getTileType();
-        if (tileType instanceof Grass || tileType instanceof Dirt) {
-            tile.setTileType(new PlantableDirt());
-        }
+    @Override
+    public void use() {
+        System.out.println("Now you can plant :)");
+    }
+    @Override
+    public String getType() {
+        return "Hoe";
     }
 }
