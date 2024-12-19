@@ -3,7 +3,7 @@ package Model.UsableObjects;
 import Model.World.ITileAction;
 
 
-public class SeedItem extends Item implements ITileAction {
+public class SeedItem extends StackableItem implements ITileAction {
     public String seedType;
     public String type;
     public SeedItem(String itemType, String name, String seedType) {

@@ -1,8 +1,7 @@
 package Model.UsableObjects;
-
 import Model.World.ITileAction;
 
-public abstract class Tool extends Storable implements ITileAction {
+public abstract class Tool extends StackableItem implements ITileAction {
 
     public String type;
     public Tool(String name, String type) {

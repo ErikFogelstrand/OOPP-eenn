@@ -1,7 +1,7 @@
 package Model.UsableObjects;
 import Model.Player.Player;
 
-public class FoodItem extends Item implements IEdible {
+public class FoodItem extends StackableItem implements IEdible {
     private final int nutrition;
 
     public FoodItem(String type, String name, int nutrition) {

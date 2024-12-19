@@ -1,16 +1,16 @@
 package Model.UsableObjects;
 
-    public class ItemHolder {
-        public Item item;
+    public class StackableItemHolder {
+        public StackableItem stackableItem;
         public int quantity;
 
-        public ItemHolder(Item item, int quantity){
-            this.item = item;
+        public StackableItemHolder(StackableItem stackableItem, int quantity){
+            this.stackableItem = stackableItem;
             this.quantity = quantity;
         }
 
-        public Item getItem(){
-            return item;
+        public StackableItem getItem(){
+            return stackableItem;
         }
 
         public void setQuantity(int quantity) {
