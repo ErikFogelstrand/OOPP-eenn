@@ -2,7 +2,7 @@ package Model.World;
 
 import Model.World.TileFactories.TerrainFactory;
 import Model.World.TileObjects.ITileObject;
-import Model.World.TileTypes.ATerrain;
+import Model.World.Terrain.ATerrain;
 
 public class Tile {
     private ITileObject tileObject;

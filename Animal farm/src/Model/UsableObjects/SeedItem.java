@@ -1,19 +1,28 @@
 package Model.UsableObjects;
 
+import Model.World.ITileAction;
 
-public abstract class SeedItem extends Item {
 
-
+public class SeedItem extends Item implements ITileAction {
     public String seedType;
-    public SeedItem(String itemType, int quantity, String name, String seedType) {
-        super(itemType, quantity,name);
+    public String type;
+    public SeedItem(String itemType, String name, String seedType) {
+        super(name);
         this.seedType = seedType;
+    }
+
+    @Override
+    public boolean useable() {
+        return true;
+    }
+    public String getType(){
+        return type;
     }
     public String getSeedType(){
         return seedType;
     }
     public void use() {
-        // plantera
+        System.out.println("Planted " + seedType + " seed");
     }
 
 }

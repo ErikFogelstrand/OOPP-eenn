@@ -1,4 +1,4 @@
-package Model.World.TileTypes;
+package Model.World.Terrain;
 
 import Model.World.ITileAction;
 
@@ -14,7 +14,7 @@ public class Grass extends ATerrain {
 
     @Override
     public String tileTypeInteract(ITileAction action) {
-        if(action.getType().equals("Model.UsableObjects.Hoe")){
+        if(action.getType().equals("Hoe")){
             action.use();
             return hoe();
         }

@@ -1,11 +1,11 @@
 package Model.UsableObjects;
 import Model.Player.Player;
 
-public class FoodItem extends Item {
+public class FoodItem extends Item implements IEdible {
     private final int nutrition;
 
-    public FoodItem(String itemType, int quantity, String name, int nutrition) {
-        super(itemType, quantity, name);
+    public FoodItem(String type, String name, int nutrition) {
+        super(name);
         this.nutrition = nutrition;
     }
 
@@ -15,13 +15,8 @@ public class FoodItem extends Item {
     }
 
     @Override
-    public void use(Player player) {
-        if (getQuantity() > 0) {
-            player.eat(nutrition);
-            setQuantity((getQuantity() - 1));
-        } else {
-            System.out.println("Slut på " + getName() + " :(");
-        }
+    public void consume(Player player) {
+        player.eat(nutrition);
     }
 }
 

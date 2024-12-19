@@ -1,4 +1,4 @@
-package Model.World.TileTypes;
+package Model.World.Terrain;
 
 import Model.World.ITileAction;
 import Model.World.TileObjects.ITileObject;

@@ -1,23 +1,17 @@
 package Model.UsableObjects;
 
-import Model.World.TileTypes.ATerrain;
-import Model.World.ITileAction;
-import Model.World.Tile;
-import Model.World.TileTypes.Dirt;
-import Model.World.TileTypes.Grass;
-import Model.World.TileTypes.PlantableDirt;
-    public abstract class Shovel extends Tool {
-        public Shovel(String name){
-            super(name);
+    public class Shovel extends Tool {
+        public Shovel(String name, String type){
+            super(name, type);
         }
-
         @Override
-        public void use(ITileAction action) {
-            Tile tile = (Tile) action;
-            ATerrain tileType = tile.getTileType();
-            if (tileType instanceof Grass || tileType instanceof PlantableDirt) {
-                tile.setTileType(new Dirt());
-            }
+        public  void use() {
+            System.out.println("No more grass :)");
+            // kanske lägga till durability eller så?
         }
-    }
+        @Override
+        public String getType() {
+            return "Shovel";
+        }
 
+    }

@@ -1,11 +1,11 @@
 package View;
 
-import Model.World.TileTypes.ATerrain;
+import Model.World.Terrain.ATerrain;
 import Model.World.GameScene;
 import Model.World.GameSceneManager;
 import Model.World.TileObjects.ITileObject;
 import Model.World.TileObjects.Carrot;
-import Model.World.TileTypes.*;
+import Model.World.Terrain.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

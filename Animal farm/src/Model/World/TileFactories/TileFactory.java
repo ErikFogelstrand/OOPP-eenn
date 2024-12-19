@@ -1,7 +1,7 @@
 package Model.World.TileFactories;
 
 import Model.World.Tile;
-import Model.World.TileTypes.ATerrain;
+import Model.World.Terrain.ATerrain;
 
 public class TileFactory {
     private static final TileFactory instance = new TileFactory();

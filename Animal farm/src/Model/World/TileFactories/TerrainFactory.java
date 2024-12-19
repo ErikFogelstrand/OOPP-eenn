@@ -1,9 +1,9 @@
 package Model.World.TileFactories;
 
-import Model.World.TileTypes.ATerrain;
-import Model.World.TileTypes.Dirt;
-import Model.World.TileTypes.Grass;
-import Model.World.TileTypes.PlantableDirt;
+import Model.World.Terrain.ATerrain;
+import Model.World.Terrain.Dirt;
+import Model.World.Terrain.Grass;
+import Model.World.Terrain.PlantableDirt;
 
 public class TerrainFactory {
     private static final TerrainFactory instance = new TerrainFactory();

@@ -1,4 +1,4 @@
-package Model.World.TileTypes;
+package Model.World.Terrain;
 
 import Model.UsableObjects.SeedItem;
 import Model.World.*;
