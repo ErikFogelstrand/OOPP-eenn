@@ -4,12 +4,12 @@ package Model.UsableObjects;
 // abstrakt klass för både tools och items
 
 public abstract class Item {
-    public String name;
+    public static String name;  /////// change back to non static
 
     protected Item(String name) {
         this.name = name;
     }
-    public String getName() {
+    public static String getName() {
          return name;
     }
 

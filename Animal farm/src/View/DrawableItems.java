@@ -1,8 +1,7 @@
 package View;
 
 import Model.Inventory.InventoryHandler;
-import Model.UsableObjects.StackableItem;
-
+import Model.UsableObjects.Item;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -56,8 +55,6 @@ public class DrawableItems {
             offset = 0;
         }
 
-
-
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 int xPos = x + (slotSize) * j;
@@ -76,8 +73,8 @@ public class DrawableItems {
         g2.drawImage(itemSlot, x, y, slotSize, slotSize, null); //to fit in the item slots
     }
 
-    private void drawItem(Graphics2D g2, int x, int y, StackableItem stackableItem){
-        BufferedImage itemImage = itemImages.get(stackableItem.getName()); // Retrieve image by item name
+    private void drawItem(Graphics2D g2, int x, int y, Item item){
+        BufferedImage itemImage = itemImages.get(Item.getName()); // Retrieve image by item name
         if (itemImage != null) {
             g2.drawImage(itemImage, x + itemMargin, y + itemMargin, itemSize, itemSize, null);
         }

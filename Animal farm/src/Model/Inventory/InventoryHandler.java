@@ -1,30 +1,38 @@
 package Model.Inventory;
 
+import Model.UsableObjects.FoodItem;
+import Model.UsableObjects.Shovel;
+import Model.UsableObjects.Item;
 import Model.UsableObjects.StackableItem;
 
 import java.util.Optional;
 public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
-    private final StackableItem[][] inventory;
+    private final Item[][] inventory;
 
     public InventoryHandler() {
-        this.inventory = new StackableItem[y][x]; // Item[rows][columns]
+        this.inventory = new Item[y][x]; // Item[rows][columns]
+        addItem(new FoodItem("carrot","carrot",3));
+        //addItem(new Shovel("shovel","shovel"));
     }
 
-    public boolean addItem(StackableItem newStackableItem){
+    // add object to first available slot
+    public boolean addItem(Item newItem){
         for(int i = 0; i < y; i++){ // iterate over rows
             for(int j = 0; j < x; j++){ // iterate over columns
-                if (inventory[i][j] != null && inventory[i][j].getName().equals(newStackableItem.getName())){
+                if (inventory[i][j] == null) { // Check if the slot is empty
+                    inventory[i][j] = newItem; // Add the item to the empty slot
+                    return true;
+                //if (inventory[i][j] != null && inventory[i][j].getName().equals(newItem.getName())){
                     //inventory[i][j].add(newItem.getQuantity());
-                    return true;
-                } else if (inventory[i][j] == null){
-                    inventory[i][j] = newStackableItem;
-                    return true;
+                    //return true
+                //} else if (inventory[i][j] == null){
+                //    inventory[i][j] = newItem;
+                //    return true;
                 }
             }
         }
-
         return false; // om inventory fullt
         }
 
@@ -36,18 +44,18 @@ public class InventoryHandler {
 
     public int getColumns(){return x;}
 
-    public Optional<StackableItem> getItem(int yCoord, int xCoord){
+    public Optional<Item> getItem(int yCoord, int xCoord){
         if (isValidSlot(yCoord,xCoord)){
             return Optional.ofNullable(inventory[yCoord][xCoord]);
         }
         return Optional.empty();
         }
 
-    public StackableItem[][] getAllItems() {
+    public Item[][] getAllItems() {
         return inventory;
     }
 
-    public Optional<StackableItem> selectItem(int xCoord){
+    public Optional<Item> selectItem(int xCoord){
         if (isValidSlot(0,xCoord)){
             return Optional.ofNullable(inventory[0][xCoord]);
         }
