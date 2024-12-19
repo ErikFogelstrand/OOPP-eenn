@@ -1,8 +1,8 @@
 package Model.World.TileTypes;
 
-import Model.World.IAction;
+import Model.World.ITileAction;
 
-public class Grass extends ATileType {
+public class Grass extends ATerrain {
     public Grass() {
         System.out.println("I am grass!");
     }
@@ -13,7 +13,7 @@ public class Grass extends ATileType {
     public boolean walkable() {return true;}
 
     @Override
-    public String tileTypeInteract(IAction action) {
+    public String tileTypeInteract(ITileAction action) {
         if(action.getType().equals("Model.UsableObjects.Hoe")){
             action.use();
             return hoe();

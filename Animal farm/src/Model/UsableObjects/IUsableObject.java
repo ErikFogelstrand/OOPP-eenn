@@ -1,12 +1,12 @@
 package Model.UsableObjects;
-import Model.Inventory.Inventory;
-import Model.World.IAction;
+import Model.Inventory.InventoryHandler;
+import Model.World.ITileAction;
 
 
 // Interface för både items och tools
 public interface IUsableObject {
-    void use(IAction action);
-    void pickUp(Inventory inventory); // flytta på inventory
+    void use(ITileAction action);
+    void pickUp(InventoryHandler inventoryHandler); // flytta på inventory
 }
 
 

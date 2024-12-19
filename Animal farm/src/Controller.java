@@ -1,5 +1,5 @@
 
-import Model.Player.IPlayerPos;
+import Model.Player.IMovementHandler;
 import Model.Player.Player;
 import View.GamePanel;
 
@@ -11,7 +11,7 @@ import static java.awt.event.KeyEvent.*;
 
 public class Controller implements KeyListener {
 
-    private final IPlayerPos playerPos = Player.getInstance();
+    private final IMovementHandler playerPos = Player.getInstance();
     private final GamePanel gamePanel;
 
 

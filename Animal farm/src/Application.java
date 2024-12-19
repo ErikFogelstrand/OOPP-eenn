@@ -1,12 +1,9 @@
 import View.GamePanel;
 import Model.World.GameSceneCreator;
-import Model.World.GameSceneHandler;
+import Model.World.GameSceneManager;
 
 import javax.swing.*;
 import Model.Player.Player;
-import Model.Player.PlayerMovementHandler;
-
-
 
 
 public class Application implements Runnable {
@@ -70,8 +67,8 @@ public class Application implements Runnable {
         window.setResizable(false);
         window.setTitle("Animal Farm :-D");
 
-        GameSceneHandler.getInstance().addGameScene("Main", GameSceneCreator.createGameScene(16, 12));
-        GameSceneHandler.getInstance().switchActiveGameScene("Main");
+        GameSceneManager.getInstance().addGameScene("Main", GameSceneCreator.createGameScene(16, 12));
+        GameSceneManager.getInstance().switchActiveGameScene("Main");
 
         GamePanel gamePanel = new GamePanel(Player.getInstance(), Player.getInstance(), Player.getInstance());
 

@@ -1,6 +1,6 @@
 package Model.UsableObjects;
 
-import Model.Inventory.Inventory;
+import Model.Inventory.InventoryHandler;
 import Model.Player.Player;
 
 
@@ -42,8 +42,8 @@ public abstract class Item implements IEdibleObject {
 
 
     @Override
-    public void pickUp(Inventory inventory) {
-        boolean added = inventory.addItem(this);//kommer ej åt inventory
+    public void pickUp(InventoryHandler inventoryHandler) {
+        boolean added = inventoryHandler.addItem(this);//kommer ej åt inventory
     }
 
 

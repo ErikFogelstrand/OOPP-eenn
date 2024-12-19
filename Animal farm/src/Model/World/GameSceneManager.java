@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class GameSceneHandler {
-    private static final GameSceneHandler gameSceneHandler = new GameSceneHandler();
+public class GameSceneManager {
+    private static final GameSceneManager GAME_SCENE_MANAGER = new GameSceneManager();
     private final Map<String, GameScene> gameSceneMap = new HashMap<>();
     private String activeGameScene;
 
-    private GameSceneHandler(){}
-    public static GameSceneHandler getInstance(){
-        return gameSceneHandler;
+    private GameSceneManager(){}
+    public static GameSceneManager getInstance(){
+        return GAME_SCENE_MANAGER;
     }
     public GameScene getActiveGameScene(){
         if (!gameSceneMap.containsKey(activeGameScene)){

@@ -1,7 +1,7 @@
 package Model.UsableObjects;
 
-import Model.World.TileTypes.ATileType;
-import Model.World.IAction;
+import Model.World.TileTypes.ATerrain;
+import Model.World.ITileAction;
 import Model.World.Tile;
 import Model.World.TileTypes.Dirt;
 import Model.World.TileTypes.Grass;
@@ -12,9 +12,9 @@ import Model.World.TileTypes.PlantableDirt;
         }
 
         @Override
-        public void use(IAction action) {
+        public void use(ITileAction action) {
             Tile tile = (Tile) action;
-            ATileType tileType = tile.getTileType();
+            ATerrain tileType = tile.getTileType();
             if (tileType instanceof Grass || tileType instanceof PlantableDirt) {
                 tile.setTileType(new Dirt());
             }

@@ -1,14 +1,14 @@
 package Model.World.TileObjects;
 
 import Model.World.RandomTickGenerator;
-import Model.World.IAction;
+import Model.World.ITileAction;
 import Model.World.IRandomTickListener;
 
-public abstract class APlantable implements ITileObject, IRandomTickListener {
+public abstract class APlantableTileObject implements ITileObject, IRandomTickListener {
     private boolean watered;
     private int growthState;
     private int maxGrowth;
-    protected APlantable(int maxGrowth){
+    protected APlantableTileObject(int maxGrowth){
         RandomTickGenerator.getInstance().addListener(this);
         this.maxGrowth = maxGrowth;
     }
@@ -18,7 +18,7 @@ public abstract class APlantable implements ITileObject, IRandomTickListener {
     public boolean walkable(){return true;}
 
     @Override
-    public void interact(IAction action) {
+    public void interact(ITileAction action) {
         if(action.getType().equals("Hand")){
             harvest();
             action.use();

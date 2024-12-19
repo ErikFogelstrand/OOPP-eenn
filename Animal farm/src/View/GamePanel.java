@@ -1,8 +1,8 @@
 package View;
 
 import Model.Inventory.IInventoryHolder;
-import Model.Player.IPlayerPos;
-import Model.Player.IStates;
+import Model.Player.IMovementHandler;
+import Model.Player.IPlayerStates;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel{
 
-    private final IStates playerStates;
+    private final IPlayerStates playerStates;
     private final IInventoryHolder inventoryHolder;
 
 
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel{
     DrawableItems items;
 
 
-    public GamePanel(IStates istates,IPlayerPos playerPos, IInventoryHolder inventoryHolder){ ////////////
+    public GamePanel(IPlayerStates istates, IMovementHandler playerPos, IInventoryHolder inventoryHolder){ ////////////
 
         this.playerStates = istates; ////////////////
         this.inventoryHolder = inventoryHolder;

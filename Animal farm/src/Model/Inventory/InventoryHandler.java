@@ -3,12 +3,12 @@ package Model.Inventory;
 import Model.UsableObjects.Item;
 
 import java.util.Optional;
-public class Inventory{
+public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
-    private Item[][] inventory;
+    private final Item[][] inventory;
 
-    public Inventory() {
+    public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
     }
 

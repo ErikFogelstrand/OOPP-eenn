@@ -1,19 +1,19 @@
 package Model.World.TileFactories;
 
-import Model.World.TileTypes.ATileType;
+import Model.World.TileTypes.ATerrain;
 import Model.World.TileTypes.Dirt;
 import Model.World.TileTypes.Grass;
 import Model.World.TileTypes.PlantableDirt;
 
-public class TileTypeFactory {
-    private static final TileTypeFactory instance = new TileTypeFactory();
+public class TerrainFactory {
+    private static final TerrainFactory instance = new TerrainFactory();
 
     private final TileObjectFactory tileObjectFactory = TileObjectFactory.getInstance();
 
-    public static TileTypeFactory getInstance() {return instance;}
+    public static TerrainFactory getInstance() {return instance;}
 
-    public ATileType createTileType(String tileType, String tileObject){
-        ATileType newTileType = null;
+    public ATerrain createTileType(String tileType, String tileObject){
+        ATerrain newTileType = null;
         switch (tileType){
             case "Dirt":
                 newTileType = new Dirt(); break;

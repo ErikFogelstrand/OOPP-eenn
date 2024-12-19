@@ -1,7 +1,7 @@
 package Model.Player;
 
 import Model.World.GameScene;
-import Model.World.GameSceneHandler;
+import Model.World.GameSceneManager;
 
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.*;
  *
  */
 
-public class PlayerMovementHandler implements IPlayerPos {
+public class MovementHandler implements IMovementHandler {
 
     private int x;
     private int y;
@@ -20,7 +20,7 @@ public class PlayerMovementHandler implements IPlayerPos {
     /**
      * constructor initiated in Model.Player {@link Player} with given start position
      */
-    public PlayerMovementHandler(int x, int y) {
+    public MovementHandler(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -30,8 +30,9 @@ public class PlayerMovementHandler implements IPlayerPos {
         this.y += y;
     }
 
+    @Override
     public void move(int x, int y) {
-        GameScene currentGameScene = GameSceneHandler.getInstance().getActiveGameScene();
+        GameScene currentGameScene = GameSceneManager.getInstance().getActiveGameScene();
         if (this.x+x < 0 || this.x+x >= currentGameScene.getSize().getX() || this.y+y < 0 || this.y+y >= currentGameScene.getSize().getY()){
             return;
         }
@@ -41,7 +42,7 @@ public class PlayerMovementHandler implements IPlayerPos {
         }
     }
 
-
+    @Override
     public Point getPos() {
         return new Point(this.x, this.y);
     }

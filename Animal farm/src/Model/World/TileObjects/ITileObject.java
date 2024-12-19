@@ -1,8 +1,8 @@
 package Model.World.TileObjects;
 
-import Model.World.IAction;
+import Model.World.ITileAction;
 
 public interface ITileObject {
-    public void interact(IAction action);
+    public void interact(ITileAction action);
     public boolean walkable();
 }

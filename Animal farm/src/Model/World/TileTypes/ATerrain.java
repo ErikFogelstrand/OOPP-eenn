@@ -1,22 +1,22 @@
 package Model.World.TileTypes;
 
-import Model.World.IAction;
+import Model.World.ITileAction;
 import Model.World.TileObjects.ITileObject;
 
-public abstract class ATileType {
+public abstract class ATerrain {
     protected ITileObject tileObject;
 
-    public ATileType() {
+    public ATerrain() {
     }
     public abstract boolean walkable();
-    public String interact(IAction action){
+    public String interact(ITileAction action){
         if(tileObject != null){
             tileObject.interact(action);
             return "";
         }
         return tileTypeInteract(action);
     }
-    protected abstract String tileTypeInteract(IAction action);
+    protected abstract String tileTypeInteract(ITileAction action);
 
 
     public ITileObject getTileObject(){

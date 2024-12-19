@@ -2,12 +2,12 @@ package Model.Player;
 
 import java.awt.*;
 
-import Model.Inventory.Inventory;
+import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
 import Model.World.IRandomTickListener;
 import Model.World.RandomTickGenerator;
 
-public class Player implements IStates, IPlayerPos, IRandomTickListener, IInventoryHolder {
+public class Player implements IPlayerStates, IMovementHandler, IRandomTickListener, IInventoryHolder {
 
     // player states
     private int hunger;
@@ -20,8 +20,8 @@ public class Player implements IStates, IPlayerPos, IRandomTickListener, IInvent
     private static final int hungerDecrease = 3;
     private static final int thirstDecrease = 4;
     private static final int energyDecrease = 2;
-    private final PlayerMovementHandler playerHandler;
-    private final Inventory inventory;
+    private final MovementHandler playerHandler;
+    private final InventoryHandler inventoryHandler;
 
     private static Player player;
 
@@ -32,9 +32,9 @@ public class Player implements IStates, IPlayerPos, IRandomTickListener, IInvent
         this.thirst = maxState;
         this.energy = maxState;
 
-        this.inventory = new Inventory();
+        this.inventoryHandler = new InventoryHandler();
 
-        this.playerHandler = new PlayerMovementHandler( 8, 6);
+        this.playerHandler = new MovementHandler( 8, 6);
 
         RandomTickGenerator.getInstance().addListener(this);
     }
@@ -47,8 +47,8 @@ public class Player implements IStates, IPlayerPos, IRandomTickListener, IInvent
     }
 
     @Override
-    public Inventory getInventory() {
-                return this.inventory;
+    public InventoryHandler getInventory() {
+                return this.inventoryHandler;
     }
 
     private void updateStates(){
@@ -95,7 +95,7 @@ public class Player implements IStates, IPlayerPos, IRandomTickListener, IInvent
     }
 
     public void selectItem(int xCoord) {
-        inventory.selectItem(xCoord).ifPresent(item -> {
+        inventoryHandler.selectItem(xCoord).ifPresent(item -> {
             System.out.println("Selected item: " + item.getName());
             // Perform item-related actions here
         });

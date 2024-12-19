@@ -1,7 +1,8 @@
 package View;
 
+import Model.Inventory.InventoryHandler;
 import Model.UsableObjects.Item;
-import Model.Inventory.Inventory;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -44,12 +45,12 @@ public class DrawableItems {
 
     public void draw(Graphics2D g2, int x, int y, boolean expandInventory) {
 
-        Inventory inventory = inventoryHolder.getInventory();
+        InventoryHandler inventoryHandler = inventoryHolder.getInventory();
         int rows = 1;
         int offset;
-        int columns = inventory.getColumns(); // = 5
+        int columns = inventoryHandler.getColumns(); // = 5
         if (expandInventory){
-            rows = inventory.getRows();
+            rows = inventoryHandler.getRows();
             offset = -500;
         } else {
             offset = 0;
@@ -63,10 +64,10 @@ public class DrawableItems {
 
                 int yPos = y + (slotSize) * i;
 
-                inventory.getItem(i, j);
+                inventoryHandler.getItem(i, j);
 
                 drawSlot(g2, xPos, yPos+offset);
-                inventory.getItem(i, j).ifPresent(item -> drawItem(g2, xPos+itemMargin, yPos+itemMargin, item));
+                inventoryHandler.getItem(i, j).ifPresent(item -> drawItem(g2, xPos+itemMargin, yPos+itemMargin, item));
             }
 
         }

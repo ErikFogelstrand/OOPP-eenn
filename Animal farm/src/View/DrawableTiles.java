@@ -1,8 +1,8 @@
 package View;
 
-import Model.World.TileTypes.ATileType;
+import Model.World.TileTypes.ATerrain;
 import Model.World.GameScene;
-import Model.World.GameSceneHandler;
+import Model.World.GameSceneManager;
 import Model.World.TileObjects.ITileObject;
 import Model.World.TileObjects.Carrot;
 import Model.World.TileTypes.*;
@@ -39,7 +39,7 @@ public class DrawableTiles {
         }
     }
 
-    private BufferedImage getTileTypeImage(ATileType tileType) {
+    private BufferedImage getTileTypeImage(ATerrain tileType) {
         if (tileType instanceof Dirt) {
             return dirt;
         } else if (tileType instanceof Grass) {
@@ -62,7 +62,7 @@ public class DrawableTiles {
 
 
     public void draw(Graphics2D g2, int tileSize) {
-        GameScene gameScene = GameSceneHandler.getInstance().getActiveGameScene();
+        GameScene gameScene = GameSceneManager.getInstance().getActiveGameScene();
         for (int y = 0; y < gameScene.getSize().y; y++) {
             for (int x = 0; x < gameScene.getSize().x; x++) {
                 g2.drawImage(getTileTypeImage(gameScene.getTile(x, y).getTileType()), x * tileSize, y * tileSize, tileSize, tileSize, null);

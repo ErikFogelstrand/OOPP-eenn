@@ -1,6 +1,6 @@
 package View;
 
-import Model.Player.IPlayerPos;
+import Model.Player.IMovementHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -8,11 +8,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class DrawableSprites {
-    private final IPlayerPos playerPos;
+    private final IMovementHandler playerPos;
     private BufferedImage rabbit;
     private BufferedImage villager;
 
-    public DrawableSprites(IPlayerPos playerPos){
+    public DrawableSprites(IMovementHandler playerPos){
         this.playerPos = playerPos;
         loadTileImages();
     }
