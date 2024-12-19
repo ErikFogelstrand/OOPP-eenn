@@ -34,12 +34,8 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         this.hunger = maxState;
         this.thirst = maxState;
         this.energy = maxState;
-
         this.inventoryHandler = new InventoryHandler();
-
-        inventoryHandler.addItem(new Shovel());
         inventoryHandler.selectItem(0);
-
         this.playerHandler = new MovementHandler( 8, 6);
 
         RandomTickGenerator.getInstance().addListener(this);

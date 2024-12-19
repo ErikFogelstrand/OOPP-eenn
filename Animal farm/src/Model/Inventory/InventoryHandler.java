@@ -14,8 +14,10 @@ public class InventoryHandler {
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
-        addItem(new FoodItem("carrot","carrot",3));
-        //addItem(new Shovel("shovel","shovel"));
+        addItem(new FoodItem("carrot",3));
+        addItem(new Shovel());
+        addItem(new Shovel());
+        addItem(new Shovel());
     }
 
     // add object to first available slot
@@ -25,6 +27,8 @@ public class InventoryHandler {
                 if (inventory[i][j] == null) { // Check if the slot is empty
                     inventory[i][j] = newItem; // Add the item to the empty slot
                     return true;
+
+
                 //if (inventory[i][j] != null && inventory[i][j].getName().equals(newItem.getName())){
                     //inventory[i][j].add(newItem.getQuantity());
                     //return true

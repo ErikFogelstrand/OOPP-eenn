@@ -82,7 +82,7 @@ public class DrawableItems {
     private void drawItem(Graphics2D g2, int x, int y, Item Item){
         BufferedImage itemImage = itemImages.get(Item.getType()); // Retrieve image by item name
         if (itemImage != null) {
-            g2.drawImage(itemImage, x + itemMargin, y + itemMargin, itemSize, itemSize, null);
+            g2.drawImage(itemImage, x + itemMargin, y - itemMargin, itemSize, itemSize, null);
         }
     }
 }
