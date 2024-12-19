@@ -1,6 +1,7 @@
 
-import Player.IPlayerPos;
-import Player.Player;
+import Model.Player.IMovementHandler;
+import View.DrawableSprites;
+import View.GamePanel;
 
 
 import  java.awt.event.KeyEvent;
@@ -10,13 +11,14 @@ import static java.awt.event.KeyEvent.*;
 
 public class Controller implements KeyListener {
 
-    IPlayerPos playerPos = Player.getInstance();
-    GamePanel gamePanel;
+    private final IMovementHandler movementHandler;
+    private final GamePanel gamePanel;
     String direction = "front";
 
 
-    public Controller(GamePanel gamePanel){
+    public Controller(GamePanel gamePanel,IMovementHandler movementHandler){
         this.gamePanel = gamePanel;
+        this.movementHandler = movementHandler;
     }
 
     @Override
@@ -35,24 +37,24 @@ public class Controller implements KeyListener {
 
         if (keyCode == VK_W) {
             direction = "back";
-            drawableSprites.direction = direction;
-            playerPos.move(0, -1);
+            gamePanel.setDirection(direction);
+            movementHandler.move(0, -1);
         }
         if (keyCode == VK_A) {
             direction = "left";
-            drawableSprites.direction = direction;
-            playerPos.move(-1, 0);
+            gamePanel.setDirection(direction);
+            movementHandler.move(-1, 0);
         }
         if (keyCode == VK_S) {
             direction = "front";
-            drawableSprites.direction = direction;
-            playerPos.move(0, 1);
+            gamePanel.setDirection(direction);
+            movementHandler.move(0, 1);
 
         }
         if (keyCode == VK_D) {
             direction = "right";
-            drawableSprites.direction = direction;
-            playerPos.move(1, 0);
+            gamePanel.setDirection(direction);
+            movementHandler.move(1, 0);
         }
 
         /**
@@ -61,19 +63,19 @@ public class Controller implements KeyListener {
 
         if (keyCode == VK_UP) {
             direction = "back";
-            drawableSprites.direction = direction;
+            gamePanel.setDirection(direction);
         }
         if (keyCode == VK_DOWN) {
             direction = "left";
-            drawableSprites.direction = direction;
+            gamePanel.setDirection(direction);
         }
         if (keyCode == VK_LEFT) {
             direction = "front";
-            drawableSprites.direction = direction;
+            gamePanel.setDirection(direction);
          }
         if (keyCode == VK_RIGHT) {
             direction = "right";
-            drawableSprites.direction = direction;
+            gamePanel.setDirection(direction);
         }
         /**
          *
@@ -87,7 +89,7 @@ public class Controller implements KeyListener {
             //interact
         }
 
-        if (keyCode == VK_1) {
+        /*if (keyCode == VK_1) {
             //item 1
         }
         if (keyCode == VK_2) {
@@ -101,9 +103,13 @@ public class Controller implements KeyListener {
         }
         if (keyCode == VK_5) {
             //item 5
+        }*/
 
-
+        if (keyCode >= VK_1 && keyCode <= VK_5){
+            int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
+            gamePanel.selectItemInInventory(column);
         }
+
     }
 
 
