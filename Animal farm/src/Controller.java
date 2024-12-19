@@ -89,22 +89,6 @@ public class Controller implements KeyListener {
             //interact
         }
 
-        /*if (keyCode == VK_1) {
-            //item 1
-        }
-        if (keyCode == VK_2) {
-            //item 2
-        }
-        if (keyCode == VK_3) {
-            //item 3
-        }
-        if (keyCode == VK_4) {
-            //item 4
-        }
-        if (keyCode == VK_5) {
-            //item 5
-        }*/
-
         if (keyCode >= VK_1 && keyCode <= VK_5){
             int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
             gamePanel.selectItemInInventory(column);
