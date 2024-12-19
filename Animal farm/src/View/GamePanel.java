@@ -39,7 +39,7 @@ public class GamePanel extends JPanel{
     BufferedImage foodBarDot, foodBarNone;
     BufferedImage sleepBarDot, sleepBarNone;
     BufferedImage waterBarDot, waterBarNone;
-    BufferedImage mainSlots;
+
 
     DrawableTiles tile;
     DrawableSprites rabbit;
@@ -68,9 +68,6 @@ public class GamePanel extends JPanel{
     private void loadOverlayImages(){
         try {
 
-            //mainSlots
-            mainSlots = ImageIO.read(getClass().getResourceAsStream("Graphics/other/mainSlots.png"));
-
             //foodBar+
             foodBarDot = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_DOT.png"));
             foodBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_NONE.png"));
@@ -91,7 +88,7 @@ public class GamePanel extends JPanel{
 
     public void selectItemInInventory(int column) {
         inventoryHolder.getInventory().selectItem(column).ifPresent(item -> {
-            System.out.println("Selected item: " + item.getName());
+            System.out.println("Selected item: " + item.getType());
         });
     }
 
