@@ -10,6 +10,7 @@ public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
+    private Item selectedItem;
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
@@ -57,9 +58,14 @@ public class InventoryHandler {
 
     public Optional<Item> selectItem(int xCoord){
         if (isValidSlot(0,xCoord)){
+            selectedItem = inventory[0][xCoord];
             return Optional.ofNullable(inventory[0][xCoord]);
         }
         return Optional.empty();
+    }
+
+    public Item getSelectedItem(){
+        return selectedItem;
     }
 }
 

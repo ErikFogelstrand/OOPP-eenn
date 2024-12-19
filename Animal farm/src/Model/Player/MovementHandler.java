@@ -2,6 +2,7 @@ package Model.Player;
 
 import Model.World.GameScene;
 import Model.World.GameSceneManager;
+import Model.World.ITileAction;
 
 
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.*;
  *
  */
 
-public class MovementHandler implements IMovementHandler {
+public class MovementHandler {
 
     private int x;
     private int y;
@@ -30,7 +31,7 @@ public class MovementHandler implements IMovementHandler {
         this.y += y;
     }
 
-    @Override
+
     public void move(int x, int y) {
         GameScene currentGameScene = GameSceneManager.getInstance().getActiveGameScene();
         if (this.x+x < 0 || this.x+x >= currentGameScene.getSize().getX() || this.y+y < 0 || this.y+y >= currentGameScene.getSize().getY()){
@@ -42,14 +43,14 @@ public class MovementHandler implements IMovementHandler {
         }
     }
 
-    @Override
+
     public Point getPos() {
         return new Point(this.x, this.y);
     }
 
 
-    public void interact(int x, int y) {
-        // send to tools
+    public void interact(int x, int y, ITileAction tileAction) {
+        GameSceneManager.getInstance().getActiveGameScene().getTile(x, y).interact(tileAction);
     }
 
 
