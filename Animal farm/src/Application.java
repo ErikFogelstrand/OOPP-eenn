@@ -1,26 +1,28 @@
+import View.GamePanel;
+import Model.World.GameSceneCreator;
+import Model.World.GameSceneManager;
+
 import javax.swing.*;
+import Model.Player.Player;
 
 
 public class Application implements Runnable {
 
-    Thread gameThread;
+    private Thread gameThread;
 
     private static final int FPS = 60;
 
-    GamePanel gamePanel; // Declare gamePanel as a class member to share it between methods
-    Player player;
-    Controller controller;
-    playerHandler playerHandler;
+    private final GamePanel gamePanel; // Declare gamePanel as a class member to share it between methods
+    private final Controller controller;
 
     public Application(GamePanel gamePanel) {
         this.gamePanel = gamePanel; // Pass the shared gamePanel instance
-
-        controller = new Controller();
+        controller = new Controller(gamePanel, Player.getInstance());
         gamePanel.addKeyListener(controller);
         gamePanel.setFocusable(true);
     }
 
-    public void startGameThread() {
+    private void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -34,11 +36,7 @@ public class Application implements Runnable {
 
         while(gameThread != null){
 
-            //System.out.println("starting ...... lets play guys! the game i running");
-
             update();
-
-            gamePanel.updatePaint();
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
@@ -58,6 +56,7 @@ public class Application implements Runnable {
     }
 
     public void update(){
+        gamePanel.updatePaint();
     }
 
 
@@ -68,9 +67,10 @@ public class Application implements Runnable {
         window.setResizable(false);
         window.setTitle("Animal Farm :-D");
 
-        Player player = Player.getInstance();
-        GamePanel gamePanel = new GamePanel(player);
+        GameSceneManager.getInstance().addGameScene("Main", GameSceneCreator.createGameScene(16, 12));
+        GameSceneManager.getInstance().switchActiveGameScene("Main");
 
+        GamePanel gamePanel = new GamePanel(Player.getInstance(), Player.getInstance(), Player.getInstance());
 
         window.add(gamePanel);
 
