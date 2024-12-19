@@ -26,6 +26,7 @@ public class RandomTickGenerator {
         randomTickListeners.remove(listener);
     }
     private void tick() {
+        System.out.println("tick!");
         randomTickListeners.get(rand.nextInt(randomTickListeners.size())).tick();
     }
 

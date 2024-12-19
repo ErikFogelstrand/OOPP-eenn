@@ -3,6 +3,7 @@ package View;
 import Model.Inventory.IInventoryHolder;
 import Model.Player.IMovementHandler;
 import Model.Player.IPlayerStates;
+import Model.UsableObjects.Item;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -87,9 +88,10 @@ public class GamePanel extends JPanel{
     }
 
     public void selectItemInInventory(int column) {
-        inventoryHolder.getInventory().selectItem(column).ifPresent(item -> {
-            System.out.println("Selected item: " + item.getType());
-        });
+        Item selectedItem = inventoryHolder.getInventory().selectItem(column);
+        if (selectedItem != null){
+            System.out.println("Selected item: " + selectedItem.getType());
+        }
     }
 
     public void updatePaint(){

@@ -9,7 +9,6 @@ public class FoodItem extends StackableItem implements IEdible {
         this.nutrition = nutrition;
     }
 
-
     public int getNutrition() {
         return nutrition;
     }

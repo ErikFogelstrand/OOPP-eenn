@@ -17,6 +17,7 @@ public class MovementHandler {
 
     private int x;
     private int y;
+    private Point direction;
 
     /**
      * constructor initiated in Model.Player {@link Player} with given start position
@@ -24,6 +25,7 @@ public class MovementHandler {
     public MovementHandler(int x, int y) {
         this.x = x;
         this.y = y;
+        direction = new Point(0, 1);
     }
 
     private void updatePos(int x, int y) {
@@ -50,8 +52,11 @@ public class MovementHandler {
 
 
     public void interact(int x, int y, ITileAction tileAction) {
-        GameSceneManager.getInstance().getActiveGameScene().getTile(x, y).interact(tileAction);
+        GameSceneManager.getInstance().getActiveGameScene().getTile(x+direction.x, y+direction.y).interact(tileAction);
     }
 
+    public void setDirection(int x, int y){
+        direction.setLocation(x, y);
+    }
 
 }

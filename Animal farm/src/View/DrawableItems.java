@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Inventory.IInventoryHolder;
+import Model.UsableObjects.WateringCan;
 
 public class DrawableItems {
 
@@ -39,8 +40,12 @@ public class DrawableItems {
             selectedSlot = ImageIO.read(getClass().getResourceAsStream("Graphics/other/slot_SELECTED.png"));
 
             //items
-            itemImages.put("Shovel", ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png")));
-            itemImages.put("carrot", ImageIO.read(getClass().getResourceAsStream("Graphics/items/carrot.png")));
+            itemImages.put("Hoe", ImageIO.read(getClass().getResourceAsStream("Graphics/items/Hoe.png")));
+            itemImages.put("WateringCan", ImageIO.read(getClass().getResourceAsStream("Graphics/items/WateringCan.png")));
+            itemImages.put("Shovel", ImageIO.read(getClass().getResourceAsStream("Graphics/items/Shovel.png")));
+
+            itemImages.put("Carrot", ImageIO.read(getClass().getResourceAsStream("Graphics/items/Carrot.png")));
+            itemImages.put("Seed", ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_0.png")));
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -70,13 +75,25 @@ public class DrawableItems {
                 inventoryHandler.getItem(i, j);
 
                 drawSlot(g2, xPos, yPos+offset);
-                inventoryHandler.getItem(i, j).ifPresent(item -> drawItem(g2, xPos+itemMargin, yPos+itemMargin, item));
+
+                if (inventoryHolder.getInventory().getSelectedItem() == j){
+                    drawSelectedSlot(g2, xPos, yPos+offset);
+                }
+
+                Item item = inventoryHandler.getItem(i, j);
+                if (item != null){
+                    drawItem(g2, xPos+itemMargin, yPos+itemMargin, item);
+                }
             }
         }
     }
 
     private void drawSlot(Graphics2D g2, int x, int y) {
         g2.drawImage(itemSlot, x, y, slotSize, slotSize, null); //to fit in the item slots
+    }
+
+    private void drawSelectedSlot(Graphics2D g2, int x, int y){
+        g2.drawImage(selectedSlot, x, y, slotSize, slotSize, null);
     }
 
     private void drawItem(Graphics2D g2, int x, int y, Item Item){

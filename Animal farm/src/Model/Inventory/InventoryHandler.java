@@ -1,22 +1,19 @@
 package Model.Inventory;
 
-import Model.UsableObjects.FoodItem;
-import Model.UsableObjects.Shovel;
-import Model.UsableObjects.Item;
-import Model.UsableObjects.StackableItem;
+import Model.UsableObjects.*;
 
 import java.util.Optional;
 public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
-    private Item selectedItem;
+    private int selectedItem;
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
-        addItem(new FoodItem("carrot",3));
-        addItem(new Shovel());
-        addItem(new Shovel());
+        addItem(new FoodItem("Carrot",3));
+        addItem(new SeedItem("Carrot"));
+        addItem(new WateringCan());
         addItem(new Shovel());
     }
 
@@ -49,26 +46,26 @@ public class InventoryHandler {
 
     public int getColumns(){return x;}
 
-    public Optional<Item> getItem(int yCoord, int xCoord){
+    public Item getItem(int yCoord, int xCoord){
         if (isValidSlot(yCoord,xCoord)){
-            return Optional.ofNullable(inventory[yCoord][xCoord]);
+            return inventory[yCoord][xCoord];
         }
-        return Optional.empty();
+        return null;
         }
 
     public Item[][] getAllItems() {
         return inventory;
     }
 
-    public Optional<Item> selectItem(int xCoord){
+    public Item selectItem(int xCoord){
         if (isValidSlot(0,xCoord)){
-            selectedItem = inventory[0][xCoord];
-            return Optional.ofNullable(inventory[0][xCoord]);
+            selectedItem = xCoord;
+            return inventory[0][xCoord];
         }
-        return Optional.empty();
+        return null;
     }
 
-    public Item getSelectedItem(){
+    public int getSelectedItem(){
         return selectedItem;
     }
 }

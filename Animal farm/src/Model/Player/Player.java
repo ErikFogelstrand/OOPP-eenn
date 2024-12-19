@@ -97,17 +97,37 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     }
 
     public void selectItem(int xCoord) {
-        inventoryHandler.selectItem(xCoord).ifPresent(item -> {
-            System.out.println("Selected item: " + item.getType());
-            // Perform item-related actions here
-        });
+        inventoryHandler.selectItem(xCoord);
     }
 
+    @Override
     public void interact(int x, int y){
-        Item currentItem = getInventory().getSelectedItem();
+
+        Item currentItem = getInventory().getItem(0, getInventory().getSelectedItem());
         if (currentItem instanceof ITileAction){
-            System.out.println("good item :)");
             playerHandler.interact(x, y, (ITileAction) currentItem);
+        } else{
+            playerHandler.interact(x, y, new ITileAction() {
+                @Override
+                public String getType() {
+                    return "Hand";
+                }
+
+                @Override
+                public void use() {
+
+                }
+
+                @Override
+                public boolean useable() {
+                    return true;
+                }
+            });
         }
+    }
+
+    @Override
+    public void setDirection(int x, int y) {
+        playerHandler.setDirection(x, y);
     }
 }
