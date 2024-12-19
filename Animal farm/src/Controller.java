@@ -66,11 +66,11 @@ public class Controller implements KeyListener {
             gamePanel.setDirection(direction);
         }
         if (keyCode == VK_DOWN) {
-            direction = "front";
+            direction = "left";
             gamePanel.setDirection(direction);
         }
         if (keyCode == VK_LEFT) {
-            direction = "left";
+            direction = "front";
             gamePanel.setDirection(direction);
          }
         if (keyCode == VK_RIGHT) {

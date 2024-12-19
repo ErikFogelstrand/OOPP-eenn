@@ -1,6 +1,9 @@
 package Model.Inventory;
 
+import Model.UsableObjects.FoodItem;
+import Model.UsableObjects.Shovel;
 import Model.UsableObjects.Item;
+import Model.UsableObjects.StackableItem;
 
 import java.util.Optional;
 public class InventoryHandler {
@@ -11,21 +14,30 @@ public class InventoryHandler {
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
+        addItem(new FoodItem("carrot",3));
+        addItem(new Shovel());
+        addItem(new Shovel());
+        addItem(new Shovel());
     }
 
+    // add object to first available slot
     public boolean addItem(Item newItem){
         for(int i = 0; i < y; i++){ // iterate over rows
             for(int j = 0; j < x; j++){ // iterate over columns
-                if (inventory[i][j] != null && inventory[i][j].getType().equals(newItem.getType())){
-                    //inventory[i][j] = newItem.getQuantity();
+                if (inventory[i][j] == null) { // Check if the slot is empty
+                    inventory[i][j] = newItem; // Add the item to the empty slot
                     return true;
-                } else if (inventory[i][j] == null){
-                    inventory[i][j] = newItem;
-                    return true;
+
+
+                //if (inventory[i][j] != null && inventory[i][j].getName().equals(newItem.getName())){
+                    //inventory[i][j].add(newItem.getQuantity());
+                    //return true
+                //} else if (inventory[i][j] == null){
+                //    inventory[i][j] = newItem;
+                //    return true;
                 }
             }
         }
-
         return false; // om inventory fullt
         }
 
