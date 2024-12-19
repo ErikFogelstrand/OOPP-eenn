@@ -21,6 +21,7 @@ public class DrawableItems {
     private final int itemMargin = 12; // 4 pixels * scale 4
 
     private BufferedImage itemSlot;
+    private BufferedImage selectedSlot;
 
 
     public DrawableItems(IInventoryHolder inventoryHolder){
@@ -33,6 +34,9 @@ public class DrawableItems {
 
             //slots
             itemSlot = ImageIO.read(getClass().getResourceAsStream("Graphics/other/mainSlot.png"));
+
+            //selected slot overlay/frame
+            selectedSlot = ImageIO.read(getClass().getResourceAsStream("Graphics/other/slot_SELECTED.png"));
 
             //items
             itemImages.put("Shovel", ImageIO.read(getClass().getResourceAsStream("Graphics/items/hoe.png")));
