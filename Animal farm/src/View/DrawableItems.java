@@ -2,8 +2,6 @@ package View;
 
 import Model.Inventory.InventoryHandler;
 import Model.UsableObjects.Item;
-import Model.UsableObjects.StackableItem;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Inventory.IInventoryHolder;
-import Model.UsableObjects.WateringCan;
 
 public class DrawableItems {
 
@@ -85,6 +82,9 @@ public class DrawableItems {
                     drawItem(g2, xPos+itemMargin, yPos+itemMargin, item);
                 }
             }
+        }
+        if(inventoryHandler.getSelectedItem() != null){
+            drawItem(g2,x + slotSize*inventoryHandler.getSelectedX(), y - slotSize*inventoryHandler.getSelectedY(), inventoryHandler.getSelectedItem());
         }
     }
 

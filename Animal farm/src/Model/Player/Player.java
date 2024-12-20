@@ -39,7 +39,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         this.thirst = maxState;
         this.energy = maxState;
         this.inventoryHandler = new InventoryHandler();
-        inventoryHandler.selectItem(0,0);
+        inventoryHandler.moveSelection(0,0);
         this.playerHandler = new MovementHandler( 8, 6);
 
         RandomTickGenerator.getInstance().addListener(this);
@@ -111,7 +111,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     }
 
     public void selectItem(int yCoord, int xCoord) {
-        inventoryHandler.selectItem(yCoord, xCoord);
+        inventoryHandler.moveSelection(yCoord, xCoord);
     }
 
     @Override

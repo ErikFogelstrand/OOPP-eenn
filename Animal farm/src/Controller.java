@@ -99,6 +99,9 @@ public class Controller implements KeyListener {
 
 
         if (keyCode == VK_E){
+            if (gamePanel.getToggleState()){
+                Player.getInstance().getInventory().changeSelectedItem();
+            }
             movementHandler.interact(movementHandler.getPos().x, movementHandler.getPos().y);
         }
 

@@ -7,7 +7,8 @@ public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
-    private int selectedItem;
+    private int selectedItemInHotBar;
+    private Item selectedItem;
     private int selectedX = 0;
     private int selectedY = 0;
 
@@ -65,15 +66,42 @@ public class InventoryHandler {
 
     public void selectItemInHotBar(int xCoord){
         if (isValidSlot(0,xCoord)){
-            selectedItem = xCoord;
+            selectedItemInHotBar = xCoord;
         }
     }
 
-    public void selectItem(int newY, int newX) {
+    public void moveSelection(int newY, int newX) {
         if (isValidSlot(newY, newX)) {
             selectedY = newY;
             selectedX = newX;
         }
+    }
+
+    public void changeSelectedItem(){
+        if(selectedItem == null){
+            pickUpSelectedItem();
+        }else {
+            putDownSelectedItem();
+        }
+    }
+    private void pickUpSelectedItem(){
+        selectedItem = inventory[selectedY][selectedX];
+        inventory[selectedY][selectedX] = null;
+    }
+
+    private void putDownSelectedItem(){
+        if (inventory[selectedY][selectedX] == null){
+            inventory[selectedY][selectedX] = selectedItem;
+            selectedItem = null;
+        } else{
+            Item newSelectedItem = inventory[selectedY][selectedX];
+            inventory[selectedY][selectedX] = selectedItem;
+            selectedItem = newSelectedItem;
+        }
+    }
+
+    public Item getSelectedItem(){
+        return selectedItem;
     }
 
     public int getSelectedX() {
@@ -85,7 +113,7 @@ public class InventoryHandler {
     }
 
     public int getSelectedItemInHotBar(){
-        return selectedItem;
+        return selectedItemInHotBar;
     }
 }
 
