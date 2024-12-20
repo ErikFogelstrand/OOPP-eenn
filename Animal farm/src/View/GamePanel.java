@@ -71,15 +71,15 @@ public class GamePanel extends JPanel{
 
             //foodBar+
             foodBarDot = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_DOT.png"));
-            foodBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_NONE.png"));
+            foodBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/food_EMPTY.png"));
 
             //sleepBar
             sleepBarDot= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_DOT.png"));
-            sleepBarNone= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_NONE.png"));
+            sleepBarNone= ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/sleep_EMPTY.png"));
 
             //waterBar
             waterBarDot = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_DOT.png"));
-            waterBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_NONE.png"));
+            waterBarNone = ImageIO.read(getClass().getResourceAsStream("Graphics/Status Bars/water_EMPTY.png"));
 
 
         } catch (IOException e) {

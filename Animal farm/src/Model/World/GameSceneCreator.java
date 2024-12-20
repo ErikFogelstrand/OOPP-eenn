@@ -13,6 +13,7 @@ public class GameSceneCreator {
         tileHashMap.put(0, "Grass");
         tileHashMap.put(1, "Dirt");
         tileHashMap.put(2, "PlantableDirt");
+        tileHashMap.put(3, "Home");
 
         GameScene gameScene = new GameScene(sizeX, sizeY);
 

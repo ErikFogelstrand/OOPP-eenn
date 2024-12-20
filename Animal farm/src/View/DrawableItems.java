@@ -25,6 +25,8 @@ public class DrawableItems {
     private BufferedImage selectedSlot;
 
 
+
+
     public DrawableItems(IInventoryHolder inventoryHolder){
         this.inventoryHolder = inventoryHolder;
         loadItemImages();
@@ -45,7 +47,7 @@ public class DrawableItems {
             itemImages.put("Shovel", ImageIO.read(getClass().getResourceAsStream("Graphics/items/Shovel.png")));
 
             itemImages.put("Carrot", ImageIO.read(getClass().getResourceAsStream("Graphics/items/Carrot.png")));
-            itemImages.put("Seed", ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_0.png")));
+            itemImages.put("Seed", ImageIO.read(getClass().getResourceAsStream("Graphics/items/CarrotSeeds.png")));
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +63,7 @@ public class DrawableItems {
         int columns = inventoryHandler.getColumns(); // = 5
         if (expandInventory){
             rows = inventoryHandler.getRows();
-            offset = -500;
+            offset = -slotSize * inventoryHandler.getColumns();
         } else {
             offset = 0;
         }
@@ -99,7 +101,7 @@ public class DrawableItems {
     private void drawItem(Graphics2D g2, int x, int y, Item Item){
         BufferedImage itemImage = itemImages.get(Item.getType()); // Retrieve image by item name
         if (itemImage != null) {
-            g2.drawImage(itemImage, x + itemMargin, y - itemMargin, itemSize, itemSize, null);
+            g2.drawImage(itemImage, x, y, itemSize, itemSize, null);
         }
     }
 }

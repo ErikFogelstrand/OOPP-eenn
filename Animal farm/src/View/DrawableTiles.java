@@ -17,6 +17,7 @@ import java.io.IOException;
 public class DrawableTiles {
     private BufferedImage grass;
     private BufferedImage dirt;
+    private BufferedImage home;
     private BufferedImage soilDry;
     private BufferedImage soilWet;
     private BufferedImage CarrotSeed_0;
@@ -32,6 +33,7 @@ public class DrawableTiles {
         try {
             grass = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/grass.png"));
             dirt = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/dirt.png"));
+            home = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/home.png"));
             soilDry = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil_DRY.png"));
             soilWet = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/soil_WET.png"));
 
@@ -51,6 +53,8 @@ public class DrawableTiles {
             return dirt;
         } else if (terrain instanceof Grass) {
             return grass;
+        } else if (terrain instanceof Home) {
+            return home;
         } else if (terrain instanceof PlantableDirt) {
             if (terrain.getTileObject() instanceof APlantableTileObject && ((APlantableTileObject) terrain.getTileObject()).getWatered()){
                 return soilWet;

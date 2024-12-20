@@ -14,6 +14,7 @@ public class InventoryHandler {
         addItem(new FoodItem("Carrot",1, 3));
         addItem(new SeedItem("Carrot", 1));
         addItem(new WateringCan());
+        addItem(new Hoe());
         addItem(new Shovel());
     }
 

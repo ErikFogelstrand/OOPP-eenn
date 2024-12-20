@@ -1,9 +1,6 @@
 package Model.World.TileFactories;
 
-import Model.World.Terrain.ATerrain;
-import Model.World.Terrain.Dirt;
-import Model.World.Terrain.Grass;
-import Model.World.Terrain.PlantableDirt;
+import Model.World.Terrain.*;
 
 public class TerrainFactory {
     private static final TerrainFactory instance = new TerrainFactory();
@@ -21,6 +18,8 @@ public class TerrainFactory {
                 newTileType = new Grass(); break;
             case "PlantableDirt":
                 newTileType = new PlantableDirt(); break;
+            case "Home":
+                newTileType = new Home(); break;
         }
         if(newTileType != null){
             newTileType.setTileObject(tileObjectFactory.createTileObject(tileObject));
