@@ -5,8 +5,8 @@ import Model.World.ITileAction;
 
 public class SeedItem extends StackableItem implements ITileAction {
     public String seedType;
-    public SeedItem(String seedType) {
-        super("Seed");
+    public SeedItem(String seedType, int quantity) {
+        super("Seed", quantity);
         this.seedType = seedType;
     }
 

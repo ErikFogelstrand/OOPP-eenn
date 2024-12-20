@@ -1,6 +1,6 @@
 package View;
 
-import Model.UsableObjects.StackableItemHolder;
+import Model.UsableObjects.Item;
 import Model.World.Terrain.ATerrain;
 import Model.World.GameScene;
 import Model.World.GameSceneManager;
@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.List;
 
 public class DrawableTiles {
     private BufferedImage grass;
@@ -71,8 +70,8 @@ public class DrawableTiles {
         return null;
     }
 
-    private BufferedImage getDroppedItemImage(StackableItemHolder itemHolder){
-        switch(itemHolder.getItem().getType()){
+    private BufferedImage getDroppedItemImage(Item item){
+        switch(item.getType()){
             case("Carrot"): {return carrot;}
         }
         return null;
@@ -85,8 +84,8 @@ public class DrawableTiles {
             for (int x = 0; x < gameScene.getSize().x; x++) {
                 g2.drawImage(getTileTypeImage(gameScene.getTile(x, y).getTerrain()), x * tileSize, y * tileSize, tileSize, tileSize, null);
                 g2.drawImage(getTileObjectImage(gameScene.getTile(x, y).getTerrain().getTileObject()), x * tileSize, y * tileSize, tileSize, tileSize, null);
-                for (StackableItemHolder itemHolder : gameScene.getTile(x, y).getTerrain().getDroppedItems()){
-                    g2.drawImage(getDroppedItemImage(itemHolder), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                for (Item item : gameScene.getTile(x, y).getTerrain().getDroppedItems()){
+                    g2.drawImage(getDroppedItemImage(item), x * tileSize, y * tileSize, tileSize, tileSize, null);
                 }
 
             }

@@ -11,8 +11,8 @@ public class InventoryHandler {
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
-        addItem(new FoodItem("Carrot",3));
-        addItem(new SeedItem("Carrot"));
+        addItem(new FoodItem("Carrot",1, 3));
+        addItem(new SeedItem("Carrot", 1));
         addItem(new WateringCan());
         addItem(new Shovel());
     }
