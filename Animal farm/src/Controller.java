@@ -1,7 +1,9 @@
 
+import Model.Inventory.InventoryHandler;
 import Model.Player.IMovementHandler;
 import View.DrawableSprites;
 import View.GamePanel;
+import Model.Player.Player;
 
 
 import java.awt.*;
@@ -59,16 +61,32 @@ public class Controller implements KeyListener {
          */
 
         if (keyCode == VK_UP) {
-            setDirection("back");
+            if(gamePanel.getToggleState()){
+                changeSelectInventorySlot(0,1);
+            } else{
+                setDirection("back");
+            }
         }
         if (keyCode == VK_DOWN) {
-            setDirection("front");
+            if(gamePanel.getToggleState()){
+                changeSelectInventorySlot(0,-1);
+            } else{
+                setDirection("front");
+            }
         }
         if (keyCode == VK_LEFT) {
-            setDirection("left");
+            if(gamePanel.getToggleState()){
+                changeSelectInventorySlot(-1,0);
+            } else{
+                setDirection("left");
+            };
          }
         if (keyCode == VK_RIGHT) {
-            setDirection("right");
+            if(gamePanel.getToggleState()){
+                changeSelectInventorySlot(1,0);
+            } else{
+                setDirection("right");
+            }
         }
         /**
          *
@@ -79,13 +97,18 @@ public class Controller implements KeyListener {
             gamePanel.toggleInventory();
         }
 
+
         if (keyCode == VK_E){
+            if (gamePanel.getToggleState()){
+                Player.getInstance().getInventory().changeSelectedItem();
+            }
             movementHandler.interact(movementHandler.getPos().x, movementHandler.getPos().y);
         }
 
+
         if (keyCode >= VK_1 && keyCode <= VK_5){
             int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
-            gamePanel.selectItemInInventory(column);
+            Player.getInstance().getInventory().selectItemInHotBar(column);
         }
 
     }
@@ -99,6 +122,11 @@ public class Controller implements KeyListener {
             case ("right"): {movementHandler.setDirection(1, 0); break;}
         }
 
+    }
+
+    private void changeSelectInventorySlot(int x, int y){
+        Player player = Player.getInstance();
+        player.selectItem(player.getInventory().getSelectedY()+y, player.getInventory().getSelectedX()+x);
     }
 
 

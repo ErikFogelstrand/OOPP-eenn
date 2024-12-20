@@ -87,12 +87,6 @@ public class GamePanel extends JPanel{
         }
     }
 
-    public void selectItemInInventory(int column) {
-        Item selectedItem = inventoryHolder.getInventory().selectItem(column);
-        if (selectedItem != null){
-            System.out.println("Selected item: " + selectedItem.getType());
-        }
-    }
 
     public void updatePaint(){
         repaint();
@@ -122,8 +116,11 @@ public class GamePanel extends JPanel{
         currentBarStatus(g2, playerStates.getSleep(), sleepBarDot, statusBarWidth * 2);
 
     }
-    public boolean toggleInventory(){
+    public void toggleInventory(){
         toggleState = !toggleState;
+    }
+
+    public boolean getToggleState(){
         return toggleState;
     }
 

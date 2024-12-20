@@ -2,8 +2,6 @@ package View;
 
 import Model.Inventory.InventoryHandler;
 import Model.UsableObjects.Item;
-import Model.UsableObjects.StackableItem;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Inventory.IInventoryHolder;
-import Model.UsableObjects.WateringCan;
 
 public class DrawableItems {
 
@@ -23,8 +20,6 @@ public class DrawableItems {
 
     private BufferedImage itemSlot;
     private BufferedImage selectedSlot;
-
-
 
 
     public DrawableItems(IInventoryHolder inventoryHolder){
@@ -59,27 +54,27 @@ public class DrawableItems {
 
         InventoryHandler inventoryHandler = inventoryHolder.getInventory();
         int rows = 1;
-        int offset;
         int columns = inventoryHandler.getColumns(); // = 5
-        if (expandInventory){
+
+        if (expandInventory) {
             rows = inventoryHandler.getRows();
-            offset = -slotSize * inventoryHandler.getColumns();
-        } else {
-            offset = 0;
         }
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                int xPos = x + (slotSize) * j;
 
-                int yPos = y + (slotSize) * i;
+                int xPos = x + (slotSize) * j;
+                int yPos = y - slotSize*(i);
 
                 inventoryHandler.getItem(i, j);
 
-                drawSlot(g2, xPos, yPos+offset);
+                drawSlot(g2, xPos, yPos);
 
-                if (inventoryHolder.getInventory().getSelectedItem() == j){
-                    drawSelectedSlot(g2, xPos, yPos+offset);
+                if (0 == i && inventoryHolder.getInventory().getSelectedItemInHotBar() == j && !expandInventory){
+                    drawSelectedSlot(g2, xPos, yPos);
+                }
+                else if(inventoryHolder.getInventory().getSelectedY() == i && inventoryHolder.getInventory().getSelectedX() == j && expandInventory){
+                    drawSelectedSlot(g2, xPos, yPos);
                 }
 
                 Item item = inventoryHandler.getItem(i, j);
@@ -87,6 +82,9 @@ public class DrawableItems {
                     drawItem(g2, xPos+itemMargin, yPos+itemMargin, item);
                 }
             }
+        }
+        if(inventoryHandler.getSelectedItem() != null){
+            drawItem(g2,x + slotSize*inventoryHandler.getSelectedX(), y - slotSize*inventoryHandler.getSelectedY(), inventoryHandler.getSelectedItem());
         }
     }
 
