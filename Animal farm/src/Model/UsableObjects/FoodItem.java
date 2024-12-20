@@ -4,8 +4,8 @@ import Model.Player.Player;
 public class FoodItem extends StackableItem implements IEdible {
     private final int nutrition;
 
-    public FoodItem(String type, int nutrition) {
-        super(type);
+    public FoodItem(String type, int quantity,int nutrition) {
+        super(type, quantity);
         this.nutrition = nutrition;
     }
 

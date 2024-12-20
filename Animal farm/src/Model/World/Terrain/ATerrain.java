@@ -1,6 +1,8 @@
 package Model.World.Terrain;
 
-import Model.UsableObjects.StackableItemHolder;
+import Model.UsableObjects.Item;
+import Model.UsableObjects.StackableItem;
+import Model.UsableObjects.Tool;
 import Model.World.ITileAction;
 import Model.World.TileObjects.ITileObject;
 
@@ -9,7 +11,7 @@ import java.util.List;
 
 public abstract class ATerrain {
     protected ITileObject tileObject;
-    protected final List<StackableItemHolder> droppedItems;
+    protected final List<Item> droppedItems;
 
     public ATerrain() {
         droppedItems = new ArrayList<>();
@@ -17,7 +19,7 @@ public abstract class ATerrain {
     public abstract boolean walkable();
     public String interact(ITileAction action){
         if(tileObject != null){
-            StackableItemHolder droppedItem = tileObject.interact(action);
+            Item droppedItem = tileObject.interact(action);
             if (droppedItem != null){
                 dropItem(droppedItem);
             }
@@ -31,27 +33,30 @@ public abstract class ATerrain {
     public ITileObject getTileObject(){
         return tileObject;
     }
+
     public void setTileObject(ITileObject object){
         tileObject = object;
     }
-    private void dropItem(StackableItemHolder itemHolder){
-        int itemPos = droppedItemsFind(itemHolder);
-        if (itemPos >= 0){
-            droppedItems.get(itemPos).changeQuantity(itemHolder.getQuantity());
-        } else{
-            droppedItems.add(itemHolder);
+
+    private void dropItem(Item item){
+        int itemPos = droppedItemsFind(item);
+        if(item instanceof Tool || itemPos == -1){
+            droppedItems.add(item);
+            return;
         }
+
+        ((StackableItem) droppedItems.get(itemPos)).changeQuantity(((StackableItem) item).getQuantity());
     }
 
-    private int droppedItemsFind(StackableItemHolder newItemHolder){
+    private int droppedItemsFind(Item item){
         for (int i = 0; i < droppedItems.size(); i++){
-            if (droppedItems.get(i).getItem().getType().equals(newItemHolder.getItem().getType())){
+            if (droppedItems.get(i).getType().equals(item.getType())){
                 return i;
             }
         }
         return -1;
     }
-    public List<StackableItemHolder> getDroppedItems(){
+    public List<Item> getDroppedItems(){
         return droppedItems;
     }
 

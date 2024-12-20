@@ -4,7 +4,6 @@ package Model.Player;
 import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
 import Model.UsableObjects.Item;
-import Model.UsableObjects.StackableItemHolder;
 import Model.World.GameSceneManager;
 import Model.World.IRandomTickListener;
 import Model.World.ITileAction;
@@ -95,7 +94,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     public void move(int x, int y ){
         this.playerHandler.move(x,y);
         ATerrain terrain = getTerrain(playerHandler.getPos());
-        for (StackableItemHolder itemHolder : terrain.getDroppedItems()){
+        for (Item item : terrain.getDroppedItems()){
             //inventoryHandler.addItem(terrain.getDroppedItems());
         }
         terrain.pickUp();

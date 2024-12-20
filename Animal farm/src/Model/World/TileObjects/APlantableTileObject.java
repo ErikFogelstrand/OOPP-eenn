@@ -2,8 +2,6 @@ package Model.World.TileObjects;
 
 import Model.UsableObjects.FoodItem;
 import Model.UsableObjects.Item;
-import Model.UsableObjects.StackableItem;
-import Model.UsableObjects.StackableItemHolder;
 import Model.World.RandomTickGenerator;
 import Model.World.ITileAction;
 import Model.World.IRandomTickListener;
@@ -26,7 +24,7 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
     public boolean walkable(){return true;}
 
     @Override
-    public StackableItemHolder interact(ITileAction action) {
+    public Item interact(ITileAction action) {
         if(action.getType().equals("Hand")){
             action.use();
             return harvest();
@@ -38,12 +36,12 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
         return null;
     }
 
-    private StackableItemHolder harvest(){
+    private Item harvest(){
         if (growthState < maxGrowth){
             return null;
         }
         RandomTickGenerator.getInstance().removeListener(this);
-        return new StackableItemHolder(new FoodItem(getType(), 2), 1);
+        return new FoodItem("Carrot", 1, 2);
     }
 
     private void water(){
