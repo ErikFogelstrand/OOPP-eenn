@@ -14,7 +14,7 @@ public class InventoryHandler {
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
-        addItem(new FoodItem("Carrot",1, 3));
+        addItem(new CarrotItem(1));
         addItem(new SeedItem("Carrot", 1));
         addItem(new WateringCan());
         addItem(new Hoe());
@@ -95,6 +95,11 @@ public class InventoryHandler {
             selectedItem = null;
         } else{
             Item newSelectedItem = inventory[selectedY][selectedX];
+            if(newSelectedItem.getType().equals(selectedItem.getType()) && newSelectedItem instanceof StackableItem && selectedItem instanceof StackableItem){
+                ((StackableItem)inventory[selectedY][selectedX]).changeQuantity(((StackableItem) selectedItem).getQuantity());
+                selectedItem = null;
+                return;
+            }
             inventory[selectedY][selectedX] = selectedItem;
             selectedItem = newSelectedItem;
         }
@@ -114,6 +119,20 @@ public class InventoryHandler {
 
     public int getSelectedItemInHotBar(){
         return selectedItemInHotBar;
+    }
+
+    public void update(){
+        for(int y = 0; y < getRows();y++){
+            for(int x = 0; x < getColumns(); x++){
+                if(getItem(y, x) instanceof StackableItem && ((StackableItem)getItem(y, x)).getQuantity() <= 0){
+                    removeItemFromInventory(x, y);
+                }
+            }
+        }
+    }
+
+    private void removeItemFromInventory(int x, int y){
+        inventory[y][x] = null;
     }
 }
 

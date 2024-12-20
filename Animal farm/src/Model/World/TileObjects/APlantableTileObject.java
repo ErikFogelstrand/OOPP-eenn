@@ -1,5 +1,6 @@
 package Model.World.TileObjects;
 
+import Model.UsableObjects.CarrotItem;
 import Model.UsableObjects.FoodItem;
 import Model.UsableObjects.Item;
 import Model.World.RandomTickGenerator;
@@ -41,7 +42,7 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
             return null;
         }
         RandomTickGenerator.getInstance().removeListener(this);
-        return new FoodItem("Carrot", 1, 2);
+        return new CarrotItem(1);
     }
 
     private void water(){

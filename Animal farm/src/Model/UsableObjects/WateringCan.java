@@ -22,7 +22,7 @@ public class WateringCan extends Tool implements IEdible {
 
     @Override
     public void consume(Player player) {
-        player.drink(waterLevel);
+        player.drink(10);
     }
 
     @Override

@@ -1,12 +1,9 @@
 
-import Model.Inventory.InventoryHandler;
 import Model.Player.IMovementHandler;
-import View.DrawableSprites;
 import View.GamePanel;
 import Model.Player.Player;
 
 
-import java.awt.*;
 import  java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -102,13 +99,17 @@ public class Controller implements KeyListener {
             if (gamePanel.getToggleState()){
                 Player.getInstance().getInventory().changeSelectedItem();
             }
-            movementHandler.interact(movementHandler.getPos().x, movementHandler.getPos().y);
+            movementHandler.tileInteract(movementHandler.getPos().x, movementHandler.getPos().y);
         }
 
 
         if (keyCode >= VK_1 && keyCode <= VK_5){
             int column = keyCode - VK_1; // map keys 1-5 to column indices 0-4
             Player.getInstance().getInventory().selectItemInHotBar(column);
+        }
+
+        if(keyCode == VK_F){
+            movementHandler.playerInteract();
         }
 
     }
