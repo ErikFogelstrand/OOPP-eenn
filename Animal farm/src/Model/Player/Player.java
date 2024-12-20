@@ -58,11 +58,6 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
                 return this.inventoryHandler;
     }
 
-    @Override
-    public void updateInventory() {
-        getInventory().update();
-    }
-
     private void updateStates(){
         hunger = Math.max(minState, hunger - hungerDecrease);
         thirst = Math.max(minState, thirst - thirstDecrease);
@@ -134,7 +129,6 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
 
                 @Override
                 public void use() {
-
                 }
 
                 @Override

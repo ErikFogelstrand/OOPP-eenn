@@ -5,6 +5,7 @@ package Model.UsableObjects;
 
 public abstract class Item {
     protected final String type;
+    protected int count;
 
     public Item(String type) {
         this.type = type;
@@ -12,5 +13,5 @@ public abstract class Item {
     public String getType() {
          return type;
     }
+    }
 
-}
