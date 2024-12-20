@@ -87,8 +87,8 @@ public class GamePanel extends JPanel{
         }
     }
 
-    public void selectItemInInventory(int column) {
-        Item selectedItem = inventoryHolder.getInventory().selectItem(column);
+    public void selectItemInInventory(int Ycoord, int XCoord) {
+        Item selectedItem = inventoryHolder.getInventory().selectItem(Ycoord, XCoord);
         if (selectedItem != null){
             System.out.println("Selected item: " + selectedItem.getType());
         }

@@ -76,7 +76,10 @@ public class DrawableItems {
 
                 drawSlot(g2, xPos, yPos+offset);
 
-                if (inventoryHolder.getInventory().getSelectedItem() == j){
+                //if (inventoryHolder.getInventory().getSelectedItem() == j){
+                //    drawSelectedSlot(g2, xPos, yPos+offset);
+
+                if (inventoryHolder.getInventory().getSelectedY() == i && inventoryHolder.getInventory().getSelectedX() == j){
                     drawSelectedSlot(g2, xPos, yPos+offset);
                 }
 

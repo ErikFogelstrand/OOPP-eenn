@@ -7,7 +7,9 @@ public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
-    private int selectedItem;
+    //private int selectedItem;
+    private int selectedX = 0;
+    private int selectedY = 0;
 
     public InventoryHandler() {
         this.inventory = new Item[y][x]; // Item[rows][columns]
@@ -53,20 +55,43 @@ public class InventoryHandler {
         return null;
         }
 
-    public Item[][] getAllItems() {
-        return inventory;
-    }
+    //public Item[][] getAllItems() {
+    //    return inventory;
+    //}
 
-    public Item selectItem(int xCoord){
-        if (isValidSlot(0,xCoord)){
-            selectedItem = xCoord;
-            return inventory[0][xCoord];
+    //public Item selectItem(int xCoord){
+    //    if (isValidSlot(0,xCoord)){
+    //        selectedItem = xCoord;
+    //        return inventory[0][xCoord];
+    //    }
+    //    return null;
+    //}
+
+    public Item selectItem(int newY, int newX) {
+        if (isValidSlot(newY, newX)) {
+            selectedY = newY;
+            selectedX = newX;
+
+            System.out.println("Selected item at (" + selectedY + ", " + selectedX + ")");
+            return inventory[newY][newX];
+        } else {
+           // System.out.println("Invalid slot selected");
+            return null;
         }
-        return null;
     }
 
-    public int getSelectedItem(){
-        return selectedItem;
+    public int getSelectedX() {
+        return selectedX;
     }
+
+    public int getSelectedY() {
+        return selectedY;
+    }
+
+    //public Item getSelectedItem(){
+        //return selectedItem;
+    //    selectedItem = getItem(selectedY, selectedX);
+    //    return selectedItem;
+    //}
 }
 
