@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class GameSceneCreator {
+    // Creates a gamescene from the tileMap.txt file
     public static GameScene createGameScene(int sizeX, int sizeY){
         HashMap<Integer, String> tileHashMap = new HashMap<>();
         tileHashMap.put(0, "Grass");

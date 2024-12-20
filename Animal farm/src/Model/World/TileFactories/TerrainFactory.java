@@ -3,12 +3,14 @@ package Model.World.TileFactories;
 import Model.World.Terrain.*;
 
 public class TerrainFactory {
+    // singleton instance
     private static final TerrainFactory instance = new TerrainFactory();
 
     private final TileObjectFactory tileObjectFactory = TileObjectFactory.getInstance();
 
     public static TerrainFactory getInstance() {return instance;}
 
+    // Creates a terrain with a specified tileObject
     public ATerrain createTileType(String tileType, String tileObject){
         ATerrain newTileType = null;
         switch (tileType){

@@ -13,7 +13,6 @@ public class Controller implements KeyListener {
 
     private final IMovementHandler movementHandler;
     private final GamePanel gamePanel;
-    String direction = "front";
 
 
     public Controller(GamePanel gamePanel,IMovementHandler movementHandler){
@@ -114,6 +113,7 @@ public class Controller implements KeyListener {
 
     }
 
+    // syncs the direction between the model and view
     private void setDirection(String direction){
         gamePanel.setDirection(direction);
         switch (direction){

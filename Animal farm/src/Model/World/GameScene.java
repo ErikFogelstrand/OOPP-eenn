@@ -2,7 +2,8 @@ package Model.World;
 
 import java.awt.*;
 
-public class GameScene implements ICurrentGameScene {
+// Represents a screen with tiles
+public class GameScene {
     private final Tile[][] tileMatrix;
 
     public GameScene(int x, int y) {
@@ -17,7 +18,6 @@ public class GameScene implements ICurrentGameScene {
         tileMatrix[y][x] = tile;
     }
 
-    @Override
     public Tile getTile(int x, int y) {
         return tileMatrix[y][x];
     }

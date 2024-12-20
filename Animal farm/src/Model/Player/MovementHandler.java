@@ -9,7 +9,7 @@ import java.awt.*;
 
 /**
  *
- * handles player {@link Player} movement so the player and interaction with the gameScene {@link GameScene}
+ * handles movement and interactions with a gameScene {@link GameScene}
  *
  */
 
@@ -17,11 +17,8 @@ public class MovementHandler {
 
     private int x;
     private int y;
-    private Point direction;
+    private final Point direction;
 
-    /**
-     * constructor initiated in Model.Player {@link Player} with given start position
-     */
     public MovementHandler(int x, int y) {
         this.x = x;
         this.y = y;
@@ -33,7 +30,7 @@ public class MovementHandler {
         this.y += y;
     }
 
-
+    // moves to the desired tile in the active GameScene if it is walkable
     public void move(int x, int y) {
         GameScene currentGameScene = GameSceneManager.getInstance().getActiveGameScene();
         if (this.x+x < 0 || this.x+x >= currentGameScene.getSize().getX() || this.y+y < 0 || this.y+y >= currentGameScene.getSize().getY()){
@@ -50,7 +47,7 @@ public class MovementHandler {
         return new Point(this.x, this.y);
     }
 
-
+    // Sends out interactions to the active GameScene
     public void interact(int x, int y, ITileAction tileAction) {
         GameSceneManager.getInstance().getActiveGameScene().getTile(x+direction.x, y+direction.y).interact(tileAction);
     }

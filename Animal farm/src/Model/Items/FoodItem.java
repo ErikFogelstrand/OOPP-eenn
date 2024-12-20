@@ -1,4 +1,4 @@
-package Model.UsableObjects;
+package Model.Items;
 import Model.Player.Player;
 
 public abstract class FoodItem extends StackableItem implements IEdible {

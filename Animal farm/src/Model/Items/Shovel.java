@@ -1,4 +1,4 @@
-package Model.UsableObjects;
+package Model.Items;
 
     public class Shovel extends Tool {
         public Shovel(){

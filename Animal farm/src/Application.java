@@ -55,11 +55,12 @@ public class Application implements Runnable {
         }
     }
 
+    // Controls updates to the view, the model does not run on a constant clock
     public void update(){
         gamePanel.updatePaint();
     }
 
-
+    // initializes the model
     public static void main(String []args){
 
         JFrame window = new JFrame();   // Creating instance of JFrame
@@ -74,7 +75,6 @@ public class Application implements Runnable {
 
         window.add(gamePanel);
 
-        //window.setSize(1000, 400);
         window.pack(); //adjust the window to be sized to fit with the game size
         window.setLocationRelativeTo(null);
         window.setVisible(true);// making the frame visible

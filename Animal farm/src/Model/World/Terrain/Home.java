@@ -12,6 +12,7 @@ public class Home extends ATerrain {
     @Override
     public boolean walkable() {return false;}
 
+    // The player regains a lot of energy
     @Override
     public String tileTypeInteract(ITileAction action) {
         Player.getInstance().sleep(100);

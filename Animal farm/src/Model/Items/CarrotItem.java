@@ -1,4 +1,4 @@
-package Model.UsableObjects;
+package Model.Items;
 
 public class CarrotItem extends FoodItem{
     public CarrotItem(int quantity) {

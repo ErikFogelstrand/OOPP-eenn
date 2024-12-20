@@ -1,6 +1,5 @@
-package Model.UsableObjects;
+package Model.Items;
 import Model.Player.Player;
-import Model.World.ITileAction;
 
 public class WateringCan extends Tool implements IEdible {
     private int waterLevel;
@@ -25,8 +24,9 @@ public class WateringCan extends Tool implements IEdible {
         player.drink(10);
     }
 
+    // not used at the moment as there is no way to refill it
     @Override
-    public boolean useable(){
+    public boolean usable(){
         return waterLevel >= 1;
     }
 

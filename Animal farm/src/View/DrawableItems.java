@@ -1,7 +1,7 @@
 package View;
 
 import Model.Inventory.InventoryHandler;
-import Model.UsableObjects.Item;
+import Model.Items.Item;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Inventory.IInventoryHolder;
-import Model.UsableObjects.StackableItem;
+import Model.Items.StackableItem;
 
 public class DrawableItems {
 
-    private final IInventoryHolder inventoryHolder;
+    private final IInventoryHolder inventoryHolder; // The inventory displayed on the screen
     private final Map<String, BufferedImage> itemImages = new HashMap<>();
     private final int itemSize = 56; //14 pixels * scale 4
     private final int slotSize = 80;
@@ -51,7 +51,7 @@ public class DrawableItems {
         }
     }
 
-
+    // Either draws only the hot bar or the whole inventory when opened
     public void draw(Graphics2D g2, int x, int y, boolean expandInventory) {
 
         InventoryHandler inventoryHandler = inventoryHolder.getInventory();
@@ -91,19 +91,22 @@ public class DrawableItems {
                 }
             }
         }
-        if(inventoryHandler.getSelectedItem() != null){
+        if(inventoryHandler.getSelectedItem() != null && expandInventory){
             drawItem(g2,x + slotSize*inventoryHandler.getSelectedX(), y - slotSize*inventoryHandler.getSelectedY(), inventoryHandler.getSelectedItem());
         }
     }
 
+    // draw an inventory slot
     private void drawSlot(Graphics2D g2, int x, int y) {
         g2.drawImage(itemSlot, x, y, slotSize, slotSize, null); //to fit in the item slots
     }
 
+    // draw the white frame that indicates the currently selected slot/the selector
     private void drawSelectedSlot(Graphics2D g2, int x, int y){
         g2.drawImage(selectedSlot, x, y, slotSize, slotSize, null);
     }
 
+    // draws numbers that indicates how many of a stackableItem is in the inventory
     private void drawItemCount(Graphics2D g2, int count, int x, int y){
         g2.setFont(new Font("Arial", Font.BOLD, 18)); // Use a larger font for the quantity
         g2.setColor(Color.WHITE); // Make the text white or any other color that fits your UI
@@ -111,6 +114,7 @@ public class DrawableItems {
         g2. drawString(Integer.toString(count), x+itemMargin, y+18);
     }
 
+    // Draws both an item in a slot and an item picked up by the selector
     private void drawItem(Graphics2D g2, int x, int y, Item Item){
         BufferedImage itemImage = itemImages.get(Item.getType()); // Retrieve image by item name
         if (itemImage != null) {

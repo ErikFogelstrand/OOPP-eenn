@@ -4,6 +4,7 @@ import Model.World.Tile;
 import Model.World.Terrain.ATerrain;
 
 public class TileFactory {
+    // singleton instance
     private static final TileFactory instance = new TileFactory();
 
     private final TerrainFactory terrainFactory = TerrainFactory.getInstance();

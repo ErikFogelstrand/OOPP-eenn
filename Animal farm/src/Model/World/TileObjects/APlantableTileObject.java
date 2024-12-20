@@ -1,9 +1,8 @@
 package Model.World.TileObjects;
 
-import Model.UsableObjects.CarrotItem;
-import Model.UsableObjects.FoodItem;
-import Model.UsableObjects.Item;
-import Model.UsableObjects.SeedItem;
+import Model.Items.CarrotItem;
+import Model.Items.Item;
+import Model.Items.SeedItem;
 import Model.World.RandomTickGenerator;
 import Model.World.ITileAction;
 import Model.World.IRandomTickListener;
@@ -11,6 +10,7 @@ import Model.World.IRandomTickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represent the core function of crops
 public abstract class APlantableTileObject implements ITileObject, IRandomTickListener {
     private boolean watered;
     private int growthState;
@@ -52,6 +52,7 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
         return dropItems;
     }
 
+    // Needs to be watered to be able to grow
     private void water(){
         if(growthState >= maxGrowth){
             return;
@@ -59,6 +60,7 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
         watered = true;
     }
 
+    // Is a listener to RandomTickGenerator to update its growthstate
     @Override
     public void tick(){
         if(!watered || growthState >= maxGrowth){

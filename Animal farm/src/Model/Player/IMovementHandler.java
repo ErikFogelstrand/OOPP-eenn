@@ -2,6 +2,7 @@ package Model.Player;
 
 import java.awt.*;
 
+// Various methods to handle something that moves and interacts
 public interface IMovementHandler {
     public void move(int x, int y );
     public Point getPos();
