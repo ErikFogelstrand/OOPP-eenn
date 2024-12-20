@@ -1,14 +1,19 @@
 package Model.Player;
 
-import java.awt.*;
 
 import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
 import Model.UsableObjects.Item;
-import Model.UsableObjects.Shovel;
+import Model.UsableObjects.StackableItemHolder;
+import Model.World.GameSceneManager;
 import Model.World.IRandomTickListener;
 import Model.World.ITileAction;
 import Model.World.RandomTickGenerator;
+import Model.World.Terrain.ATerrain;
+
+import java.awt.Point;
+import java.util.List;
+
 
 public class Player implements IPlayerStates, IMovementHandler, IRandomTickListener, IInventoryHolder {
 
@@ -59,14 +64,17 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         energy = Math.max(minState, energy - energyDecrease);
     }
 
+    @Override
     public int getHunger(){
         return hunger;
     }
 
+    @Override
     public int getThirst(){
         return thirst;
     }
 
+    @Override
     public int getSleep(){
         return energy;
     }
@@ -83,8 +91,15 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         energy = Math.min(maxState, energy + sleepAmount);
     }
 
+    @Override
     public void move(int x, int y ){
         this.playerHandler.move(x,y);
+        ATerrain terrain = getTerrain(playerHandler.getPos());
+        for (StackableItemHolder itemHolder : terrain.getDroppedItems()){
+            //inventoryHandler.addItem(terrain.getDroppedItems());
+        }
+        terrain.pickUp();
+
     }
 
     public Point getPos(){
@@ -129,5 +144,9 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     @Override
     public void setDirection(int x, int y) {
         playerHandler.setDirection(x, y);
+    }
+
+    private ATerrain getTerrain(Point pos){
+        return GameSceneManager.getInstance().getActiveGameScene().getTile(pos.x, pos.y).getTerrain();
     }
 }
