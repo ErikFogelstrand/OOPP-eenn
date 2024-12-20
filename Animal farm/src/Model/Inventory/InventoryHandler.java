@@ -1,15 +1,15 @@
 package Model.Inventory;
 
-import Model.UsableObjects.*;
+import Model.Items.*;
 
-import java.util.Optional;
+//Manages an inventory
 public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
-    private int selectedItemInHotBar;
-    private Item selectedItem;
-    private int selectedX = 0;
+    private int selectedItemInHotBar; // which item in the hotbar is active for interactions
+    private Item selectedItem; // When the inventory is open, represents the item which the selector holds
+    private int selectedX = 0; // Coordinates for the selector
     private int selectedY = 0;
 
     public InventoryHandler() {
@@ -54,24 +54,22 @@ public class InventoryHandler {
     public int getColumns(){return x;}
 
     public Item getItem(int yCoord, int xCoord){
-         update();
+         update(); //check if any empty items exists
 
         if (isValidSlot(yCoord,xCoord)){
             return inventory[yCoord][xCoord];
         }
         return null;
-        }
+    }
 
-    //public Item[][] getAllItems() {
-    //    return inventory;
-    //}
-
+    // select which itemslot in the hotbar is used when interacting
     public void selectItemInHotBar(int xCoord){
         if (isValidSlot(0,xCoord)){
             selectedItemInHotBar = xCoord;
         }
     }
 
+    // Moves the selector when the inventory is open
     public void moveSelection(int newY, int newX) {
         if (isValidSlot(newY, newX)) {
             selectedY = newY;
@@ -79,6 +77,7 @@ public class InventoryHandler {
         }
     }
 
+    // either picks up the item the selector is over, puts it down or switches it.
     public void changeSelectedItem(){
         if(selectedItem == null){
             pickUpSelectedItem();
@@ -86,11 +85,14 @@ public class InventoryHandler {
             putDownSelectedItem();
         }
     }
+
+    // picks up the item to the selector
     private void pickUpSelectedItem(){
         selectedItem = inventory[selectedY][selectedX];
         inventory[selectedY][selectedX] = null;
     }
 
+    // either puts the selectors item down or switches it with the item the selector is over
     private void putDownSelectedItem(){
         if (inventory[selectedY][selectedX] == null){
             inventory[selectedY][selectedX] = selectedItem;
@@ -123,6 +125,7 @@ public class InventoryHandler {
         return selectedItemInHotBar;
     }
 
+    // Finds any items that have a quantity of 0 or below and removes it
     private void update(){
         for(int y = 0; y < getRows();y++){
             for(int x = 0; x < getColumns(); x++){

@@ -1,6 +1,6 @@
 package Model.World.Terrain;
 
-import Model.UsableObjects.SeedItem;
+import Model.Items.SeedItem;
 import Model.World.*;
 import Model.World.TileFactories.TileObjectFactory;
 import Model.World.TileObjects.APlantableTileObject;

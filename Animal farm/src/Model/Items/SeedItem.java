@@ -1,4 +1,4 @@
-package Model.UsableObjects;
+package Model.Items;
 
 import Model.World.ITileAction;
 
@@ -11,14 +11,10 @@ public class SeedItem extends StackableItem implements ITileAction {
     }
 
     @Override
-    public boolean useable() {
+    public boolean usable() {
         return true;
     }
 
-    @Override
-    public String getType(){
-        return type;
-    }
     public String getSeedType(){
         return seedType;
     }

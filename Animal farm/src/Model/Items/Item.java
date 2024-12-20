@@ -1,11 +1,10 @@
-package Model.UsableObjects;
+package Model.Items;
 
 
-// abstrakt klass för både tools och items
+// abstrakt klass för både tools och stackableItems
 
 public abstract class Item {
-    protected final String type;
-    protected int count;
+    private final String type;
 
     public Item(String type) {
         this.type = type;

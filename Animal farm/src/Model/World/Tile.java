@@ -4,32 +4,28 @@ import Model.World.TileFactories.TerrainFactory;
 import Model.World.TileObjects.ITileObject;
 import Model.World.Terrain.ATerrain;
 
+// An empty space that can be filled with a terrain
 public class Tile {
-    private ITileObject tileObject;
-    private ATerrain tileType;
+    private ATerrain terrain;
 
     public Tile(ATerrain tileType) {
-        this.tileType = tileType;
+        this.terrain = tileType;
     }
 
-    public ITileObject getTileObject(){
-        return tileObject;
-    }
-    public void setTileObject(ITileObject object){
-        tileObject = object;
-    }
     public ATerrain getTerrain(){
-        return tileType;
+        return terrain;
     }
-    public void setTileType(ATerrain tileType){
-        this.tileType = tileType;
+    public void setTerrain(ATerrain tileType){
+        this.terrain = tileType;
     }
+
+    // Delegates interact to its terrain and changes it if the interact results in a new terrain
     public void interact(ITileAction action){
-        if(tileType != null){
-            String newTileTypeName = tileType.interact(action);
-            ATerrain newTileType = TerrainFactory.getInstance().createTileType(newTileTypeName, "");
-            if(newTileType != null){
-                tileType = newTileType;
+        if(terrain != null){
+            String newTerrainName = terrain.interact(action);
+            ATerrain newTerrain = TerrainFactory.getInstance().createTileType(newTerrainName, "");
+            if(newTerrain != null){
+                setTerrain(newTerrain);
             }
         }
     }

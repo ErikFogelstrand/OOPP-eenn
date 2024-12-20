@@ -1,6 +1,6 @@
 package Model.World.TileObjects;
 
-import Model.UsableObjects.Item;
+import Model.Items.Item;
 import Model.World.ITileAction;
 
 import java.util.List;

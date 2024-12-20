@@ -4,6 +4,7 @@ import Model.World.TileObjects.Carrot;
 import Model.World.TileObjects.ITileObject;
 
 public class TileObjectFactory {
+    // singleton instance
     private static final TileObjectFactory instance = new TileObjectFactory();
 
     public static TileObjectFactory getInstance() {return instance;}

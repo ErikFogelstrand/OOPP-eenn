@@ -3,7 +3,6 @@ package View;
 import Model.Inventory.IInventoryHolder;
 import Model.Player.IMovementHandler;
 import Model.Player.IPlayerStates;
-import Model.UsableObjects.Item;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,8 +13,6 @@ import java.io.IOException;
 public class GamePanel extends JPanel{
 
     private final IPlayerStates playerStates;
-    private final IInventoryHolder inventoryHolder;
-
 
     private final int baseTileSize = 16; // 16 pixels
     private final int scale = 4;
@@ -32,35 +29,27 @@ public class GamePanel extends JPanel{
     final int statusBarWidth = screenWidth/3; //three bars make up a third of screen
     final int statusDotSize = 5*scale;
 
-    final int mainSlotsWidth = 92*scale;
     final int mainSlotsHeight = 20*scale;
 
+    private BufferedImage foodBarDot, foodBarNone;
+    private BufferedImage sleepBarDot, sleepBarNone;
+    private BufferedImage waterBarDot, waterBarNone;
+
+    private final DrawableTiles drawableTiles;
+    private final DrawableSprites rabbit;
+    private final DrawableItems drawableItems;
 
 
-    BufferedImage foodBarDot, foodBarNone;
-    BufferedImage sleepBarDot, sleepBarNone;
-    BufferedImage waterBarDot, waterBarNone;
-
-
-    DrawableTiles tile;
-    DrawableSprites rabbit;
-    DrawableItems items;
-
-
-    public GamePanel(IPlayerStates istates, IMovementHandler playerPos, IInventoryHolder inventoryHolder){ ////////////
-
-        this.playerStates = istates; ////////////////
-        this.inventoryHolder = inventoryHolder;
-
-
+    public GamePanel(IPlayerStates istates, IMovementHandler playerPos, IInventoryHolder inventoryHolder){
+        this.playerStates = istates;
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground((Color.black));
         this.setDoubleBuffered((true)); // apparently improves rendering performance
 
         loadOverlayImages();
-        this.items = new DrawableItems(inventoryHolder);
-        this.tile = new DrawableTiles();
+        this.drawableItems = new DrawableItems(inventoryHolder);
+        this.drawableTiles = new DrawableTiles();
         this.rabbit = new DrawableSprites(playerPos, tileSize, scale);
     }
 
@@ -92,6 +81,7 @@ public class GamePanel extends JPanel{
         repaint();
     }
 
+    // Draws the bars that dynamically changes depending on the players different states
     public void currentBarStatus(Graphics g2, int currentStatus,BufferedImage statusBarDot, int x){
         int dotOffsetX = 106; //to fit the starting dot on the statusBar
         int dotSpace = 9; //the space between every dot that blits so they fit the whole statusBar
@@ -105,6 +95,7 @@ public class GamePanel extends JPanel{
         }
     }
 
+    // Draws all the status bars
     public void drawStatusBars(Graphics2D g2) {
 
         g2.drawImage(foodBarNone, 0, 0, statusBarWidth, statusBarHeight, null);
@@ -124,29 +115,23 @@ public class GamePanel extends JPanel{
         return toggleState;
     }
 
+    // draws everything on screen, delegates to its different components
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         requestFocusInWindow();
-
-
-
 
         Graphics2D g2 = (Graphics2D)g;
 
         g2.setColor((Color.white));
 
-        tile.draw(g2, tileSize);
+        drawableTiles.draw(g2, tileSize);
         rabbit.draw(g2, tileSize);
-
 
         drawStatusBars(g2);
 
-
-        items.draw(g2,tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
+        drawableItems.draw(g2,tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
 
         g2.dispose();
-
-
     }
 
     public void setDirection(String direction){

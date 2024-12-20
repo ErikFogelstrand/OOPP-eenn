@@ -5,14 +5,17 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameSceneManager {
-    private static final GameSceneManager GAME_SCENE_MANAGER = new GameSceneManager();
+    // Singleton instance
+    private static final GameSceneManager gameSceneManager = new GameSceneManager();
     private final Map<String, GameScene> gameSceneMap = new HashMap<>();
     private String activeGameScene;
 
     private GameSceneManager(){}
     public static GameSceneManager getInstance(){
-        return GAME_SCENE_MANAGER;
+        return gameSceneManager;
     }
+
+    // Only the active gameScene is used for the model and view
     public GameScene getActiveGameScene(){
         if (!gameSceneMap.containsKey(activeGameScene)){
             return null;

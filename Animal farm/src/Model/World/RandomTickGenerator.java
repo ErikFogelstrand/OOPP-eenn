@@ -25,8 +25,9 @@ public class RandomTickGenerator {
     public void removeListener(IRandomTickListener listener) {
         randomTickListeners.remove(listener);
     }
+
+    // Sends out an update to one of its listeners, randomly
     private void tick() {
-        System.out.println("tick!");
         randomTickListeners.get(rand.nextInt(randomTickListeners.size())).tick();
     }
 

@@ -3,8 +3,8 @@ package Model.Player;
 
 import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
-import Model.UsableObjects.IEdible;
-import Model.UsableObjects.Item;
+import Model.Items.IEdible;
+import Model.Items.Item;
 import Model.World.GameSceneManager;
 import Model.World.IRandomTickListener;
 import Model.World.ITileAction;
@@ -12,7 +12,6 @@ import Model.World.RandomTickGenerator;
 import Model.World.Terrain.ATerrain;
 
 import java.awt.Point;
-import java.util.List;
 
 
 public class Player implements IPlayerStates, IMovementHandler, IRandomTickListener, IInventoryHolder {
@@ -28,13 +27,16 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     private static final int hungerDecrease = 3;
     private static final int thirstDecrease = 4;
     private static final int energyDecrease = 1;
+
+    // components
     private final MovementHandler playerHandler;
     private final InventoryHandler inventoryHandler;
 
+    // instance
     private static Player player;
 
 
-    //constructor
+    // singleton
     private Player(){
         this.hunger = maxState;
         this.thirst = maxState;
@@ -46,6 +48,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         RandomTickGenerator.getInstance().addListener(this);
     }
 
+    // get the singleton instance
     public static Player getInstance() {
         if (player == null) {
             player = new Player();
@@ -58,6 +61,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
                 return this.inventoryHandler;
     }
 
+    // Simple method to drain the players states
     private void updateStates(){
         hunger = Math.max(minState, hunger - hungerDecrease);
         thirst = Math.max(minState, thirst - thirstDecrease);
@@ -91,6 +95,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         energy = Math.min(maxState, energy + sleepAmount);
     }
 
+    // Delegates its movement to its movementHandler and checks if it is standing on any dropped items and pick them up
     @Override
     public void move(int x, int y ){
         this.playerHandler.move(x,y);
@@ -106,15 +111,18 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         return (playerHandler.getPos());
     }
 
+    // Listens to RandomTickGenerator to update its  states
     @Override
     public void tick(){
         updateStates();
     }
 
+    // Delegates inventory management to inventoryHandler
     public void selectItem(int yCoord, int xCoord) {
         inventoryHandler.moveSelection(yCoord, xCoord);
     }
 
+    // Checks if the currently selected item is an ITileAction and delegates it to its movementHandler. If the player is not holding an ITileAction it send a "Hand" action
     @Override
     public void tileInteract(int x, int y){
         Item currentItem = getInventory().getItem(0, getInventory().getSelectedItemInHotBar()); /////////
@@ -132,13 +140,14 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
                 }
 
                 @Override
-                public boolean useable() {
+                public boolean usable() {
                     return true;
                 }
             });
         }
     }
 
+    // Interactions with the players states, kind of visitor pattern
     @Override
     public void playerInteract(){
         Item currentItem = getInventory().getItem(0, getInventory().getSelectedItemInHotBar());
@@ -152,6 +161,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         playerHandler.setDirection(x, y);
     }
 
+    // used to check for dropped items
     private ATerrain getTerrain(Point pos){
         return GameSceneManager.getInstance().getActiveGameScene().getTile(pos.x, pos.y).getTerrain();
     }

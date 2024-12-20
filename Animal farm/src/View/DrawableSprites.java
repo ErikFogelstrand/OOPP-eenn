@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class DrawableSprites {
-    private final IMovementHandler playerPos;
+    private final IMovementHandler playerPos; // The movement and direction the sprite should follow
     private final int spriteHeight;
     private final int spriteWidth;
 
@@ -38,8 +38,8 @@ public class DrawableSprites {
         }
     }
 
+    // finds the right image
     private BufferedImage setImageDirection() {
-
         switch (direction) {
             case ("back"):
                 directionImage = rabbitBack;
@@ -57,9 +57,9 @@ public class DrawableSprites {
         return directionImage;
     }
 
+    // Draws the sprite with the right orientation and
     public void draw(Graphics2D g2, int tileSize) {
         g2.drawImage(setImageDirection(), playerPos.getPos().x * tileSize, playerPos.getPos().y * tileSize - 8, spriteWidth, spriteHeight, null);
-
     }
 
     public void setDirection(String direction){

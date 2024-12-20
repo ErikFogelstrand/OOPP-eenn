@@ -1,6 +1,6 @@
-package Model.UsableObjects;
+package Model.Items;
 
-
+// StackableItems of the same type can stack
 public abstract class StackableItem extends Item {
     private int quantity;
 
