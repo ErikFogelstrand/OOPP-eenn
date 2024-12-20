@@ -128,6 +128,9 @@ public class GamePanel extends JPanel{
         super.paintComponent(g);
         requestFocusInWindow();
 
+
+
+
         Graphics2D g2 = (Graphics2D)g;
 
         g2.setColor((Color.white));
@@ -137,7 +140,9 @@ public class GamePanel extends JPanel{
 
 
         drawStatusBars(g2);
-        items.draw(g2, tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
+
+
+        items.draw(g2,tileSize*(screenCol-1)/3, screenHeight-mainSlotsHeight, toggleState);
 
         g2.dispose();
 

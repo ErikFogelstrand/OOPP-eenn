@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Model.Inventory.IInventoryHolder;
+import Model.UsableObjects.StackableItem;
 
 public class DrawableItems {
 
@@ -25,6 +26,7 @@ public class DrawableItems {
     public DrawableItems(IInventoryHolder inventoryHolder){
         this.inventoryHolder = inventoryHolder;
         loadItemImages();
+
     }
 
     private void loadItemImages(){
@@ -80,6 +82,12 @@ public class DrawableItems {
                 Item item = inventoryHandler.getItem(i, j);
                 if (item != null){
                     drawItem(g2, xPos+itemMargin, yPos+itemMargin, item);
+
+                    if(item instanceof StackableItem){
+                        StackableItem stackableItem = (StackableItem) item;
+                        drawItemCount(g2, stackableItem.getQuantity(), xPos, yPos);
+                    }
+
                 }
             }
         }
@@ -94,6 +102,13 @@ public class DrawableItems {
 
     private void drawSelectedSlot(Graphics2D g2, int x, int y){
         g2.drawImage(selectedSlot, x, y, slotSize, slotSize, null);
+    }
+
+    private void drawItemCount(Graphics2D g2, int count, int x, int y){
+        g2.setFont(new Font("Arial", Font.BOLD, 18)); // Use a larger font for the quantity
+        g2.setColor(Color.WHITE); // Make the text white or any other color that fits your UI
+
+        g2. drawString(Integer.toString(count), x+itemMargin, y+18);
     }
 
     private void drawItem(Graphics2D g2, int x, int y, Item Item){

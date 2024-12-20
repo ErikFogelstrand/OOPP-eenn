@@ -57,7 +57,6 @@ public class Application implements Runnable {
 
     public void update(){
         gamePanel.updatePaint();
-        Player.getInstance().updateInventory();
     }
 
 

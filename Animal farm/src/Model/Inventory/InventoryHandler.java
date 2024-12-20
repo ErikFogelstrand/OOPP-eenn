@@ -54,6 +54,8 @@ public class InventoryHandler {
     public int getColumns(){return x;}
 
     public Item getItem(int yCoord, int xCoord){
+         update();
+
         if (isValidSlot(yCoord,xCoord)){
             return inventory[yCoord][xCoord];
         }
@@ -121,10 +123,10 @@ public class InventoryHandler {
         return selectedItemInHotBar;
     }
 
-    public void update(){
+    private void update(){
         for(int y = 0; y < getRows();y++){
             for(int x = 0; x < getColumns(); x++){
-                if(getItem(y, x) instanceof StackableItem && ((StackableItem)getItem(y, x)).getQuantity() <= 0){
+                if(inventory[y][x] instanceof StackableItem && ((StackableItem) inventory[y][x]).getQuantity() <= 0){
                     removeItemFromInventory(x, y);
                 }
             }
