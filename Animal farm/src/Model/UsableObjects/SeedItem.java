@@ -25,7 +25,7 @@ public class SeedItem extends StackableItem implements ITileAction {
 
     @Override
     public void use() {
-        System.out.println("Planted " + seedType + " seed");
+        changeQuantity(-1);
     }
 
 }
