@@ -3,9 +3,13 @@ package Model.World.TileObjects;
 import Model.UsableObjects.CarrotItem;
 import Model.UsableObjects.FoodItem;
 import Model.UsableObjects.Item;
+import Model.UsableObjects.SeedItem;
 import Model.World.RandomTickGenerator;
 import Model.World.ITileAction;
 import Model.World.IRandomTickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class APlantableTileObject implements ITileObject, IRandomTickListener {
     private boolean watered;
@@ -25,7 +29,7 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
     public boolean walkable(){return true;}
 
     @Override
-    public Item interact(ITileAction action) {
+    public List<Item> interact(ITileAction action) {
         if(action.getType().equals("Hand")){
             action.use();
             return harvest();
@@ -37,12 +41,15 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
         return null;
     }
 
-    private Item harvest(){
+    private List<Item> harvest(){
         if (growthState < maxGrowth){
             return null;
         }
         RandomTickGenerator.getInstance().removeListener(this);
-        return new CarrotItem(1);
+        List<Item> dropItems = new ArrayList<>();
+        dropItems.add(new CarrotItem(1));
+        dropItems.add(new SeedItem(getType(), 2));
+        return dropItems;
     }
 
     private void water(){

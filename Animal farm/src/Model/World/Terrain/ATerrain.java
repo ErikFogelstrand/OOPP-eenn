@@ -19,9 +19,11 @@ public abstract class ATerrain {
     public abstract boolean walkable();
     public String interact(ITileAction action){
         if(tileObject != null){
-            Item droppedItem = tileObject.interact(action);
+            List<Item> droppedItem = tileObject.interact(action);
             if (droppedItem != null){
-                dropItem(droppedItem);
+                for (Item item : droppedItem){
+                    dropItem(item);
+                }
             }
             return "";
         }
