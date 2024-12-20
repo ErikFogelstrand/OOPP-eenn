@@ -14,10 +14,10 @@ TOOLS & ITEMS:
 In the game, you’ll have access to tools and items to help you take care of your rabbit and the farm!
 
 TOOLS:
-Shovel: Use this to turn grass tiles into dirt tiles.
+Shovel: Use this to turn grass and fertile soil tiles into dirt tiles.
 Hoe: Transform grass or dirt tiles into fertile soil, where you can plant your seeds.
 Hand: Harvest crops.
-To use a tool, select it from your hot bar using keys 1-5 and face the tile you want to interact with. If you want to use your hand, select an empty slot.
+To use a tool, select it from your hot bar using keys 1-5 and face the tile you want to interact with. If you want to use your hand, select an empty slot or item that can't interact with the world (e.g. a carrot).
 Then press E to use the tool!
 
 ITEMS:
