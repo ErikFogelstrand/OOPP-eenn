@@ -40,7 +40,7 @@ public class MovementHandler {
             return;
         }
 
-        if ((currentGameScene.getTile(this.x + x, this.y + y)).getTileType().walkable()) {
+        if ((currentGameScene.getTile(this.x + x, this.y + y)).getTerrain().walkable()) {
             updatePos(x, y);
         }
     }

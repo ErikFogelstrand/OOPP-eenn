@@ -1,8 +1,10 @@
 package Model.World.TileObjects;
 
+import Model.UsableObjects.Item;
+import Model.UsableObjects.StackableItemHolder;
 import Model.World.ITileAction;
 
 public interface ITileObject {
-    public void interact(ITileAction action);
+    public StackableItemHolder interact(ITileAction action);
     public boolean walkable();
 }

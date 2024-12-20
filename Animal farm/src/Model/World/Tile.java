@@ -18,7 +18,7 @@ public class Tile {
     public void setTileObject(ITileObject object){
         tileObject = object;
     }
-    public ATerrain getTileType(){
+    public ATerrain getTerrain(){
         return tileType;
     }
     public void setTileType(ATerrain tileType){
