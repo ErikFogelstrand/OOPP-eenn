@@ -1,5 +1,6 @@
 package View;
 
+import Model.UsableObjects.Item;
 import Model.World.Terrain.ATerrain;
 import Model.World.GameScene;
 import Model.World.GameSceneManager;
@@ -21,6 +22,7 @@ public class DrawableTiles {
     private BufferedImage CarrotSeed_0;
     private BufferedImage CarrotSeed_1;
     private BufferedImage CarrotSeed_2;
+    private BufferedImage carrot;
 
     public DrawableTiles() {
         loadTileImages();
@@ -36,6 +38,8 @@ public class DrawableTiles {
             CarrotSeed_0 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_0.png"));
             CarrotSeed_1 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_1.png"));
             CarrotSeed_2 = ImageIO.read(getClass().getResourceAsStream("Graphics/tiles/carrotSeed_2.png"));
+
+            carrot = ImageIO.read(getClass().getResourceAsStream("Graphics/items/Carrot.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,13 +70,24 @@ public class DrawableTiles {
         return null;
     }
 
+    private BufferedImage getDroppedItemImage(Item item){
+        switch(item.getType()){
+            case("Carrot"): {return carrot;}
+        }
+        return null;
+    }
+
 
     public void draw(Graphics2D g2, int tileSize) {
         GameScene gameScene = GameSceneManager.getInstance().getActiveGameScene();
         for (int y = 0; y < gameScene.getSize().y; y++) {
             for (int x = 0; x < gameScene.getSize().x; x++) {
-                g2.drawImage(getTileTypeImage(gameScene.getTile(x, y).getTileType()), x * tileSize, y * tileSize, tileSize, tileSize, null);
-                g2.drawImage(getTileObjectImage(gameScene.getTile(x, y).getTileType().getTileObject()), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                g2.drawImage(getTileTypeImage(gameScene.getTile(x, y).getTerrain()), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                g2.drawImage(getTileObjectImage(gameScene.getTile(x, y).getTerrain().getTileObject()), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                for (Item item : gameScene.getTile(x, y).getTerrain().getDroppedItems()){
+                    g2.drawImage(getDroppedItemImage(item), x * tileSize, y * tileSize, tileSize, tileSize, null);
+                }
+
             }
         }
     }

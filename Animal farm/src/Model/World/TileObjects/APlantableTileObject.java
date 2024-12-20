@@ -1,5 +1,7 @@
 package Model.World.TileObjects;
 
+import Model.UsableObjects.FoodItem;
+import Model.UsableObjects.Item;
 import Model.World.RandomTickGenerator;
 import Model.World.ITileAction;
 import Model.World.IRandomTickListener;
@@ -7,11 +9,13 @@ import Model.World.IRandomTickListener;
 public abstract class APlantableTileObject implements ITileObject, IRandomTickListener {
     private boolean watered;
     private int growthState;
-    private int maxGrowth;
-    protected APlantableTileObject(int maxGrowth){
+    private final int maxGrowth;
+    private final String type;
+    protected APlantableTileObject(int maxGrowth, String type){
         RandomTickGenerator.getInstance().addListener(this);
         this.maxGrowth = maxGrowth;
         growthState = 0;
+        this.type = type;
     }
     public int getGrowthState(){return growthState;}
     public boolean getWatered(){return watered;}
@@ -20,19 +24,24 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
     public boolean walkable(){return true;}
 
     @Override
-    public void interact(ITileAction action) {
+    public Item interact(ITileAction action) {
         if(action.getType().equals("Hand")){
-            harvest();
             action.use();
+            return harvest();
         }
         else if(action.getType().equals("WateringCan")){
             water();
             action.use();
         }
+        return null;
     }
 
-    private void harvest(){
+    private Item harvest(){
+        if (growthState < maxGrowth){
+            return null;
+        }
         RandomTickGenerator.getInstance().removeListener(this);
+        return new FoodItem("Carrot", 1, 2);
     }
 
     private void water(){
@@ -49,5 +58,9 @@ public abstract class APlantableTileObject implements ITileObject, IRandomTickLi
         }
         watered = false;
         growthState++;
+    }
+
+    private String getType(){
+        return type;
     }
 }
