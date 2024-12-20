@@ -6,7 +6,7 @@ All the food in the game is planted and harvested by the rabbit itself.
 
 Start the game by running the application!
 
-HOW TO PLAY:
+**HOW TO PLAY:**
 
 You can move around tile to tile by using the WASD keys. To make the rabbit face in a different direction use the arrow keys.
 
@@ -15,24 +15,24 @@ In the game, you’ll have access to tools and items to help you take care of yo
 
 TOOLS:
 **Shovel**: Use this to turn grass and fertile soil tiles into dirt tiles.
-Hoe: Transform grass or dirt tiles into fertile soil, where you can plant your seeds.
-Hand: Harvest crops.
-To use a tool, select it from your hot bar using keys 1-5 and face the tile you want to interact with. If you want to use your hand, select an empty slot or item that can't interact with the world (e.g. a carrot).
-Then press E to use the tool!
+**Hoe:** Transform grass or dirt tiles into fertile soil, where you can plant your seeds.
+**Hand:** Harvest crops.
+To use a tool, select it from your hot bar using keys **1-5** and face the tile you want to interact with. If you want to use your hand, select an empty slot or item that can't interact with the world (e.g. a carrot).
+Then press **E** to use the tool!
 
 ITEMS:
-Food: Food items can be harvested from crops you grow.
-Water: Drink water to quench the rabbit's thirst and keep the stats balanced. Water is also used to water crops.
-Seeds: Use these to grow crops! Plant them on fertile soil, water them regularly, and wait for the harvest.
+**Food:** Food items can be harvested from crops you grow.
+**Water:** Drink water to quench the rabbit's thirst and keep the stats balanced. Water is also used to water crops.
+**Seeds:** Use these to grow crops! Plant them on fertile soil, water them regularly, and wait for the harvest.
 Food and water items are consumed by pressing F.
-Seeds are planted by facing a plantable dirt tile and pressing E.
+Seeds are planted by facing a plantable dirt tile and pressing **E**.
 
 INVENTORY:
-Your items and tools are stored in an inventory that you can access by pressing Q. To move the items around in the inventory, first select the chosen item
-by pressing E and then move around the inventory slots by using the arrow keys. Press E again once you have reached your chosen slot.
+Your items and tools are stored in an inventory that you can access by pressing **Q**. To move the items around in the inventory, first select the chosen item
+by pressing **E** and then move around the inventory slots by using the arrow keys. Press **E** again once you have reached your chosen slot.
 
 HOME:
-Your home is used to replenish your sleep stats. The cozy little hole on the screen is the place where you rest, face in that direction and press E to sleep. ᶻ 𝘇 𐰁
+Your home is used to replenish your sleep stats. The cozy little hole on the screen is the place where you rest, face in that direction and press **E** to sleep. ᶻ 𝘇 𐰁
 
 AND LASTLY...
 Have fun and relax by playing this game! Remember to keep your rabbit happy and satisfied and make sure to let us know if you have any suggestions
