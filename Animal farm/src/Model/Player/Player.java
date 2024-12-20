@@ -95,7 +95,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
         this.playerHandler.move(x,y);
         ATerrain terrain = getTerrain(playerHandler.getPos());
         for (Item item : terrain.getDroppedItems()){
-            //inventoryHandler.addItem(terrain.getDroppedItems());
+            inventoryHandler.addItem(item);
         }
         terrain.pickUp();
 
@@ -117,7 +117,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     @Override
     public void interact(int x, int y){
 
-        Item currentItem = getInventory().getItem(getInventory().getSelectedY(), getInventory().getSelectedX()); /////////
+        Item currentItem = getInventory().getItem(0, getInventory().getSelectedItemInHotBar()); /////////
         if (currentItem instanceof ITileAction){
             playerHandler.interact(x, y, (ITileAction) currentItem);
         } else{

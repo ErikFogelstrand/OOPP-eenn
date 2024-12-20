@@ -7,7 +7,7 @@ public class InventoryHandler {
     private static final int y = 6; // rows
     private static final int x = 5; // columns
     private final Item[][] inventory;
-    //private int selectedItem;
+    private int selectedItem;
     private int selectedX = 0;
     private int selectedY = 0;
 
@@ -26,14 +26,17 @@ public class InventoryHandler {
                 if (inventory[i][j] == null) { // Check if the slot is empty
                     inventory[i][j] = newItem; // Add the item to the empty slot
                     return true;
+                }
+                if(newItem instanceof Tool){
+                    continue;
+                }
 
+                StackableItem stackableItem = (StackableItem) newItem;
 
-                //if (inventory[i][j] != null && inventory[i][j].getName().equals(newItem.getName())){
-                    //inventory[i][j].add(newItem.getQuantity());
-                    //return true
-                //} else if (inventory[i][j] == null){
-                //    inventory[i][j] = newItem;
-                //    return true;
+                if (inventory[i][j] != null && inventory[i][j] instanceof StackableItem && inventory[i][j].getType().equals(stackableItem.getType())){
+                    ((StackableItem) inventory[i][j]).changeQuantity(stackableItem.getQuantity());
+                    System.out.println(((StackableItem)inventory[i][j]).getType() + " " + ((StackableItem)inventory[i][j]).getQuantity());
+                    return true;
                 }
             }
         }
@@ -59,24 +62,16 @@ public class InventoryHandler {
     //    return inventory;
     //}
 
-    //public Item selectItem(int xCoord){
-    //    if (isValidSlot(0,xCoord)){
-    //        selectedItem = xCoord;
-    //        return inventory[0][xCoord];
-    //    }
-    //    return null;
-    //}
+    public void selectItemInHotBar(int xCoord){
+        if (isValidSlot(0,xCoord)){
+            selectedItem = xCoord;
+        }
+    }
 
-    public Item selectItem(int newY, int newX) {
+    public void selectItem(int newY, int newX) {
         if (isValidSlot(newY, newX)) {
             selectedY = newY;
             selectedX = newX;
-
-            System.out.println("Selected item at (" + selectedY + ", " + selectedX + ")");
-            return inventory[newY][newX];
-        } else {
-           // System.out.println("Invalid slot selected");
-            return null;
         }
     }
 
@@ -88,10 +83,8 @@ public class InventoryHandler {
         return selectedY;
     }
 
-    //public Item getSelectedItem(){
-        //return selectedItem;
-    //    selectedItem = getItem(selectedY, selectedX);
-    //    return selectedItem;
-    //}
+    public int getSelectedItemInHotBar(){
+        return selectedItem;
+    }
 }
 

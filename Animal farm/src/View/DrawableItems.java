@@ -57,30 +57,27 @@ public class DrawableItems {
 
         InventoryHandler inventoryHandler = inventoryHolder.getInventory();
         int rows = 1;
-        int offset;
         int columns = inventoryHandler.getColumns(); // = 5
-        if (expandInventory){
+
+        if (expandInventory) {
             rows = inventoryHandler.getRows();
-            offset = -500;
-        } else {
-            offset = 0;
         }
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                int xPos = x + (slotSize) * j;
 
-                int yPos = y + (slotSize) * i;
+                int xPos = x + (slotSize) * j;
+                int yPos = y - slotSize*(i);
 
                 inventoryHandler.getItem(i, j);
 
-                drawSlot(g2, xPos, yPos+offset);
+                drawSlot(g2, xPos, yPos);
 
-                //if (inventoryHolder.getInventory().getSelectedItem() == j){
-                //    drawSelectedSlot(g2, xPos, yPos+offset);
-
-                if (inventoryHolder.getInventory().getSelectedY() == i && inventoryHolder.getInventory().getSelectedX() == j){
-                    drawSelectedSlot(g2, xPos, yPos+offset);
+                if (0 == i && inventoryHolder.getInventory().getSelectedItemInHotBar() == j && !expandInventory){
+                    drawSelectedSlot(g2, xPos, yPos);
+                }
+                else if(inventoryHolder.getInventory().getSelectedY() == i && inventoryHolder.getInventory().getSelectedX() == j && expandInventory){
+                    drawSelectedSlot(g2, xPos, yPos);
                 }
 
                 Item item = inventoryHandler.getItem(i, j);
