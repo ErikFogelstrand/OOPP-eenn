@@ -11,6 +11,7 @@ Start the game by running the application!
 You can move around tile to tile by using the WASD keys. To make the rabbit face in a different direction use the arrow keys.
 
 TOOLS & ITEMS:
+
 In the game, you’ll have access to tools and items to help you take care of your rabbit and the farm!
 
 TOOLS:
