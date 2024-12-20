@@ -3,6 +3,7 @@ package Model.Player;
 
 import Model.Inventory.InventoryHandler;
 import Model.Inventory.IInventoryHolder;
+import Model.UsableObjects.IEdible;
 import Model.UsableObjects.Item;
 import Model.World.GameSceneManager;
 import Model.World.IRandomTickListener;
@@ -55,6 +56,11 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     @Override
     public InventoryHandler getInventory() {
                 return this.inventoryHandler;
+    }
+
+    @Override
+    public void updateInventory() {
+        getInventory().update();
     }
 
     private void updateStates(){
@@ -115,8 +121,7 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
     }
 
     @Override
-    public void interact(int x, int y){
-
+    public void tileInteract(int x, int y){
         Item currentItem = getInventory().getItem(0, getInventory().getSelectedItemInHotBar()); /////////
         if (currentItem instanceof ITileAction){
             playerHandler.interact(x, y, (ITileAction) currentItem);
@@ -137,6 +142,14 @@ public class Player implements IPlayerStates, IMovementHandler, IRandomTickListe
                     return true;
                 }
             });
+        }
+    }
+
+    @Override
+    public void playerInteract(){
+        Item currentItem = getInventory().getItem(0, getInventory().getSelectedItemInHotBar());
+        if (currentItem instanceof IEdible){
+            ((IEdible)currentItem).consume(this);
         }
     }
 
